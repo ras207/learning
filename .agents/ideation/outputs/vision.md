@@ -1,0 +1,1 @@
+<!-- Placeholder: approved vision output -->
