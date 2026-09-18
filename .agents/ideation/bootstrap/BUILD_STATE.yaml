@@ -4,13 +4,13 @@ system: ideation-agent
 phase: bootstrap
 
 current_target:
-  path: .agents/ideation/workflow/GATES.md
+  path: .agents/ideation/workflow/WORKFLOW.md
   status: in_design
   contract_path: null
   contract_status: not_defined
   notes:
-    - GATES.md is currently only a placeholder.
-    - Define explicit completion criteria before the target can be marked complete.
+    - Existing content defines the vision output location and write boundary.
+    - Expand the workflow to orchestrate the six gates defined in GATES.md, including dynamic deficiency-based resumption.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -19,11 +19,14 @@ documents:
 
   - path: .agents/ideation/workflow/GATES.md
     role: workflow_gates
-    status: in_design
+    status: complete
+    notes:
+      - Defines six gates, hard/advisory behaviour, outcome semantics, human authority and the required evaluation record.
+      - Gate failures identify deficiencies; WORKFLOW.md owns dynamic routing and resumption.
 
   - path: .agents/ideation/workflow/WORKFLOW.md
     role: workflow_definition
-    status: partial
+    status: in_design
     notes:
       - Existing content defines the vision output location and write boundary.
       - The full ideation workflow still needs to be designed.
