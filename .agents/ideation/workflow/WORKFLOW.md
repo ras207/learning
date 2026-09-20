@@ -112,11 +112,11 @@ Evaluate Gate 5 — Ready for Synthesis at the end of this stage.
 Once Gate 5 passes:
 
 1. read `.agents/ideation/contracts/VISION_CONTRACT.md`;
-2. synthesize the current ideation state into `projects/<project-slug>/ideation/vision.md`;
-3. set the vision status to `candidate`;
-4. validate every required section and artifact-quality condition in the contract;
-5. verify that no blocking unresolved question remains; and
-6. confirm that all required earlier gate records remain valid.
+2. synthesize the current ideation state into `projects/<project-slug>/ideation/vision.md` with `status: draft`;
+3. validate every required section and artifact-quality condition in the contract;
+4. verify that no blocking unresolved question remains;
+5. confirm that all required earlier gate records remain valid; and
+6. only after those checks pass, change the vision status to `candidate`.
 
 Drafting MUST NOT be used to conceal unresolved discovery or silently invent consequential intent.
 
