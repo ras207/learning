@@ -4,13 +4,13 @@ system: ideation-agent
 phase: bootstrap
 
 current_target:
-  path: .agents/ideation/workflow/WORKFLOW.md
+  path: .agents/ideation/AGENT.md
   status: in_design
   contract_path: null
   contract_status: not_defined
   notes:
-    - Existing content defines the vision output location and write boundary.
-    - Expand the workflow to orchestrate the six gates defined in GATES.md, including dynamic deficiency-based resumption.
+    - Existing content protects reusable ideation-system files during normal project runs.
+    - Expand the agent definition to implement the accepted workflow, gate model, human authority and runtime boundaries.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -26,14 +26,15 @@ documents:
 
   - path: .agents/ideation/workflow/WORKFLOW.md
     role: workflow_definition
-    status: in_design
+    status: complete
     notes:
-      - Existing content defines the vision output location and write boundary.
-      - The full ideation workflow still needs to be designed.
+      - Defines a fixed progression spine with gate evaluation at planned boundaries and after material changes.
+      - Defines dependency-first, value-aware deficiency routing that preserves unaffected work.
+      - Defines continuous challenge, blocked-only research, explicit human approval and mandatory finalization.
 
   - path: .agents/ideation/AGENT.md
     role: agent_definition
-    status: partial
+    status: in_design
     notes:
       - Existing content protects reusable ideation-system files during normal project runs.
       - The complete agent definition still needs to be designed.
