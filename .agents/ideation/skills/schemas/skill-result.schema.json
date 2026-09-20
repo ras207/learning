@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ras207:learning:ideation:skill-result:1",
+  "title": "Ideation skill result envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "skill_id",
+    "invocation_id",
+    "status",
+    "summary",
+    "payload",
+    "unresolved_items",
+    "state_change_proposals",
+    "artifact_change_proposals",
+    "human_escalation",
+    "evidence_refs",
+    "warnings"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "skill_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "invocation_id": {"type": "string", "minLength": 1},
+    "status": {
+      "enum": ["completed", "partial", "blocked", "escalation_required", "failed"]
+    },
+    "summary": {"type": "string", "minLength": 1},
+    "payload": {"type": "object"},
+    "unresolved_items": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/unresolvedItem"}
+    },
+    "state_change_proposals": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/stateChange"}
+    },
+    "artifact_change_proposals": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifactChange"}
+    },
+    "human_escalation": {
+      "oneOf": [{"type": "null"}, {"$ref": "#/$defs/escalation"}]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "escalation_required"}}},
+      "then": {"properties": {"human_escalation": {"$ref": "#/$defs/escalation"}}}
+    }
+  ],
+  "$defs": {
+    "unresolvedItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "title", "blocking", "owner", "rationale", "proposed_action"],
+      "properties": {
+        "type": {"enum": ["deficiency", "question", "uncertainty", "escalation"]},
+        "title": {"type": "string", "minLength": 1},
+        "blocking": {"type": "boolean"},
+        "owner": {"enum": ["agent", "human", "external_evidence"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "proposed_action": {"type": "string", "minLength": 1}
+      }
+    },
+    "stateChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "section", "expected_revision", "patch", "rationale", "dependencies"],
+      "properties": {
+        "operation": {"enum": ["create", "update", "resolve", "supersede", "invalidate", "reconfirm"]},
+        "section": {
+          "enum": ["project", "workflow", "session", "routing", "artifacts", "decisions", "assumptions", "work_items", "evidence", "gate_evaluations", "finalization", "history"]
+        },
+        "record_id": {"type": ["string", "null"]},
+        "expected_revision": {"type": "integer", "minimum": 1},
+        "patch": {"type": "object"},
+        "rationale": {"type": "string", "minLength": 1},
+        "dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "artifactChange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_id", "path", "operation", "proposed_content_ref", "rationale"],
+      "properties": {
+        "artifact_id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "pattern": "^projects/[^/]+/ideation/"},
+        "operation": {"enum": ["create", "update"]},
+        "expected_fingerprint": {"type": ["string", "null"]},
+        "proposed_content_ref": {"type": "string", "minLength": 1},
+        "rationale": {"type": "string", "minLength": 1}
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question", "recommendation", "alternatives", "trade_offs", "blocking_scope"],
+      "properties": {
+        "question": {"type": "string", "minLength": 1},
+        "recommendation": {"type": "string", "minLength": 1},
+        "alternatives": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "trade_offs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "blocking_scope": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  }
+}

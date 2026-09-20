@@ -4,13 +4,13 @@ system: ideation-agent
 phase: bootstrap
 
 current_target:
-  path: .agents/ideation/skills/
+  path: .agents/ideation/tools/
   status: in_design
   contract_path: null
   contract_status: not_defined
   notes:
-    - The folder currently contains only a .gitkeep placeholder.
-    - Define the skill set and the responsibility, invocation conditions, inputs and outputs of each skill from the accepted agent, workflow, gate and state contracts.
+    - Define the deterministic execution layer that validates and applies skill-result proposals, state mutations, fingerprints and artifact writes.
+    - The skills workstream defines the interfaces this target must implement; it does not authorize generative skills to mutate canonical state directly.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -51,10 +51,19 @@ documents:
 
   - path: .agents/ideation/skills/
     role: skills
+    status: complete
+    notes:
+      - Defines twelve reusable capability skills rather than one skill per workflow stage.
+      - Defines one generic gate evaluator, a generic dynamic router, dedicated material-change assessment and guarded blocked-evidence research.
+      - Keeps ordinary challenge cross-cutting while providing a focused challenge skill for material stress tests and the mandatory pre-synthesis challenge.
+      - Separates vision synthesis from semantic validation and separates generative reasoning from deterministic mutation.
+      - Defines a shared skill contract, authoritative index, frontmatter schema and common result-envelope schema.
+
+  - path: .agents/ideation/tools/
+    role: deterministic_tools
     status: in_design
     notes:
-      - The folder currently contains only a .gitkeep placeholder.
-      - Design skills from the accepted controlling contracts without duplicating workflow or agent authority.
+      - Implement deterministic validation and application of the interfaces defined by the completed skills workstream.
 
 planned_sequence:
   - .agents/ideation/workflow/GATES.md
@@ -62,6 +71,7 @@ planned_sequence:
   - .agents/ideation/AGENT.md
   - .agents/ideation/state/ideation_state.md
   - .agents/ideation/skills/
+  - .agents/ideation/tools/
 
 status_meanings:
   complete: Accepted as the current baseline and not an active bootstrap target.
