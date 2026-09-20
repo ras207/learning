@@ -150,6 +150,34 @@ This finalization step is not a seventh gate and MUST NOT override or waive a ga
 
 If finalization reveals a substantive defect, the workflow remains incomplete and MUST resume through dynamic routing. A substantive change to the vision after approval invalidates Gate 6 and requires renewed human approval. The expected metadata change from `candidate` to `approved` does not itself require renewed approval.
 
+## Alternative terminal and paused outcomes
+
+An approved vision is the successful handoff outcome, but the workflow MUST NOT force every idea toward approval.
+
+### Closed as not progressing
+
+A run MAY close as `not_progressing` only when:
+
+1. the agent has made its recommendation and rationale clear;
+2. the user explicitly decides not to progress the idea;
+3. the decision and concise rationale are recorded in project state;
+4. any conditions that could justify future reconsideration are recorded when relevant; and
+5. the state makes clear that no approved vision or product-design handoff exists.
+
+This is a legitimate terminal outcome, not a failed attempt to satisfy Gate 6. It MUST NOT create or label a vision as approved.
+
+A later decision to reopen the idea starts from the preserved state, repeats orientation, and recomputes the appropriate workflow position.
+
+### Deferred
+
+Deferral is a resumable paused state, not a terminal outcome.
+
+The workflow MUST record why the idea was deferred and, where possible, the condition, evidence, date, or decision that should trigger reconsideration.
+
+### Reframed
+
+Reframing does not end the workflow. The workflow MUST update the affected intent or project state, invalidate materially dependent gate evaluations, and resume through dynamic routing.
+
 ## Gate invocation and re-evaluation
 
 The workflow MUST formally evaluate each gate at its planned boundary.
@@ -266,9 +294,16 @@ Before pausing where persistence is available, the workflow SHOULD preserve enou
 
 On resumption, the workflow MUST repeat orientation, check for material changes, and recompute the next action. It MUST NOT rely on chat history or a previously recorded stage label as the sole source of truth.
 
-## Workflow completion criteria
+## Workflow terminal criteria
 
-The ideation workflow is complete only when:
+A run reaches a legitimate terminal state only through one of two outcomes:
+
+- `approved`: a successful vision handoff; or
+- `not_progressing`: an explicit human decision to close without a vision handoff.
+
+### Approved handoff
+
+The approved handoff is complete only when:
 
 1. `projects/<project-slug>/ideation/vision.md` exists and has `status: approved`;
 2. the vision satisfies `.agents/ideation/contracts/VISION_CONTRACT.md`;
@@ -279,7 +314,13 @@ The ideation workflow is complete only when:
 7. mandatory finalization has been completed and recorded in project state; and
 8. the approved vision is identified as the authoritative handoff to product design.
 
-Until all eight conditions are satisfied, the workflow MUST remain incomplete.
+Until all eight conditions are satisfied, the run MUST NOT be recorded as an approved handoff.
+
+### Not progressing
+
+A `not_progressing` closure is complete only when the explicit-decision and state-record requirements in **Closed as not progressing** are satisfied.
+
+A deferred or reframed run remains non-terminal.
 
 ## Completion criteria for this file
 
@@ -293,5 +334,5 @@ Until all eight conditions are satisfied, the workflow MUST remain incomplete.
 6. dynamic deficiency routing preserves valid work and prioritizes dependency before expected decision value;
 7. research is limited to evidence gaps that block progress;
 8. synthesis, explicit human approval, and mandatory finalization are defined;
-9. interruption, resumption, and workflow completion are defined; and
+9. interruption, resumption, approved handoff, and non-handoff terminal behaviour are defined; and
 10. the file is internally consistent with `GATES.md`, `VISION_CONTRACT.md`, and the responsibility boundary of `ideation_state.md`.

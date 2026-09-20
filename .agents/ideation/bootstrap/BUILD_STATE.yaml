@@ -4,13 +4,13 @@ system: ideation-agent
 phase: bootstrap
 
 current_target:
-  path: .agents/ideation/AGENT.md
+  path: .agents/ideation/state/ideation_state.md
   status: in_design
   contract_path: null
   contract_status: not_defined
   notes:
-    - Existing content protects reusable ideation-system files during normal project runs.
-    - Expand the agent definition to implement the accepted workflow, gate model, human authority and runtime boundaries.
+    - The file is currently a placeholder.
+    - Define the runtime-state and persistence model required by AGENT.md, WORKFLOW.md and GATES.md.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -31,17 +31,22 @@ documents:
       - Defines a fixed progression spine with gate evaluation at planned boundaries and after material changes.
       - Defines dependency-first, value-aware deficiency routing that preserves unaffected work.
       - Defines continuous challenge, blocked-only research, explicit human approval and mandatory finalization.
+      - Defines approved handoff and human-authorized not-progressing terminal outcomes.
 
   - path: .agents/ideation/AGENT.md
     role: agent_definition
-    status: in_design
+    status: complete
     notes:
-      - Existing content protects reusable ideation-system files during normal project runs.
-      - The complete agent definition still needs to be designed.
+      - Defines a bounded-autonomy thinking partner with explicit human decision authority.
+      - Defines recommendation, challenge, epistemic, tool, scope and write-boundary behaviour.
+      - Permits recommendations to stop, defer or reframe while reserving those decisions to the user.
 
   - path: .agents/ideation/state/ideation_state.md
     role: runtime_state_definition
-    status: placeholder
+    status: in_design
+    notes:
+      - The file is currently a placeholder.
+      - It must define persistence for workflow position, decisions, assumptions, deficiencies, uncertainties, gate records and terminal status.
 
   - path: .agents/ideation/skills/
     role: skills
