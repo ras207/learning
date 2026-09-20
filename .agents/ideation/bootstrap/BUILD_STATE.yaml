@@ -4,13 +4,13 @@ system: ideation-agent
 phase: bootstrap
 
 current_target:
-  path: .agents/ideation/state/ideation_state.md
+  path: .agents/ideation/skills/
   status: in_design
   contract_path: null
   contract_status: not_defined
   notes:
-    - The file is currently a placeholder.
-    - Define the runtime-state and persistence model required by AGENT.md, WORKFLOW.md and GATES.md.
+    - The folder currently contains only a .gitkeep placeholder.
+    - Define the skill set and the responsibility, invocation conditions, inputs and outputs of each skill from the accepted agent, workflow, gate and state contracts.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -43,17 +43,18 @@ documents:
 
   - path: .agents/ideation/state/ideation_state.md
     role: runtime_state_definition
-    status: in_design
+    status: complete
     notes:
-      - The file is currently a placeholder.
-      - It must define persistence for workflow position, decisions, assumptions, deficiencies, uncertainties, gate records and terminal status.
+      - Defines one canonical structured YAML state record per project with a compact authoritative snapshot and consequential event history.
+      - Defines typed routable work items, risk-based assumption blocking, selective dependency invalidation, artifact fingerprints and human-authorized terminal state.
+      - Defines reliable interruption recovery, focus revalidation and new iterations for reopened terminal ideas.
 
   - path: .agents/ideation/skills/
     role: skills
-    status: pending
+    status: in_design
     notes:
       - The folder currently contains only a .gitkeep placeholder.
-      - Individual skill files should be designed after the controlling workflow is sufficiently defined.
+      - Design skills from the accepted controlling contracts without duplicating workflow or agent authority.
 
 planned_sequence:
   - .agents/ideation/workflow/GATES.md
