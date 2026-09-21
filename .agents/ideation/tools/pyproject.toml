@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ideation-tools"
+version = "0.1.0"
+description = "Deterministic transaction coordinator for the reusable ideation agent"
+requires-python = ">=3.11"
+dependencies = [
+  "jsonschema>=4.0",
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[project.scripts]
+ideation-tools = "ideation_tools.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ideation_tools*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
