@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ras207:learning:ideation:skill-metadata:1",
+  "title": "Ideation skill frontmatter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "description", "metadata"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 300
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "capability_class",
+        "default_autonomy",
+        "result_payload",
+        "side_effects",
+        "contract_dependencies",
+        "skill_dependencies"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "capability_class": {
+          "enum": ["reasoning", "assurance", "routing", "evidence"]
+        },
+        "default_autonomy": {"const": "bounded-autonomous"},
+        "result_payload": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "side_effects": {"const": "propose-only"},
+        "contract_dependencies": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "skill_dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        }
+      }
+    }
+  }
+}
