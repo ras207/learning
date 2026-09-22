@@ -4,142 +4,506 @@
   "title": "Ideation runtime state",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version","project","workflow","session","routing","artifacts","decisions","assumptions","work_items","evidence","gate_evaluations","finalization","history"],
+  "required": [
+    "schema_version",
+    "project",
+    "agent_provenance",
+    "workflow",
+    "session",
+    "routing",
+    "artifacts",
+    "decisions",
+    "assumptions",
+    "work_items",
+    "evidence",
+    "gate_evaluations",
+    "finalization",
+    "history"
+  ],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {
+      "const": 1
+    },
     "project": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["project_id","project_slug","iteration","revision","created_at","updated_at"],
+      "required": [
+        "project_id",
+        "project_slug",
+        "iteration",
+        "revision",
+        "created_at",
+        "updated_at"
+      ],
       "properties": {
-        "project_id": {"type": "string", "minLength": 1},
-        "project_slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
-        "iteration": {"type": "integer", "minimum": 1},
-        "revision": {"type": "integer", "minimum": 1},
-        "created_at": {"type": "string", "minLength": 1},
-        "updated_at": {"type": "string", "minLength": 1}
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "project_slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "iteration": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "created_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "updated_at": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "workflow": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["status","vision_status"],
+      "required": [
+        "status",
+        "vision_status"
+      ],
       "properties": {
-        "status": {"enum": ["active","deferred","approved","not_progressing"]},
-        "vision_status": {"enum": ["not_started","draft","candidate","approved"]},
-        "spine_context": {"type": ["string","null"]}
+        "status": {
+          "enum": [
+            "active",
+            "deferred",
+            "approved",
+            "not_progressing"
+          ]
+        },
+        "vision_status": {
+          "enum": [
+            "not_started",
+            "draft",
+            "candidate",
+            "approved"
+          ]
+        },
+        "spine_context": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
     "session": {
       "type": "object",
       "additionalProperties": true,
-      "required": ["status"],
+      "required": [
+        "status"
+      ],
       "properties": {
-        "status": {"enum": ["active","paused"]},
-        "checkpointed_at": {"type": ["string","null"]},
-        "resume_summary": {"type": ["string","null"]},
-        "pending_interaction_id": {"type": ["string","null"]}
-      }
-    },
-    "routing": {"type": "object", "additionalProperties": true},
-    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
-    "decisions": {"type": "array", "items": {"$ref": "#/$defs/decision"}},
-    "assumptions": {"type": "array", "items": {"$ref": "#/$defs/assumption"}},
-    "work_items": {"type": "array", "items": {"$ref": "#/$defs/workItem"}},
-    "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
-    "gate_evaluations": {"type": "array", "items": {"$ref": "#/$defs/gateEvaluation"}},
-    "finalization": {"type": "object", "additionalProperties": true, "required": ["outcome","checks","authorized_by_decision_id"]},
-    "history": {"type": "array", "items": {"$ref": "#/$defs/historyEvent"}}
-  },
-  "$defs": {
-    "artifact": {
-      "type": "object", "additionalProperties": true,
-      "required": ["artifact_id","role","path","status","fingerprint"],
-      "properties": {
-        "artifact_id": {"type": "string", "minLength": 1},
-        "role": {"type": "string", "minLength": 1},
-        "path": {"type": "string", "pattern": "^projects/[^/]+/ideation/"},
-        "status": {"type": "string", "minLength": 1},
-        "fingerprint": {
-          "type": "object", "additionalProperties": false,
-          "required": ["algorithm","value"],
-          "properties": {
-            "algorithm": {"const": "sha256"},
-            "value": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
-          }
+        "status": {
+          "enum": [
+            "active",
+            "paused"
+          ]
         },
-        "repository_commit": {"type": ["string","null"]},
-        "last_verified_at": {"type": ["string","null"]}
+        "checkpointed_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resume_summary": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pending_interaction_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-    "decision": {
-      "type": "object", "additionalProperties": true,
-      "required": ["id","question","decision","authority","status"],
-      "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "question": {"type": "string", "minLength": 1},
-        "decision": {"type": "string", "minLength": 1},
-        "authority": {"enum": ["human","agent"]},
-        "status": {"enum": ["settled","reconfirmation_required","superseded"]},
-        "authorization_id": {"type": ["string","null"]}
+    "routing": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
       }
     },
-    "assumption": {
-      "type": "object", "additionalProperties": true,
-      "required": ["id","proposition","status","blocking"],
-      "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "proposition": {"type": "string", "minLength": 1},
-        "status": {"enum": ["provisional","validated","rejected","superseded"]},
-        "blocking": {"type": "boolean"}
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decision"
       }
     },
-    "workItem": {
-      "type": "object", "additionalProperties": true,
-      "required": ["id","type","title","status","blocking","owner"],
-      "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "type": {"enum": ["deficiency","question","uncertainty","escalation"]},
-        "title": {"type": "string", "minLength": 1},
-        "status": {"enum": ["open","in_progress","deferred","resolved","superseded"]},
-        "blocking": {"type": "boolean"},
-        "owner": {"enum": ["agent","human","external_evidence"]}
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/assumption"
+      }
+    },
+    "work_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/workItem"
       }
     },
     "evidence": {
-      "type": "object", "additionalProperties": true,
-      "required": ["id","claim","source_reference"],
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "gate_evaluations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/gateEvaluation"
+      }
+    },
+    "finalization": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "outcome",
+        "checks",
+        "authorized_by_decision_id"
+      ]
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/historyEvent"
+      }
+    },
+    "agent_provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_commit"
+      ],
       "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "claim": {"type": "string", "minLength": 1},
-        "source_reference": {"type": "string", "minLength": 1}
+        "repository_commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "artifact_id",
+        "role",
+        "path",
+        "status",
+        "fingerprint"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^projects/[^/]+/ideation/"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fingerprint": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "value"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "sha256"
+            },
+            "value": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "repository_commit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_verified_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "question",
+        "decision",
+        "authority",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority": {
+          "enum": [
+            "human",
+            "agent"
+          ]
+        },
+        "status": {
+          "enum": [
+            "settled",
+            "reconfirmation_required",
+            "superseded"
+          ]
+        },
+        "authorization_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "assumption": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "proposition",
+        "status",
+        "blocking"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "provisional",
+            "validated",
+            "rejected",
+            "superseded"
+          ]
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      }
+    },
+    "workItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "type",
+        "title",
+        "status",
+        "blocking",
+        "owner"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "enum": [
+            "deficiency",
+            "question",
+            "uncertainty",
+            "escalation"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "open",
+            "in_progress",
+            "deferred",
+            "resolved",
+            "superseded"
+          ]
+        },
+        "blocking": {
+          "type": "boolean"
+        },
+        "owner": {
+          "enum": [
+            "agent",
+            "human",
+            "external_evidence"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "claim",
+        "source_reference"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_reference": {
+          "type": "string",
+          "minLength": 1
+        }
       }
     },
     "gateEvaluation": {
-      "type": "object", "additionalProperties": true,
-      "required": ["id","gate_id","gate_name","gate_class","outcome","validity"],
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "gate_id",
+        "gate_name",
+        "gate_class",
+        "outcome",
+        "validity"
+      ],
       "properties": {
-        "id": {"type": "string", "minLength": 1},
-        "gate_id": {"type": "integer", "minimum": 1, "maximum": 6},
-        "gate_name": {"type": "string", "minLength": 1},
-        "gate_class": {"enum": ["hard","advisory"]},
-        "outcome": {"enum": ["PASS","PASS_WITH_UNCERTAINTY","FAIL","ESCALATE"]},
-        "validity": {"enum": ["current","re_evaluation_required","superseded"]},
-        "human_decision_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gate_id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 6
+        },
+        "gate_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gate_class": {
+          "enum": [
+            "hard",
+            "advisory"
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "PASS",
+            "PASS_WITH_UNCERTAINTY",
+            "FAIL",
+            "ESCALATE"
+          ]
+        },
+        "validity": {
+          "enum": [
+            "current",
+            "re_evaluation_required",
+            "superseded"
+          ]
+        },
+        "human_decision_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
       }
     },
     "historyEvent": {
-      "type": "object", "additionalProperties": true,
-      "required": ["event_id","timestamp","event_type","actor","summary","resulting_revision","transaction_id"],
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "event_id",
+        "timestamp",
+        "event_type",
+        "actor",
+        "summary",
+        "resulting_revision",
+        "transaction_id"
+      ],
       "properties": {
-        "event_id": {"type": "string", "minLength": 1},
-        "timestamp": {"type": "string", "minLength": 1},
-        "event_type": {"type": "string", "minLength": 1},
-        "actor": {"type": "string", "minLength": 1},
-        "summary": {"type": "string", "minLength": 1},
-        "resulting_revision": {"type": "integer", "minimum": 1},
-        "transaction_id": {"type": "string", "minLength": 1},
-        "authorization_id": {"type": ["string","null"]}
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resulting_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "transaction_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authorization_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     }
   }
