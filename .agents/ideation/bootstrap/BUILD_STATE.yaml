@@ -5,12 +5,12 @@ phase: bootstrap
 
 current_target:
   path: .agents/ideation/tools/
-  status: in_design
-  contract_path: null
-  contract_status: not_defined
+  status: complete
+  contract_path: .agents/ideation/tools/README.md
+  contract_status: complete
   notes:
-    - Define the deterministic execution layer that validates and applies skill-result proposals, state mutations, fingerprints and artifact writes.
-    - The skills workstream defines the interfaces this target must implement; it does not authorize generative skills to mutate canonical state directly.
+    - The deterministic tools workstream is complete for the v0.1 baseline.
+    - The planned bootstrap sequence currently has no remaining target after tools/.
 
 documents:
   - path: .agents/ideation/contracts/VISION_CONTRACT.md
@@ -61,9 +61,13 @@ documents:
 
   - path: .agents/ideation/tools/
     role: deterministic_tools
-    status: in_design
+    status: complete
     notes:
-      - Implement deterministic validation and application of the interfaces defined by the completed skills workstream.
+      - Implements a Python transaction coordinator with narrow deterministic primitives and a coordinator-only CLI.
+      - Uses normalized one-source-event transactions, typed state mutations, content-addressed artifact payloads and deterministic bookkeeping.
+      - Enforces schemas, trusted execution context, action-bound human authorization, policy invariants, optimistic concurrency and write boundaries.
+      - Uses a working-tree-independent local Git backend with atomic ref advancement, dry-run, idempotency, read-back verification and Git-based reconciliation.
+      - Defines explicit migration machinery, a pluggable execution-context verifier and automated success/failure tests.
 
 planned_sequence:
   - .agents/ideation/workflow/GATES.md

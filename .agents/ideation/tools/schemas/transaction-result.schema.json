@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ras207:learning:ideation:transaction-result:1",
+  "title": "Ideation transaction result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","transaction_id","status","transaction_hash","base_sha","commit_sha","resulting_revision","artifact_fingerprints","invariant_results","message"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "transaction_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["validated","applied","rejected","conflict","reconciliation_required","failed"]},
+    "transaction_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "base_sha": {"type": ["string","null"]},
+    "commit_sha": {"type": ["string","null"]},
+    "resulting_revision": {"type": ["integer","null"], "minimum": 1},
+    "artifact_fingerprints": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "invariant_results": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id","passed","message"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "passed": {"type": "boolean"},
+          "message": {"type": "string"}
+        }
+      }
+    },
+    "message": {"type": "string", "minLength": 1}
+  }
+}
