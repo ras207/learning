@@ -10,6 +10,12 @@ The coordinator is the sole write authority for canonical ideation state and pro
 
 The baseline uses **one transaction coordinator plus narrow deterministic primitives**.
 
+Project initialization:
+
+- `ideation_tools.project_init.build_initialization_transaction` deterministically constructs the existing canonical revision-1 state for a minimal-seed project. It performs no qualitative interpretation of `PROJECT.md` and records the reusable agent Git fingerprint as provenance.
+- The authoritative project-instance contract is `../contracts/project-instance.md`.
+- v0.1 intentionally preserves `projects/<project-slug>/ideation/state.yaml` as the unified canonical state artifact for the first real field test.
+
 Public execution surface:
 
 - `ideation-tools apply` — execute one normalized transaction, or run the identical preflight/staging path with `--dry-run`;
