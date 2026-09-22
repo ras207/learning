@@ -33,17 +33,7 @@ def build_initial_state(*, project_id: str, project_slug: str, agent_fingerprint
             "pending_interaction_id": None,
         },
         "routing": {"saved_focus_id": None},
-        "artifacts": [
-            {
-                "artifact_id": "agent:ideation",
-                "role": "agent_provenance",
-                "path": ".agents/ideation",
-                "status": "reference",
-                "fingerprint": {"algorithm": "git-commit", "value": agent_fingerprint},
-                "repository_commit": agent_fingerprint,
-                "last_verified_at": now,
-            }
-        ],
+        "artifacts": [],
         "decisions": [],
         "assumptions": [],
         "work_items": [],
@@ -51,6 +41,7 @@ def build_initial_state(*, project_id: str, project_slug: str, agent_fingerprint
         "gate_evaluations": [],
         "finalization": {"outcome": None, "checks": [], "authorized_by_decision_id": None},
         "history": [],
+        "agent_provenance": {"repository_commit": agent_fingerprint},
     }
 
 
