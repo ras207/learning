@@ -1,3 +1,8 @@
+import json
+from pathlib import Path
+
+import jsonschema
+
 from ideation_tools.project_init import build_initial_state, build_initialization_transaction
 
 
@@ -23,3 +28,12 @@ def test_initialization_transaction_uses_existing_canonical_state_model():
     assert tx["project"]["iteration"] == 1
     assert tx["state_mutations"][0]["operation"] == "initialize"
     assert tx["state_mutations"][0]["patch"]["workflow"]["vision_status"] == "not_started"
+
+
+def test_initial_state_validates_against_canonical_schema():
+    state = build_initial_state(
+        project_id="demo", project_slug="demo", agent_fingerprint="c" * 40
+    )
+    schema_path = Path(__file__).parents[1] / "schemas" / "ideation-state.schema.json"
+    schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    jsonschema.Draft202012Validator(schema).validate(state)
