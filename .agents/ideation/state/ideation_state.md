@@ -46,6 +46,7 @@ The record MUST contain the following top-level sections:
 |---|---|
 | `schema_version` | Version of this state contract used by the record. |
 | `project` | Stable project identity and current iteration. |
+| `agent_provenance` | Exact reusable Ideation Agent repository commit governing the iteration. |
 | `workflow` | Current run status and progression context. |
 | `session` | Interruption and checkpoint information. |
 | `routing` | Saved routing focus and the basis for selecting it. |
@@ -71,6 +72,12 @@ Collections MAY be empty but MUST be present once the state is initialized. Reco
 - when applicable, the preceding iteration and the reason the current iteration was opened.
 
 An `approved` or `not_progressing` iteration is immutable except for a corrective audit annotation that does not alter its substantive outcome. Reopening starts a new iteration in the same project. The new iteration MUST record why it was reopened and which earlier records or artifacts it inherits, revalidates, or supersedes.
+
+## Agent provenance
+
+`agent_provenance` MUST record the exact reusable Ideation Agent repository commit governing the current iteration as `repository_commit`. The value MUST be a full 40-character lowercase Git commit SHA.
+
+This provenance identifies the reusable system version; it is not a project artifact and MUST NOT be represented in `artifacts`. A new iteration MUST record the agent commit that governs that iteration.
 
 ## Workflow, session, and vision status
 
@@ -301,6 +308,9 @@ project:
   revision: 1
   created_at: 2026-01-01T00:00:00Z
   updated_at: 2026-01-01T00:00:00Z
+
+agent_provenance:
+  repository_commit: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 workflow:
   status: active
