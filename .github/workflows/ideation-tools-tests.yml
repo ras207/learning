@@ -1,0 +1,25 @@
+name: Ideation tools tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .agents/ideation/tools
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install package with test dependencies
+        run: pip install -e ".[test]"
+
+      - name: Run tests
+        run: pytest
