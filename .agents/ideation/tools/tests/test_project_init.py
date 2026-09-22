@@ -10,8 +10,8 @@ def test_initial_state_is_minimal_and_records_provenance():
     assert state["decisions"] == []
     assert state["assumptions"] == []
     assert state["evidence"] == []
-    assert state["artifacts"][0]["role"] == "agent_provenance"
-    assert state["artifacts"][0]["fingerprint"]["value"] == fp
+    assert state["artifacts"] == []
+    assert state["agent_provenance"]["repository_commit"] == fp
 
 
 def test_initialization_transaction_uses_existing_canonical_state_model():
