@@ -26,6 +26,7 @@ def base_state(slug: str = "demo") -> dict:
             "created_at": "2026-01-01T00:00:00Z",
             "updated_at": "2026-01-01T00:00:00Z",
         },
+        "agent_provenance": {"repository_commit": "0" * 40},
         "workflow": {"status": "active", "vision_status": "not_started", "spine_context": "orient_and_initialize"},
         "session": {"status": "active", "checkpointed_at": None, "resume_summary": None, "pending_interaction_id": None},
         "routing": {"saved_focus_id": None},
