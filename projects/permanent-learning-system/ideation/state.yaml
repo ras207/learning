@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 3
+  revision: 4
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-23T22:14:55.304655Z'
+  updated_at: '2026-09-23T22:15:17.104863Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -268,7 +268,65 @@ work_items:
   updated_at: '2026-09-23T22:40:00Z'
   resolved_at: null
 evidence: []
-gate_evaluations: []
+gate_evaluations:
+- id: G1-E1
+  gate_id: 1
+  gate_name: Intent Captured
+  gate_class: hard
+  evaluated_at: '2026-09-23T22:50:00Z'
+  state_revision: 3
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'Core intent is understandable: a permanent, personal, evidence-driven, AI-orchestrated
+    learning system aimed at demonstrable real-world capability.'
+  - 'Desired outcome is clear enough to guide exploration: broad ambitions become
+    demonstrable capability over years, with valuable durable artefacts and strengthened
+    personal judgement.'
+  - 'Relevant people are clear enough for this stage: a single learner (the user);
+    secondary beneficiaries are only implied.'
+  - No unresolved ambiguity leads to a materially different idea. The AI-direction
+    versus user-judgement tension (WI-004) is a solution-space dimension under a text-supported
+    working reading (A-001).
+  - Remaining material uncertainty is visible in WI-002 to WI-007 and A-001 to A-003
+    rather than assumed away.
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  human_judgement_required: null
+  human_decision_ids: []
+  rationale: The seed is explicit and internally coherent about what should exist,
+    why, for whom and within which boundaries (B1 to B6). GATES.md lets Gate 1 pass
+    without explicit confirmation when intent is already explicit and materially unambiguous.
+    The open items concern concrete goals, purpose, constraints, operating model and
+    a value risk. None changes the core problem, desired outcome, beneficiary or direction
+    of the next exploration. This sitting had no live clarification from the user,
+    so the outcome rests only on PROJECT.md. A correction to the intent model at the
+    next sitting is a material change and requires re-evaluation.
+  source_inputs:
+    seed: projects/permanent-learning-system/PROJECT.md
+    seed_sha256: eba1d67fa45f50f8318e649d248a983db7f5d1747f9dc512cb0a6af261d8b7fc
+    intent_model_sha256: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  dependencies:
+  - art-intent-model
+  - A-001
+  - A-002
+  - A-003
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
   outcome: null
   checks: []
@@ -304,5 +362,16 @@ history:
     open items
   resulting_revision: 3
   transaction_id: tx-2026-09-23-02-clarify-intent
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-03-gate1
+  timestamp: '2026-09-23T22:15:17.104863Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G1-E1
+  summary: 'Gate 1 Intent Captured: PASS_WITH_UNCERTAINTY (G1-E1)'
+  resulting_revision: 4
+  transaction_id: tx-2026-09-23-03-gate1
   authorization_id: null
   authorization_ids: []
