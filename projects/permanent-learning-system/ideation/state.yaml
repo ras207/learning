@@ -3,15 +3,15 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 4
+  revision: 5
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-23T22:15:17.104863Z'
+  updated_at: '2026-09-23T22:15:35.094849Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: capture_intent
+  spine_context: expand_ambition
 session:
   status: active
   checkpointed_at: '2026-09-22T22:45:00Z'
@@ -19,15 +19,19 @@ session:
     has not begun.
   pending_interaction_id: null
 routing:
-  saved_focus_id: WI-001
-  selection_rationale: New run with no ideation beyond the seed. Intent capture is
-    the earliest dependency for all six gates.
-  dependency_priority: Blocks Gate 1 and, transitively, Gates 2-6.
-  expected_decision_value: 'High: fixes the interpretation every later stage builds
-    on.'
-  next_intervention: clarify-intent over the PROJECT.md seed, then evaluate Gate 1.
+  saved_focus_id: gate:2
+  selection_rationale: G1-E1 is current and passing with no blocking deficiency or
+    open escalation. All open items are non-blocking with review points at Gate 2
+    or later. The next forward step is ambition expansion toward Gate 2.
+  dependency_priority: Gate 2 is the next planned boundary; WI-007 (building the system
+    as a learning project) is reviewed there.
+  expected_decision_value: 'High: tests the single-learner framing before the problem
+    model narrows scope.'
+  next_intervention: At the next sitting, first give the user the intent model and
+    G1-E1 to correct. Any correction is a material change that requires re-evaluating
+    Gate 1. If the user raises no corrections, invoke expand-ambition.
   action_owner: agent
-  selected_at: '2026-09-23T22:30:00Z'
+  selected_at: '2026-09-23T22:55:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -373,5 +377,15 @@ history:
   summary: 'Gate 1 Intent Captured: PASS_WITH_UNCERTAINTY (G1-E1)'
   resulting_revision: 4
   transaction_id: tx-2026-09-23-03-gate1
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-04-route-ambition
+  timestamp: '2026-09-23T22:15:35.094849Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to ambition expansion (Gate 2); not started this sitting
+  resulting_revision: 5
+  transaction_id: tx-2026-09-23-04-route-ambition
   authorization_id: null
   authorization_ids: []
