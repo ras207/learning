@@ -34,6 +34,7 @@ Run in a fresh clone of `ideation/permanent-learning-system` at `3fcf956`, follo
 - What happened: pip tries to upgrade the Debian-installed `cryptography` 41.0.7 to satisfy `cryptography>=42` and fails with "Cannot uninstall cryptography 41.0.7, RECORD file not found". Installing into a virtual environment works.
 - Impact: high. An agent following the README cannot run any transaction until it improvises a workaround.
 - Proposed action: fix now. Document installing into a virtual environment.
+- Status: fixed in `tools/README.md` (Install).
 
 ### S2 TOOLING Non-editable install crashes on first use
 - Gate / stage: setup
@@ -41,6 +42,7 @@ Run in a fresh clone of `ideation/permanent-learning-system` at `3fcf956`, follo
 - What happened: `FileNotFoundError: .../site-packages/schemas/transaction-result.schema.json`. `schemas/` is not packaged; only an editable install works. Already listed as planned in `tools/README.md`.
 - Impact: medium. A plausible agent choice fails with an unhelpful error.
 - Proposed action: fix now in the install instructions (`-e` is required); bundling schemas stays planned.
+- Status: documented in `tools/README.md` (Install); bundling still planned.
 
 ### S3 TOOLING Checked-out working copy goes stale after every applied transaction
 - Gate / stage: setup
@@ -48,6 +50,7 @@ Run in a fresh clone of `ideation/permanent-learning-system` at `3fcf956`, follo
 - What happened: the tools advance the branch without touching files (by design). Afterwards `state.yaml` on disk still shows the old content and `git status` shows it as a staged change. An agent that reads state from disk sees stale state, and one that runs `git commit -a` would silently revert the transaction. `git restore --source=HEAD --staged --worktree projects/<slug>/ideation` re-syncs it cleanly.
 - Impact: high. Silent state corruption risk on the first transaction.
 - Proposed action: fix now. Document the re-sync step after each applied transaction.
+- Status: documented in `tools/README.md` (Running). Making the tools re-sync automatically is a later code change.
 
 ### S4 TOOLING Session must be allowed to push the run branch
 - Gate / stage: setup

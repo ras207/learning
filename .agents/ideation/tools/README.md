@@ -250,16 +250,24 @@ A future GitHub API backend may implement the same interface, provided it preser
 
 ## Running
 
-From this directory:
+### Install
+
+Install into a virtual environment, from this directory:
 
 ```bash
-python -m pytest
+python -m venv .venv
+.venv/bin/python -m pip install -e '.[test]'
 ```
 
-Install locally if desired:
+Then run `.venv/bin/ideation-tools` and `.venv/bin/python -m pytest`, or activate the environment with `source .venv/bin/activate`. Omit `[test]` if you will not run the tests.
+
+- Use a virtual environment. Installing into the system Python can fail: on Debian-based images pip cannot upgrade the system `cryptography` package to the required version.
+- Keep `-e` (editable). The JSON schemas under `schemas/` are not yet packaged, so a non-editable install fails at the first command with `FileNotFoundError: .../schemas/...`.
+
+### Test
 
 ```bash
-python -m pip install -e '.[test]'
+.venv/bin/python -m pytest
 ```
 
 The CLI uses `../approvers.json` by default; each command accepts `--approvers` to use another file. Execution contexts must use `trust_mode: "passkey"`.
@@ -272,6 +280,14 @@ ideation-tools apply \
   --transaction transaction.json \
   --context execution-context.json
 ```
+
+After an applied transaction, re-sync the checked-out files. The tools advance the branch without touching the working tree, so if the authorized branch is checked out, `state.yaml` and artifacts on disk still show the previous revision and Git lists them as changed:
+
+```bash
+git restore --source=HEAD --staged --worktree projects/<project-slug>/ideation
+```
+
+Until you do, read state with `git show HEAD:projects/<project-slug>/ideation/state.yaml`, not from disk. Never commit those files with Git directly: a commit of the stale copy would silently revert the transaction.
 
 Validate and stage without mutation:
 
