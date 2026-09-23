@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 5
+  revision: 6
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-23T22:15:35.094849Z'
+  updated_at: '2026-09-23T22:15:35.500224Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,10 +13,14 @@ workflow:
   vision_status: not_started
   spine_context: expand_ambition
 session:
-  status: active
-  checkpointed_at: '2026-09-22T22:45:00Z'
-  resume_summary: Project deterministically initialized from minimal seed; ideation
-    has not begun.
+  status: paused
+  checkpointed_at: '2026-09-23T22:58:00Z'
+  resume_summary: 'Gate 1 evaluated PASS_WITH_UNCERTAINTY (G1-E1) from the PROJECT.md
+    seed alone. There was no live user clarification. Intent model is at ideation/intent-model.md.
+    Provisional assumptions A-001 to A-003. Non-blocking open items WI-002 to WI-007;
+    WI-002, WI-003, WI-004, WI-005 and WI-007 need the user''s input. On resume: re-orient,
+    then give the user the intent model to correct (re-evaluate Gate 1 if it changes),
+    then expand ambition toward Gate 2. Ambition expansion has not started.'
   pending_interaction_id: null
 routing:
   saved_focus_id: gate:2
@@ -387,5 +391,15 @@ history:
   summary: Route next focus to ambition expansion (Gate 2); not started this sitting
   resulting_revision: 5
   transaction_id: tx-2026-09-23-04-route-ambition
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-05-checkpoint
+  timestamp: '2026-09-23T22:15:35.500224Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 1 evaluation
+  resulting_revision: 6
+  transaction_id: tx-2026-09-23-05-checkpoint
   authorization_id: null
   authorization_ids: []
