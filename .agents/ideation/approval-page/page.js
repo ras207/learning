@@ -1,4 +1,4 @@
-import { canonicalJson, sha256Hex } from "./canonical.js";
+import { canonicalJson, keyFingerprint, sha256Hex } from "./canonical.js";
 
 const REQUEST_KIND = "ideation_approval_request";
 const APPROVAL_KIND = "ideation_approval";
@@ -142,13 +142,15 @@ async function register() {
         attestation: "none",
       },
     });
+    const spki = credential.response.getPublicKey();
+    $("fingerprint").textContent = await keyFingerprint(spki);
     showResult("register-result", encodeResult({
       schema_version: 1,
       kind: "ideation_approver",
       approver: name,
       rp_id: location.hostname,
       credential_id: credential.id,
-      public_key_spki: bytesToB64url(credential.response.getPublicKey()),
+      public_key_spki: bytesToB64url(spki),
       algorithm: credential.response.getPublicKeyAlgorithm(),
     }));
   } catch (err) {

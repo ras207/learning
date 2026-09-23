@@ -95,3 +95,5 @@ textarea { font-family: ui-monospace, monospace; font-size: 0.8rem; }
 details { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem; }
 summary { cursor: pointer; font-weight: 600; }
 label { display: block; margin: 0.75rem 0 0.25rem; }
+
+.fingerprint { font-family: ui-monospace, monospace; font-size: 1.2rem; letter-spacing: 0.05em; }
