@@ -22,8 +22,9 @@ class LocalHarnessVerifier:
         return context
 
 
-def mutation_action_hash(transaction: dict[str, Any], mutation: dict[str, Any]) -> str:
-    material = {
+def mutation_action_material(transaction: dict[str, Any], mutation: dict[str, Any]) -> dict[str, Any]:
+    """The exact fields a human authorization is bound to. Rationale and summary are deliberately excluded."""
+    return {
         "project": transaction["project"],
         "transaction_id": transaction["transaction_id"],
         "operation": mutation["operation"],
@@ -32,7 +33,10 @@ def mutation_action_hash(transaction: dict[str, Any], mutation: dict[str, Any]) 
         "patch": mutation.get("patch", {}),
         "dependencies": mutation.get("dependencies", []),
     }
-    return canonical_hash(material)
+
+
+def mutation_action_hash(transaction: dict[str, Any], mutation: dict[str, Any]) -> str:
+    return canonical_hash(mutation_action_material(transaction, mutation))
 
 
 def mutation_requires_direct_human_authorization(mutation: dict[str, Any]) -> bool:
