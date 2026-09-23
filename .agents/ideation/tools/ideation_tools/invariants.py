@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from .errors import ValidationRejected
+from .hashing import vision_content_fingerprint
 
 
 @dataclass(frozen=True)
@@ -50,19 +51,33 @@ def _terminal_gate_validity(state: dict[str, Any], artifacts: dict[str, bytes]) 
     return (not missing, "All six current gate evaluations pass" if not missing else f"Required current passing gates missing: {missing}")
 
 
+def _vision_path(state: dict[str, Any]) -> str:
+    return f"projects/{state['project']['project_slug']}/ideation/vision.md"
+
+
 def _gate6_human_approval(state: dict[str, Any], artifacts: dict[str, bytes]) -> tuple[bool, str]:
     g6 = _find_gate(state, 6)
     if not g6 or g6.get("outcome") not in {"PASS", "PASS_WITH_UNCERTAINTY"}:
         if state.get("workflow", {}).get("status") == "approved":
             return False, "Gate 6 is not currently passing"
         return True, "No current passing Gate 6 evaluation"
-    ids = g6.get("human_decision_ids", [])
+    vision = artifacts.get(_vision_path(state))
+    if vision is None:
+        return False, "Gate 6 is passing but there is no vision artifact"
+    current = vision_content_fingerprint(vision)
     decisions = {d.get("id"): d for d in state.get("decisions", [])}
-    for decision_id in ids:
-        d = decisions.get(decision_id)
-        if d and d.get("authority") == "human" and d.get("status") == "settled" and d.get("authorization_id"):
-            return True, f"Gate 6 is backed by trusted human decision {decision_id}"
-    return False, "Gate 6 lacks a settled trusted human approval decision"
+    trusted = [
+        d for d in (decisions.get(i) for i in g6.get("human_decision_ids", []))
+        if d and d.get("authority") == "human" and d.get("status") == "settled" and d.get("authorization_id")
+    ]
+    if not trusted:
+        return False, "Gate 6 lacks a settled trusted human approval decision"
+    for d in trusted:
+        if d.get("vision_fingerprint") == current:
+            return True, f"Gate 6 is backed by trusted human decision {d['id']} approving the current vision"
+    if not any(d.get("vision_fingerprint") for d in trusted):
+        return False, "Gate 6 human approval does not record the vision_fingerprint it approved"
+    return False, "Vision has changed since the human approved it; Gate 6 must be re-evaluated and re-approved"
 
 
 def _approved_vision_consistency(state: dict[str, Any], artifacts: dict[str, bytes]) -> tuple[bool, str]:
@@ -71,7 +86,7 @@ def _approved_vision_consistency(state: dict[str, Any], artifacts: dict[str, byt
         return True, "Not an approved terminal state"
     if workflow.get("vision_status") != "approved":
         return False, "Approved workflow requires vision_status approved"
-    vision_path = f"projects/{state['project']['project_slug']}/ideation/vision.md"
+    vision_path = _vision_path(state)
     data = artifacts.get(vision_path)
     if data is None:
         return False, f"Approved vision artifact missing at {vision_path}"
@@ -113,7 +128,7 @@ INVARIANTS = [
     Invariant("INV-001", "No unresolved blocking work may remain in an approved handoff.", _blocking_items_clear),
     Invariant("INV-002", "No open human escalation may remain in an approved handoff.", _no_open_escalation),
     Invariant("INV-003", "Approved handoff requires all six current passing gate evaluations.", _terminal_gate_validity),
-    Invariant("INV-004", "Approved handoff requires trusted explicit human Gate 6 approval.", _gate6_human_approval),
+    Invariant("INV-004", "Passing Gate 6 requires trusted explicit human approval of the current vision text.", _gate6_human_approval),
     Invariant("INV-005", "Approved workflow and approved vision artifact/status must agree.", _approved_vision_consistency),
     Invariant("INV-006", "not_progressing must not expose an approved handoff.", _not_progressing_no_handoff),
     Invariant("INV-007", "Terminal workflow status must have matching finalization outcome.", _terminal_finalization_recorded),

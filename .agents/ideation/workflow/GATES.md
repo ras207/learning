@@ -372,6 +372,8 @@ Use when the vision is otherwise eligible for approval and explicit human approv
 
 Final vision approval is always an explicit human decision. It is recorded as a settled human decision signed through the human approval protocol in `AGENT.md`, and the Gate 6 evaluation MUST reference that decision.
 
+The approval decision MUST record the `vision_fingerprint` of the exact candidate text the human approved, as defined in `../contracts/VISION_CONTRACT.md`. A current passing Gate 6 is valid only while `vision.md` still has that fingerprint. Any later change to the vision text MUST invalidate Gate 6 in the same transaction, and approval MUST be requested again for the revised text.
+
 ## Failure and resumption behaviour
 
 A gate that does not pass MUST identify the deficiency that prevents progression.

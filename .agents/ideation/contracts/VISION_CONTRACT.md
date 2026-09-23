@@ -186,6 +186,8 @@ Process-assurance requirements such as whether alternatives were adequately expl
 
 A generated `vision.md` may move from `candidate` to `approved` only through explicit human approval.
 
+The human approves one exact text. Its identity is the vision fingerprint: the SHA-256 of `vision.md` with the value of the first header `status:` line blanked, where the header is every line before the first Markdown heading. Changing `status: candidate` to `status: approved` therefore keeps the fingerprint; any other change, including whitespace or line endings, does not. After approval, only the status value may change. Any other edit produces a new candidate that needs a new approval. The fingerprint is computed by `vision_content_fingerprint` in `../tools/ideation_tools/hashing.py`.
+
 The ideation agent must not approve its own vision.
 
 # Scope boundary
