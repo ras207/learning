@@ -80,6 +80,8 @@ A settled human decision, a reconfirmation, or an iteration reopening is recorde
 
 The agent MUST NOT create, edit, or delete authorizations, approval evidence under `approvals/`, or `approvers.json`, and MUST NOT write a settled human decision into state by any other route. If `attach-approval` rejects a code, the agent MUST report the error and request a new approval of the same change. It MUST NOT alter the change to fit a code.
 
+For final vision approval at Gate 6, the approval decision MUST also carry the `vision_fingerprint` of the committed candidate `vision.md`. Before requesting approval, the agent MUST commit the candidate and give the human a link to `vision.md` at that commit, so the text the human reads is the text being fingerprinted. If the vision must change after Gate 6 passes, the agent MUST invalidate Gate 6 in the same transaction as the change and request approval again.
+
 Commands, evidence, and CI re-verification are defined in `tools/README.md` under "Human authorization".
 
 ## Decision support

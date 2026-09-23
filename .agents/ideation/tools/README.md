@@ -109,6 +109,10 @@ Direct persistence of a settled human decision, a reconfirmation, or an iteratio
 
 Authorizations are single-use across distinct transactions. Deterministic consequences may rely on a previously persisted trusted human decision; they do not require the user to repeat the same approval. For example, approved finalization relies on a current Gate 6 evaluation that points to a settled human decision carrying trusted authorization provenance.
 
+### Vision approval binding
+
+The Gate 6 approval decision carries a `vision_fingerprint` field (`hashing.vision_content_fingerprint`: SHA-256 of `vision.md` with the header `status:` value blanked). Because it is part of the decision's patch, it is covered by the passkey signature. `INV-004` rejects any state in which Gate 6 is currently passing but no referenced approval decision has the current vision's fingerprint. The coordinator enforces this on every transaction, and `verify-approvals` enforces it on the committed files, so a `vision.md` edited outside the tools also fails CI. To revise an approved vision, invalidate Gate 6 in the same transaction and request a new approval.
+
 ### Trusted authorization provenance: passkey signatures
 
 An authorization is trusted only when the human has signed its action hash with a registered passkey. The agent can prepare a request but cannot produce the signature.
@@ -154,6 +158,8 @@ Every settled human decision requires this flow, including decisions made early 
 
 **Approve a change.** Open the link the agent gives you. Read the green "What you are approving" box, which is what your signature covers; the grey box is the agent's unsigned explanation. Approve only if the green box matches what you agreed. If the page shows a red error, do not approve.
 
+**Approve the vision (Gate 6).** Read `vision.md` at the commit the agent links to, not a copy in chat. The green box shows a `vision_fingerprint`; your signature binds that exact text. The page does not yet show the vision itself (planned), so you rely on the agent's commit link for what you read. CI will reject any later change to the text you approved.
+
 **Register a phone.** On the approval page, expand "Register this phone as an approver", enter your name, and confirm. Write down the fingerprint, stay on the page, copy the code, and give it to the agent. The agent runs:
 
 ```bash
@@ -174,6 +180,7 @@ and opens a pull request that changes only `approvers.json`. Merge it only if th
 - Anyone who controls the approver's GitHub, Apple or Google account can act as the approver.
 - The passkey belongs to the whole `ras207.github.io` domain, so any GitHub Pages site under that account can request it.
 - Planned: retired keys, which stay valid for approvals committed to `main` before retirement but cannot sign new ones.
+- Planned: show the candidate vision on the approval page and check its `vision_fingerprint` there, so the text read is guaranteed to be the text signed.
 - Planned: bundle `schemas/` into the package so a non-editable install works; warn on the page before leaving an uncopied code; a `remove-approver` command; batch approvals.
 
 ## Deterministic invariant enforcement

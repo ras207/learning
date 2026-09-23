@@ -7,7 +7,7 @@ The registry below identifies machine-checkable policy enforced by the tools lay
 | `INV-001` | An approved handoff has no unresolved blocking work item. |
 | `INV-002` | An approved handoff has no open human escalation. |
 | `INV-003` | An approved handoff has current passing evaluations for all six required gates. |
-| `INV-004` | A current passing Gate 6 evaluation is backed by a settled human approval decision with trusted authorization provenance. |
+| `INV-004` | A current passing Gate 6 evaluation is backed by a settled human approval decision with trusted authorization provenance whose `vision_fingerprint` matches the current `vision.md`. |
 | `INV-005` | An approved workflow has `vision_status: approved` and the committed vision artifact declares `status: approved`. |
 | `INV-006` | A `not_progressing` terminal state does not expose an approved vision handoff. |
 | `INV-007` | A terminal workflow status has a matching `finalization.outcome`. |
