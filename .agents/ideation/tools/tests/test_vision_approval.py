@@ -7,7 +7,8 @@ import yaml
 from ideation_tools.auth import mutation_action_hash
 from ideation_tools.backends.local_git import LocalGitBackend
 from ideation_tools.content_store import ContentStore
-from ideation_tools.hashing import sha256_bytes
+from ideation_tools.hashing import sha256_bytes, vision_content_fingerprint
+from ideation_tools.reverify import verify_project
 
 from conftest import context, git
 
@@ -74,23 +75,29 @@ def gate(gate_id: int, **extra) -> dict:
     return {"operation": "create", "section": "gate_evaluations", "record_id": record["id"], "patch": record}
 
 
-def approve_vision(project: Project) -> None:
-    """Candidate vision, gates 1-5, the human's signed approval decision, then a passing Gate 6."""
+APPROVAL = {"id": "dec-approve-vision", "question": "Approve the vision?", "decision": "Approved",
+            "authority": "human", "status": "settled", "vision_fingerprint": vision_content_fingerprint(CANDIDATE)}
+
+
+def approve_vision(project: Project, approval: dict = APPROVAL) -> dict:
+    """Candidate vision, gates 1-5, the human's signed approval decision, then a passing Gate 6.
+
+    Returns the result of recording Gate 6, which the invariants decide.
+    """
     steps = [
         dict(mutations=[{"operation": "update", "section": "workflow", "patch": {"vision_status": "candidate"}}],
              artifact_changes=[project.vision_change(CANDIDATE, "candidate")], summary="Write candidate vision"),
         dict(mutations=[gate(i) for i in range(1, 6)], summary="Record gates 1-5"),
         dict(mutations=[{
             "operation": "create", "section": "decisions", "record_id": "dec-approve-vision",
-            "patch": {"id": "dec-approve-vision", "question": "Approve the vision?", "decision": "Approved",
-                      "authority": "human", "status": "settled"},
+            "patch": approval,
             "authorization_id": "auth-approve-vision",
         }], summary="Record human approval of the vision"),
-        dict(mutations=[gate(6, human_decision_ids=["dec-approve-vision"])], summary="Record Gate 6"),
     ]
     for step in steps:
         result = project.apply(**step)
         assert result["status"] == "applied", result
+    return project.apply([gate(6, human_decision_ids=["dec-approve-vision"])], summary="Record Gate 6")
 
 
 def finalize(project: Project, vision: bytes) -> dict:
@@ -108,22 +115,21 @@ def project(repo, content_store, coordinator, initialized) -> Project:
 
 
 def test_approved_vision_can_be_finalized(project):
-    approve_vision(project)
+    assert approve_vision(project)["status"] == "applied"
     result = finalize(project, APPROVED)
     assert result["status"] == "applied", result
     assert project.state()["workflow"]["status"] == "approved"
 
 
-@pytest.mark.xfail(strict=True, reason="Gap 1: Gate 6 approval is not bound to the vision text")
 def test_finalizing_a_vision_changed_after_approval_is_rejected(project):
-    approve_vision(project)
+    assert approve_vision(project)["status"] == "applied"
     result = finalize(project, ALTERED)
     assert result["status"] == "rejected"
+    assert "INV-004" in result["message"] and "changed since the human approved it" in result["message"]
 
 
-@pytest.mark.xfail(strict=True, reason="Gap 1: Gate 6 approval is not bound to the vision text")
 def test_changing_an_approved_vision_is_rejected(project):
-    approve_vision(project)
+    assert approve_vision(project)["status"] == "applied"
     assert finalize(project, APPROVED)["status"] == "applied"
     result = project.apply(
         [{"operation": "update", "section": "workflow", "patch": {"spine_context": "finalize_handoff"}}],
@@ -131,3 +137,54 @@ def test_changing_an_approved_vision_is_rejected(project):
         summary="Edit approved vision",
     )
     assert result["status"] == "rejected"
+    assert "INV-004" in result["message"]
+
+
+def test_gate6_approval_without_vision_fingerprint_is_rejected(project):
+    approval = {k: v for k, v in APPROVAL.items() if k != "vision_fingerprint"}
+    result = approve_vision(project, approval)
+    assert result["status"] == "rejected"
+    assert "does not record the vision_fingerprint" in result["message"]
+
+
+def test_gate6_approval_of_a_different_vision_is_rejected(project):
+    result = approve_vision(project, {**APPROVAL, "vision_fingerprint": vision_content_fingerprint(ALTERED)})
+    assert result["status"] == "rejected"
+    assert "changed since the human approved it" in result["message"]
+
+
+def test_changing_the_vision_while_gate6_passes_is_rejected(project):
+    assert approve_vision(project)["status"] == "applied"
+    result = project.apply(
+        [{"operation": "update", "section": "workflow", "patch": {"vision_status": "candidate"}}],
+        artifact_changes=[project.vision_change(ALTERED, "candidate")],
+        summary="Revise vision without re-evaluating Gate 6",
+    )
+    assert result["status"] == "rejected"
+    assert "INV-004" in result["message"]
+
+
+def test_revising_the_vision_requires_a_new_approval(project):
+    assert approve_vision(project)["status"] == "applied"
+    revised = ALTERED.replace(b"status: approved", b"status: candidate")
+    result = project.apply(
+        [{"operation": "invalidate", "section": "gate_evaluations", "record_id": "gate-6", "patch": {}}],
+        artifact_changes=[project.vision_change(revised, "candidate")],
+        summary="Revise vision and invalidate Gate 6",
+    )
+    assert result["status"] == "applied", result
+    assert finalize(project, ALTERED)["status"] == "rejected"
+
+
+def test_verify_approvals_catches_a_vision_edited_outside_the_tools(project, tmp_path):
+    assert approve_vision(project)["status"] == "applied"
+    assert finalize(project, APPROVED)["status"] == "applied"
+    project_dir = tmp_path / "checkout" / "projects" / "demo" / "ideation"
+    project_dir.mkdir(parents=True)
+    head = git(project.repo, "rev-parse", "refs/heads/work")
+    backend = LocalGitBackend(project.repo)
+    (project_dir / "state.yaml").write_bytes(backend.read_file(head, "projects/demo/ideation/state.yaml"))
+    (project_dir / "vision.md").write_bytes(ALTERED)
+
+    problems = verify_project(project_dir, {"approvers": []})
+    assert any("INV-004" in p and "changed since the human approved it" in p for p in problems), problems
