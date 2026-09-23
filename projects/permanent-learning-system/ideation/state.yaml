@@ -4,8 +4,8 @@ project:
   project_slug: permanent-learning-system
   iteration: 1
   revision: 1
-  created_at: 2026-09-22T22:45:00Z
-  updated_at: 2026-09-22T22:45:00Z
+  created_at: '2026-09-22T22:45:00Z'
+  updated_at: '2026-09-22T22:45:00Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -14,7 +14,7 @@ workflow:
   spine_context: orient_and_initialize
 session:
   status: paused
-  checkpointed_at: 2026-09-22T22:45:00Z
+  checkpointed_at: '2026-09-22T22:45:00Z'
   resume_summary: "Project deterministically initialized from minimal seed; ideation has not begun."
   pending_interaction_id: null
 routing:
