@@ -3,30 +3,74 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 1
+  revision: 2
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-22T22:45:00Z'
+  updated_at: '2026-09-23T22:14:07.157875Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: orient_and_initialize
+  spine_context: capture_intent
 session:
-  status: paused
+  status: active
   checkpointed_at: '2026-09-22T22:45:00Z'
-  resume_summary: "Project deterministically initialized from minimal seed; ideation has not begun."
+  resume_summary: Project deterministically initialized from minimal seed; ideation
+    has not begun.
   pending_interaction_id: null
 routing:
-  saved_focus_id: null
+  saved_focus_id: WI-001
+  selection_rationale: New run with no ideation beyond the seed. Intent capture is
+    the earliest dependency for all six gates.
+  dependency_priority: Blocks Gate 1 and, transitively, Gates 2-6.
+  expected_decision_value: 'High: fixes the interpretation every later stage builds
+    on.'
+  next_intervention: clarify-intent over the PROJECT.md seed, then evaluate Gate 1.
+  action_owner: agent
+  selected_at: '2026-09-23T22:30:00Z'
 artifacts: []
 decisions: []
 assumptions: []
-work_items: []
+work_items:
+- id: WI-001
+  type: deficiency
+  title: Starting intent not yet structured
+  description: Only the free-form seed in PROJECT.md exists. Trigger, desired change,
+    relevant people, expressed boundaries and material ambiguities have not been extracted,
+    so Gate 1 cannot be evaluated.
+  status: open
+  materiality: high
+  blocking: true
+  origin: orientation of new run (revision 1, no prior gate evaluations)
+  affected:
+  - gate:1
+  prerequisites: []
+  downstream:
+  - gate:1
+  - gate:2
+  - gate:3
+  owner: agent
+  next_action: Invoke clarify-intent on PROJECT.md seed.
+  priority_rationale: Earliest causal deficiency; every later gate depends on a captured
+    intent.
+  created_at: '2026-09-23T22:30:00Z'
+  updated_at: '2026-09-23T22:30:00Z'
+  resolved_at: null
 evidence: []
 gate_evaluations: []
 finalization:
   outcome: null
   checks: []
   authorized_by_decision_id: null
-history: []
+history:
+- event_id: evt:tx-2026-09-23-01-route-intent
+  timestamp: '2026-09-23T22:14:07.157875Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-001
+  summary: Route new run to intent capture (focus WI-001)
+  resulting_revision: 2
+  transaction_id: tx-2026-09-23-01-route-intent
+  authorization_id: null
+  authorization_ids: []
