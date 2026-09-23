@@ -3,5 +3,14 @@
   "rp_id": "ras207.github.io",
   "origin": "https://ras207.github.io",
   "approval_page_url": "https://ras207.github.io/learning/approve/",
-  "approvers": []
+  "approvers": [
+    {
+      "approver": "Ross Stewart",
+      "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+      "public_key_spki": "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECKZ1dEcCdSb_jsz6ADwiZLgm1hH28W8yEymm6p_0C7r0IB8U7npi9mH8II_aSBxo_1nJwXrCW_MGFefKvv1IbA",
+      "algorithm": -7,
+      "fingerprint": "B1C0-3322-85FF-5BD7",
+      "added_at": "2026-09-23"
+    }
+  ]
 }
