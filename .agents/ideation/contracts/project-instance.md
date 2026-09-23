@@ -35,6 +35,8 @@ projects/<project-slug>/
     └── state.yaml
 ```
 
+The tools layer adds `ideation/approvals/` when the first human approval is committed. It holds approval evidence referenced from state, as defined in `../state/ideation_state.md`.
+
 `projects/<project-slug>/ideation/state.yaml` remains the single canonical state artifact defined by `../state/ideation_state.md`. In v0.1 it contains both durable ideation knowledge and operational workflow state.
 
 This physical unification is intentional for the first field test. A conceptual distinction between durable knowledge and runtime state MAY be maintained, but implementations MUST NOT introduce a second competing canonical store.
@@ -51,7 +53,7 @@ Given a valid minimal seed and trusted execution context, the initializer MUST:
 5. record the reusable Ideation Agent fingerprint/provenance;
 6. initialize workflow at `orient_and_initialize`, with no substantive ideation decisions invented;
 7. preserve the seed as the authoritative initial human input; and
-8. commit initialization only through the deterministic tools layer on an authorized non-protected branch.
+8. commit initialization only through the deterministic tools layer on an authorized non-protected branch, using a `trust_mode: "passkey"` execution context.
 
 Initialization is mechanical. It MUST NOT infer a problem definition, intended user, solution, ambition, evidence or consequential decision from the seed.
 

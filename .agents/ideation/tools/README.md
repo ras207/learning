@@ -19,7 +19,8 @@ Project initialization:
 Public execution surface:
 
 - `ideation-tools apply` — execute one normalized transaction, or run the identical preflight/staging path with `--dry-run`;
-- `ideation-tools reconcile` — determine an indeterminate transaction outcome from authoritative Git metadata and committed bytes.
+- `ideation-tools reconcile` — determine an indeterminate transaction outcome from authoritative Git metadata and committed bytes;
+- `ideation-tools request-approval`, `attach-approval`, `add-approver` and `verify-approvals` — the human approval commands described under [Human authorization](#human-authorization).
 
 Internal primitives are implemented in `ideation_tools/primitives.py`:
 
@@ -100,15 +101,80 @@ An update also requires the expected fingerprint of the currently committed arti
 
 A transaction cannot self-attest that a consequential human decision occurred.
 
-Trusted execution context is validated separately from the transaction and is supplied by a pluggable verifier. The v0.1 `LocalHarnessVerifier` treats the local invoking harness as the trust boundary. Future remote backends can introduce signed authorization without changing transaction semantics.
-
-Direct persistence of a settled human decision or reconfirmation requires an action-specific authorization bound to:
+Direct persistence of a settled human decision, a reconfirmation, or an iteration reopening requires an action-specific authorization bound to:
 
 - project and iteration;
 - transaction ID; and
-- the canonical hash of the exact authorized mutation.
+- the canonical hash of the exact authorized mutation (`auth.mutation_action_material`; rationale and summary are excluded).
 
 Authorizations are single-use across distinct transactions. Deterministic consequences may rely on a previously persisted trusted human decision; they do not require the user to repeat the same approval. For example, approved finalization relies on a current Gate 6 evaluation that points to a settled human decision carrying trusted authorization provenance.
+
+### Trusted authorization provenance: passkey signatures
+
+An authorization is trusted only when the human has signed its action hash with a registered passkey. The agent can prepare a request but cannot produce the signature.
+
+| Piece | Location | Role |
+|---|---|---|
+| Approval page | `../approval-page/`, published by `.github/workflows/approval-page.yml` | Recomputes the action hash from the request, shows the signed fields separately from the agent's unsigned explanation, and signs the hash as the WebAuthn challenge after Face ID, fingerprint or device PIN. |
+| Approvers | `../approvers.json` | WebAuthn `rp_id`, origin, page URL, and each approver's ES256 public key and fingerprint. |
+| Signature check | `ideation_tools/passkey.py` | Registered credential, `webauthn.get`, challenge equals action hash, origin, `rpIdHash`, user-present and user-verified flags, and the ECDSA signature. The signature counter is not checked because synced passkeys report 0. |
+| Verifier | `PasskeyApprovalVerifier` (`trust_mode: "passkey"`) | Verifies every authorization in the execution context and takes the approver's name from the verified key. It is the only verifier the CLI uses. |
+| Evidence | `projects/<slug>/ideation/approvals/<authorization_id>.json` | Written in the same atomic commit as the change it authorizes. It holds the signed action, its hash, the approver, and the assertion, so anyone can re-verify it. |
+| CI re-verification | `ideation-tools verify-approvals`, run by `.github/workflows/approvals-check.yml` | On every pull request and push to `main`, runs `main`'s checker against `main`'s `approvers.json`, reading the pull request's files as data only. |
+
+`LocalHarnessVerifier` (`trust_mode: "local_harness"`) trusts whoever supplies the context. It remains only for tests; the CLI refuses it.
+
+`authorization_id` may contain only letters, digits, `-` and `_`, because it names the evidence file.
+
+### Approval flow
+
+Every settled human decision, reconfirmation and iteration reopening follows this flow:
+
+1. The agent builds the transaction, giving each mutation that needs approval an `authorization_id`, and runs:
+
+   ```bash
+   ideation-tools request-approval --transaction transaction.json
+   ```
+
+   Each request includes a `link` to the approval page. The page URL comes from `approvers.json`; `--page-url` overrides it.
+2. The human opens the link, checks the signed fields, approves with Face ID or fingerprint, and pastes the approval code back.
+3. The agent verifies the code and adds it to a `trust_mode: "passkey"` execution context:
+
+   ```bash
+   ideation-tools attach-approval --transaction transaction.json \
+     --context execution-context.json --approval <code>
+   ```
+
+   On success this prints `Valid approval from <name> (<fingerprint>) for <authorization_id>`. On failure it exits with code 2 and leaves the context unchanged.
+4. The agent applies the transaction with `ideation-tools apply`.
+
+Every settled human decision requires this flow, including decisions made early in ideation. Batching several approvals into one signature is a planned follow-up, if the field test shows the flow is too frequent.
+
+### Operator runbook
+
+**Approve a change.** Open the link the agent gives you. Read the green "What you are approving" box, which is what your signature covers; the grey box is the agent's unsigned explanation. Approve only if the green box matches what you agreed. If the page shows a red error, do not approve.
+
+**Register a phone.** On the approval page, expand "Register this phone as an approver", enter your name, and confirm. Write down the fingerprint, stay on the page, copy the code, and give it to the agent. The agent runs:
+
+```bash
+ideation-tools add-approver --record <code>
+```
+
+and opens a pull request that changes only `approvers.json`. Merge it only if the pull request shows the fingerprint your phone displayed. A new key cannot be used in the same pull request that adds it, because CI trusts only `main`'s approvers.
+
+**If you leave the registration screen before copying the code**, delete the new passkey for `ras207.github.io` from your phone's password manager and register again.
+
+**Lose or replace a phone.** Register the replacement first. Re-verification checks all committed evidence against the current `approvers.json`, so removing a key makes CI fail for every approval that key signed. Until retired keys are supported, remove a lost phone's key only if no committed approval depends on it; otherwise keep it listed and rely on its Face ID, fingerprint or PIN protection. Re-approving the affected decisions does not help, because their history still references the old evidence.
+
+**Repository settings that the protection depends on.** The `main` ruleset must require the `pytest` and `verify-approvals` checks and must have an empty bypass list. GitHub Pages must use GitHub Actions as its source.
+
+### Limits and follow-ups
+
+- Pull requests that change `tools/`, `approval-page/`, `approvers.json` or `.github/` change what is trusted. CI cannot judge them, so review them yourself. A CODEOWNERS rule to flag them is planned.
+- Anyone who controls the approver's GitHub, Apple or Google account can act as the approver.
+- The passkey belongs to the whole `ras207.github.io` domain, so any GitHub Pages site under that account can request it.
+- Planned: retired keys, which stay valid for approvals committed to `main` before retirement but cannot sign new ones.
+- Planned: bundle `schemas/` into the package so a non-editable install works; warn on the page before leaving an uncopied code; a `remove-approver` command; batch approvals.
 
 ## Deterministic invariant enforcement
 
@@ -152,6 +218,7 @@ The deterministic contract surface is:
 - `schemas/transaction-proposal.schema.json`
 - `schemas/execution-context.schema.json`
 - `schemas/transaction-result.schema.json`
+- `schemas/approvers.schema.json`
 
 The Markdown system contracts remain authoritative for semantic meaning. Schemas enforce the portions that are deterministic.
 
@@ -188,6 +255,8 @@ Install locally if desired:
 python -m pip install -e '.[test]'
 ```
 
+The CLI uses `../approvers.json` by default; each command accepts `--approvers` to use another file. Execution contexts must use `trust_mode: "passkey"`.
+
 Apply a normalized transaction:
 
 ```bash
@@ -207,6 +276,14 @@ ideation-tools apply \
   --dry-run
 ```
 
+Re-verify every committed human approval, as CI does:
+
+```bash
+ideation-tools verify-approvals --root /path/to/repo
+```
+
+It prints `ok` or `FAIL` for each project and exits with code 1 if any problem is found.
+
 ## Completion criteria
 
 The tools workstream is complete when:
@@ -223,7 +300,7 @@ The tools workstream is complete when:
 10. idempotent replay and conflicting transaction-ID reuse behave correctly;
 11. post-commit uncertainty produces `reconciliation_required` and can be reconciled from Git metadata;
 12. deterministic schema migration machinery exists and best-effort migration is prohibited;
-13. the execution-context verifier interface exists with the trusted-local-harness baseline;
+13. the execution-context verifier interface exists, and the CLI accepts only passkey-signed human authorizations whose evidence CI re-verifies;
 14. automated tests cover success and deliberate failure injection across validation, concurrency conflicts, commit failure, verification interruption, reconciliation, authorization failures and invariant violations;
 15. the implementation remains consistent with `AGENT.md`, `WORKFLOW.md`, `GATES.md`, `ideation_state.md` and the skills contracts; and
 16. no material tooling decision remains that a future harness would otherwise need to invent.

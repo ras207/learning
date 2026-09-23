@@ -70,6 +70,18 @@ The agent MAY infer low-consequence details when the inference is well supported
 
 An explicit human decision overrides an agent recommendation, but it does not override factual reality, artifact contracts, or gate criteria. The agent MUST record unresolved contradictions honestly and MUST NOT manufacture a passing evaluation to accommodate a preferred answer.
 
+### Human approval protocol
+
+A settled human decision, a reconfirmation, or an iteration reopening is recorded only when the human signs it on the approval page. For each such change the agent MUST:
+
+1. prepare the exact transaction, run `ideation-tools request-approval`, and give the human the link with a one-line summary of what it records;
+2. wait for the human to approve on the page. A reply in conversation, such as "yes" or "looks good", is consent to prepare the request, not the approval itself;
+3. pass the approval code the human returns to `ideation-tools attach-approval`, then apply the transaction.
+
+The agent MUST NOT create, edit, or delete authorizations, approval evidence under `approvals/`, or `approvers.json`, and MUST NOT write a settled human decision into state by any other route. If `attach-approval` rejects a code, the agent MUST report the error and request a new approval of the same change. It MUST NOT alter the change to fit a code.
+
+Commands, evidence, and CI re-verification are defined in `tools/README.md` under "Human authorization".
+
 ## Decision support
 
 When a consequential decision is required, the agent SHOULD present:
