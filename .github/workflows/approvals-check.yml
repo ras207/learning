@@ -1,0 +1,45 @@
+name: Approvals check
+
+# pull_request_target runs this workflow as defined on main, not as changed by
+# the pull request, so a PR cannot edit or remove the check that judges it.
+# The PR's files are only read as data by main's checker; nothing from the PR
+# is installed or executed.
+on:
+  pull_request_target:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify-approvals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out trusted checker and approvers from main
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          path: trusted
+          persist-credentials: false
+
+      - name: Check out changes to verify (read as data only)
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: candidate
+          persist-credentials: false
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install trusted checker
+        # Editable, so the checker reads its schemas from the trusted checkout.
+        run: pip install -e ./trusted/.agents/ideation/tools
+
+      - name: Re-verify every committed human approval
+        run: >
+          ideation-tools verify-approvals
+          --root candidate
+          --approvers trusted/.agents/ideation/approvers.json

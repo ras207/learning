@@ -12,6 +12,7 @@ from .backends.local_git import LocalGitBackend
 from .coordinator import TransactionCoordinator
 from .errors import ValidationRejected
 from .passkey import PasskeyApprovalVerifier, build_authorization
+from .reverify import verify_repository
 
 
 def _load_json(path: str) -> dict:
@@ -48,6 +49,26 @@ def _approval_command(args) -> int:
     return 0
 
 
+def _verify_approvals(root: Path, approvers_path: Path) -> int:
+    try:
+        results = verify_repository(root, load_approvers(approvers_path))
+    except ValidationRejected as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    failed = False
+    for slug, problems in results.items():
+        if problems:
+            failed = True
+            print(f"FAIL {slug}")
+            for problem in problems:
+                print(f"  - {problem}")
+        else:
+            print(f"ok   {slug}")
+    if not results:
+        print("No projects found")
+    return 1 if failed else 0
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="ideation-tools", description="Deterministic ideation transaction coordinator")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -77,11 +98,17 @@ def main(argv=None) -> int:
     att_p.add_argument("--approval", required=True, help="Approval code copied from the approval page")
     att_p.add_argument("--approvers", default=str(DEFAULT_APPROVERS_PATH))
 
+    ver_p = sub.add_parser("verify-approvals", help="Re-verify every committed human approval under a repository checkout")
+    ver_p.add_argument("--root", required=True, help="Repository checkout whose projects/ are checked")
+    ver_p.add_argument("--approvers", default=str(DEFAULT_APPROVERS_PATH), help="Trusted approvers file (use main's copy in CI)")
+
     add_p = sub.add_parser("add-approver", help="Add a phone registered on the approval page to the approvers file")
     add_p.add_argument("--record", required=True, help="Registration code copied from the approval page")
     add_p.add_argument("--approvers", default=str(DEFAULT_APPROVERS_PATH))
 
     args = parser.parse_args(argv)
+    if args.command == "verify-approvals":
+        return _verify_approvals(Path(args.root), Path(args.approvers))
     try:
         if args.command in {"request-approval", "attach-approval", "add-approver"}:
             return _approval_command(args)
