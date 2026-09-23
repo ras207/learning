@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 2
+  revision: 3
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-23T22:14:07.157875Z'
+  updated_at: '2026-09-23T22:14:55.304655Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -28,9 +28,71 @@ routing:
   next_intervention: clarify-intent over the PROJECT.md seed, then evaluate Gate 1.
   action_owner: agent
   selected_at: '2026-09-23T22:30:00Z'
-artifacts: []
+artifacts:
+- artifact_id: art-intent-model
+  role: intent_model
+  path: projects/permanent-learning-system/ideation/intent-model.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  repository_commit: null
+  last_verified_at: '2026-09-23T22:14:55.304655Z'
 decisions: []
-assumptions: []
+assumptions:
+- id: A-001
+  proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
+    own cognition and does not stop the AI from leading curriculum and sequencing.'
+  status: provisional
+  origin: clarify-intent
+  basis: The seed explicitly asks the AI to 'decide what I should work on next' and
+    to act as curriculum manager; 'rather than outsourcing them to AI' refers to thinking.
+  materiality: medium
+  risk: moderate
+  confidence: medium
+  validation_method: Confirm with the user; disconfirmed if the user wants to own
+    direction with AI advising.
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - WI-004
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
+- id: A-002
+  proposition: 'The current intent is for a single learner: the user.'
+  status: provisional
+  origin: clarify-intent
+  basis: '''personal'', ''me'' throughout the seed.'
+  materiality: medium
+  risk: low
+  confidence: high
+  validation_method: Gate 2 explores broadening; the user decides any change of beneficiary.
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - gate:2
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
+- id: A-003
+  proposition: Useful capability is judged by real-world application and demonstrable
+    output, not credentials.
+  status: provisional
+  origin: clarify-intent
+  basis: Boundaries B2 and B6 in the seed.
+  materiality: medium
+  risk: low
+  confidence: high
+  validation_method: Confirm when success conditions are modelled (Gate 3).
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - gate:3
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
 work_items:
 - id: WI-001
   type: deficiency
@@ -38,7 +100,7 @@ work_items:
   description: Only the free-form seed in PROJECT.md exists. Trigger, desired change,
     relevant people, expressed boundaries and material ambiguities have not been extracted,
     so Gate 1 cannot be evaluated.
-  status: open
+  status: resolved
   materiality: high
   blocking: true
   origin: orientation of new run (revision 1, no prior gate evaluations)
@@ -54,7 +116,156 @@ work_items:
   priority_rationale: Earliest causal deficiency; every later gate depends on a captured
     intent.
   created_at: '2026-09-23T22:30:00Z'
-  updated_at: '2026-09-23T22:30:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: '2026-09-23T22:40:00Z'
+  resolution: Intent model produced at art-intent-model.
+- id: WI-002
+  type: question
+  title: Concrete target capabilities and horizons
+  description: Which capabilities or ambitions matter most over roughly 1, 3 and 10+
+    years?
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: null
+- id: WI-003
+  type: question
+  title: Ultimate purpose of capability and why now
+  description: Is the capability mainly for income or career, ventures, intellectual
+    mastery, impact or a mix, and what prompted the idea now?
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  prerequisites: []
+  downstream:
+  - gate:3
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: null
+- id: WI-004
+  type: uncertainty
+  title: Authority split between AI direction and user judgement
+  description: The seed asks the AI to decide what to work on next and also asks that
+    the user keep judgement. A-001 records the working interpretation.
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:4
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:4
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: null
+- id: WI-005
+  type: uncertainty
+  title: 'Practical constraints: time, budget, privacy and data ownership'
+  description: Weekly time, budget, and how a lifelong personal model and its data
+    should be held have not been expressed.
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: null
+- id: WI-006
+  type: uncertainty
+  title: 'Challenge: meta-work displacing learning; sustaining permanence'
+  description: Building and maintaining the system may crowd out learning. Permanence
+    depends on lasting motivation and habit.
+  status: open
+  materiality: high
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: agent
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary and pre-Gate-5 focused challenge
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: null
+- id: WI-007
+  type: question
+  title: Is building the system itself a learning project?
+  description: Should building the system serve as a vehicle for technology and AI
+    capability, or should it be as off-the-shelf as possible?
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:2
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:2
+  - gate:4
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 2 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
   resolved_at: null
 evidence: []
 gate_evaluations: []
@@ -72,5 +283,26 @@ history:
   summary: Route new run to intent capture (focus WI-001)
   resulting_revision: 2
   transaction_id: tx-2026-09-23-01-route-intent
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-02-clarify-intent
+  timestamp: '2026-09-23T22:14:55.304655Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  - A-001
+  - A-002
+  - A-003
+  - WI-001
+  summary: Record intent model, three provisional assumptions and six non-blocking
+    open items
+  resulting_revision: 3
+  transaction_id: tx-2026-09-23-02-clarify-intent
   authorization_id: null
   authorization_ids: []
