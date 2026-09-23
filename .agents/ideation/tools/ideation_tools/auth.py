@@ -13,7 +13,7 @@ class ExecutionContextVerifier(Protocol):
 
 
 class LocalHarnessVerifier:
-    """Baseline verifier: trust is anchored in the local invoking harness."""
+    """Test-only verifier: trusts whoever supplies the context. The CLI uses PasskeyApprovalVerifier instead."""
 
     def verify(self, context: dict[str, Any]) -> dict[str, Any]:
         validate(context, "execution-context.schema.json")
