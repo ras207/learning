@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from .approval import build_approval_requests
 from .backends.local_git import LocalGitBackend
 from .coordinator import TransactionCoordinator
 
@@ -28,7 +29,15 @@ def main(argv=None) -> int:
     rec_p.add_argument("--transaction-hash", required=True)
     rec_p.add_argument("--context", required=True)
 
+    req_p = sub.add_parser("request-approval", help="Build human approval requests for a transaction")
+    req_p.add_argument("--transaction", required=True)
+    req_p.add_argument("--page-url", required=True, help="URL of the approval page the links should open")
+
     args = parser.parse_args(argv)
+    if args.command == "request-approval":
+        requests = build_approval_requests(_load_json(args.transaction), page_url=args.page_url)
+        print(json.dumps(requests, indent=2, sort_keys=True))
+        return 0
     coordinator = TransactionCoordinator(LocalGitBackend(args.repo))
     if args.command == "apply":
         result = coordinator.execute(_load_json(args.transaction), _load_json(args.context), dry_run=args.dry_run)
