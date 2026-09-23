@@ -21,5 +21,8 @@ jobs:
       - name: Install package with test dependencies
         run: pip install -e ".[test]"
 
+      - name: Install browser for approval page tests
+        run: python -m playwright install --with-deps chromium
+
       - name: Run tests
         run: pytest

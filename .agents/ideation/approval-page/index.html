@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Ideation Approval</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="page.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Ideation approval</h1>
+
+    <div id="status" hidden></div>
+
+    <section id="approve" hidden>
+      <h2>What you are approving</h2>
+      <p class="note">Signed. Your approval covers exactly these fields and nothing else.</p>
+      <div id="signed-fields" class="signed"></div>
+      <p class="hash">Hash checked by this page: <code id="hash"></code></p>
+
+      <h2>Agent's explanation</h2>
+      <p class="note">Not signed. These are the agent's own words. Rely on the signed fields above.</p>
+      <dl id="unsigned-fields" class="unsigned"></dl>
+
+      <button id="approve-button" type="button">Approve with Face ID or fingerprint</button>
+
+      <div id="approval-result" class="result" hidden>
+        <h2>Approval code</h2>
+        <p>Copy this and paste it back to the agent.</p>
+        <textarea readonly rows="6"></textarea>
+        <button type="button">Copy</button>
+        <p class="copied" hidden>Copied.</p>
+      </div>
+    </section>
+
+    <section id="no-request" hidden>
+      <p>Open this page from an approval link the agent gives you to approve a change.</p>
+    </section>
+
+    <details id="register">
+      <summary>Register this phone as an approver</summary>
+      <p>One-off setup. Creates a passkey for this page and shows the public key to add to <code>approvers.json</code>.</p>
+      <label for="approver-name">Your name</label>
+      <input id="approver-name" type="text" autocomplete="name">
+      <button id="register-button" type="button">Register with Face ID or fingerprint</button>
+      <div id="register-result" class="result" hidden>
+        <h2>Approver record</h2>
+        <p>Copy this and paste it back to the agent.</p>
+        <textarea readonly rows="6"></textarea>
+        <button type="button">Copy</button>
+        <p class="copied" hidden>Copied.</p>
+      </div>
+    </details>
+  </main>
+</body>
+</html>
