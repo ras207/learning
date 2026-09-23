@@ -2,15 +2,33 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from .approval import build_approval_requests
+from .approvers import DEFAULT_APPROVERS_PATH, add_approver, dump_approvers, load_approvers
 from .backends.local_git import LocalGitBackend
 from .coordinator import TransactionCoordinator
+from .errors import ValidationRejected
 
 
 def _load_json(path: str) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def _approval_command(args) -> int:
+    if args.command == "request-approval":
+        page_url = args.page_url or load_approvers(Path(args.approvers))["approval_page_url"]
+        requests = build_approval_requests(_load_json(args.transaction), page_url=page_url)
+        print(json.dumps(requests, indent=2, sort_keys=True))
+        return 0
+    path = Path(args.approvers)
+    today = datetime.now(timezone.utc).date().isoformat()
+    updated, entry = add_approver(load_approvers(path), args.record, added_at=today)
+    path.write_text(dump_approvers(updated), encoding="utf-8")
+    print(json.dumps({k: entry[k] for k in ("approver", "fingerprint", "credential_id")}, indent=2))
+    return 0
 
 
 def main(argv=None) -> int:
@@ -31,13 +49,20 @@ def main(argv=None) -> int:
 
     req_p = sub.add_parser("request-approval", help="Build human approval requests for a transaction")
     req_p.add_argument("--transaction", required=True)
-    req_p.add_argument("--page-url", required=True, help="URL of the approval page the links should open")
+    req_p.add_argument("--page-url", help="Approval page URL (default: approval_page_url in the approvers file)")
+    req_p.add_argument("--approvers", default=str(DEFAULT_APPROVERS_PATH))
+
+    add_p = sub.add_parser("add-approver", help="Add a phone registered on the approval page to the approvers file")
+    add_p.add_argument("--record", required=True, help="Registration code copied from the approval page")
+    add_p.add_argument("--approvers", default=str(DEFAULT_APPROVERS_PATH))
 
     args = parser.parse_args(argv)
-    if args.command == "request-approval":
-        requests = build_approval_requests(_load_json(args.transaction), page_url=args.page_url)
-        print(json.dumps(requests, indent=2, sort_keys=True))
-        return 0
+    if args.command in {"request-approval", "add-approver"}:
+        try:
+            return _approval_command(args)
+        except ValidationRejected as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            return 2
     coordinator = TransactionCoordinator(LocalGitBackend(args.repo))
     if args.command == "apply":
         result = coordinator.execute(_load_json(args.transaction), _load_json(args.context), dry_run=args.dry_run)

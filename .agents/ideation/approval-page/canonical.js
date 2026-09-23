@@ -31,3 +31,10 @@ export async function sha256Hex(text) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
   return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
 }
+
+// Mirrors ideation_tools.approvers.key_fingerprint: first 8 bytes of SHA-256(SPKI) as XXXX-XXXX-XXXX-XXXX.
+export async function keyFingerprint(spkiBytes) {
+  const digest = await crypto.subtle.digest("SHA-256", spkiBytes);
+  const hex = Array.from(new Uint8Array(digest).slice(0, 8), (b) => b.toString(16).padStart(2, "0")).join("").toUpperCase();
+  return hex.match(/.{4}/g).join("-");
+}

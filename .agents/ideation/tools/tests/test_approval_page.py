@@ -15,6 +15,7 @@ from pathlib import Path
 import pytest
 
 from ideation_tools.approval import build_approval_requests, encode_request
+from ideation_tools.approvers import add_approver, key_fingerprint
 from ideation_tools.hashing import canonical_hash
 
 from test_approval import decision_tx
@@ -55,9 +56,9 @@ def js_hashes(values: list) -> list[str]:
 CANONICAL_CASES = [
     None, True, False, 0, -42, 2**53 - 1, "", "plain",
     "quotes \" and \\ backslash", "line\nbreak\ttab\r", "control \x01\x1f", "é ñ ü 中文 العربية", "emoji 😀 👍🏽",
-    "  ", [], {}, [1, "a", None, [True]],
+    "\u2028\u2029", [], {}, [1, "a", None, [True]],
     {"b": 1, "a": {"d": [], "c": "x"}},
-    {"\U0001F600": 1, "￿": 2, "z": 3, "Z": 4, "é": 5},
+    {"\U0001F600": 1, "\uffff": 2, "z": 3, "Z": 4, "é": 5},
     decision_tx()["state_mutations"][1],
 ]
 
@@ -68,6 +69,23 @@ def test_js_canonical_hash_matches_python():
 
 def test_js_refuses_non_integer_numbers():
     assert js_hashes([1.5, {"a": [0.1]}, 2**53]) == ["ERROR", "ERROR", "ERROR"]
+
+
+def test_js_key_fingerprint_matches_python():
+    require_tool(shutil.which("node") is not None, "node")
+    samples = [b"", b"abc", bytes(range(256))]
+    script = (
+        "import { readFileSync } from 'node:fs';"
+        f"import {{ keyFingerprint }} from {json.dumps((PAGE_DIR / 'canonical.js').as_uri())};"
+        "for (const hex of JSON.parse(readFileSync(0, 'utf8'))) {"
+        "  console.log(await keyFingerprint(Buffer.from(hex, 'hex')));"
+        "}"
+    )
+    out = subprocess.run(
+        ["node", "--input-type=module", "-e", script],
+        input=json.dumps([s.hex() for s in samples]), capture_output=True, text=True, check=True,
+    )
+    assert out.stdout.split() == [key_fingerprint(s) for s in samples]
 
 
 @pytest.fixture
@@ -100,20 +118,21 @@ def browser_page():
         browser.close()
 
 
-def register(page, page_url: str) -> dict:
+def register(page, page_url: str) -> str:
     page.goto(page_url)
     page.click("#register summary")
     page.fill("#approver-name", "tester")
     page.click("#register-button")
     page.wait_for_selector("#register-result:not([hidden])")
-    return json.loads(b64url_decode(page.input_value("#register-result textarea")))
+    return page.input_value("#register-result textarea")
 
 
 def test_register_then_approve_produces_valid_signature(browser_page, page_url):
     from cryptography.hazmat.primitives import hashes, serialization
     from cryptography.hazmat.primitives.asymmetric import ec
 
-    approver = register(browser_page, page_url)
+    code = register(browser_page, page_url)
+    approver = json.loads(b64url_decode(code))
     assert approver["kind"] == "ideation_approver"
     assert approver["rp_id"] == "localhost"
     assert approver["algorithm"] == -7
@@ -148,6 +167,19 @@ def test_register_then_approve_produces_valid_signature(browser_page, page_url):
         auth_data + hashlib.sha256(client_data_bytes).digest(),
         ec.ECDSA(hashes.SHA256()),
     )
+
+
+def test_registration_code_is_accepted_by_add_approver(browser_page, page_url):
+    code = register(browser_page, page_url)
+    shown = browser_page.inner_text("#fingerprint")
+    approvers = {
+        "schema_version": 1, "rp_id": "localhost", "origin": page_url.split("/index.html")[0],
+        "approval_page_url": page_url, "approvers": [],
+    }
+    _, entry = add_approver(approvers, code, added_at="2026-09-23")
+    assert entry["approver"] == "tester"
+    assert entry["fingerprint"] == shown
+    assert entry["fingerprint"] == key_fingerprint(b64url_decode(entry["public_key_spki"]))
 
 
 def test_tampered_request_is_refused(browser_page, page_url):

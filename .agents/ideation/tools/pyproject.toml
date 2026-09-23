@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Deterministic transaction coordinator for the reusable ideation agent"
 requires-python = ">=3.11"
 dependencies = [
+  "cryptography>=42",
   "jsonschema>=4.0",
   "PyYAML>=6.0",
 ]
@@ -15,7 +16,6 @@ dependencies = [
 [project.optional-dependencies]
 test = [
   "pytest>=8.0",
-  "cryptography>=42",
   "playwright==1.56.0",
 ]
 
