@@ -17,6 +17,7 @@ import pytest
 from ideation_tools.approval import build_approval_requests, encode_request
 from ideation_tools.approvers import add_approver, key_fingerprint
 from ideation_tools.hashing import canonical_hash
+from ideation_tools.passkey import build_authorization
 
 from test_approval import decision_tx
 
@@ -180,6 +181,26 @@ def test_registration_code_is_accepted_by_add_approver(browser_page, page_url):
     assert entry["approver"] == "tester"
     assert entry["fingerprint"] == shown
     assert entry["fingerprint"] == key_fingerprint(b64url_decode(entry["public_key_spki"]))
+
+
+def test_page_approval_passes_passkey_checker(browser_page, page_url):
+    approvers = {
+        "schema_version": 1, "rp_id": "localhost", "origin": page_url.split("/index.html")[0],
+        "approval_page_url": page_url, "approvers": [],
+    }
+    approvers, _ = add_approver(approvers, register(browser_page, page_url), added_at="2026-09-23")
+
+    tx = decision_tx()
+    request = build_approval_requests(tx, page_url=page_url)[0]
+    browser_page.goto("about:blank")
+    browser_page.goto(request["link"])
+    browser_page.click("#approve-button")
+    browser_page.wait_for_selector("#approval-result:not([hidden])")
+    code = browser_page.input_value("#approval-result textarea")
+
+    auth, entry = build_authorization(tx, code, approvers, issued_at="2026-09-23T00:00:00Z")
+    assert entry["approver"] == "tester"
+    assert auth["action_hash"] == request["action_hash"]
 
 
 def test_tampered_request_is_refused(browser_page, page_url):

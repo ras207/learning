@@ -12,6 +12,7 @@ from .content_store import ContentStore
 from .errors import CommitFailed, ConcurrencyConflict, ValidationRejected, VerificationIndeterminate
 from .hashing import canonical_hash, canonical_json_bytes, sha256_bytes
 from .migrations import CURRENT_STATE_SCHEMA_VERSION, migrate_state
+from .passkey import approval_evidence
 from .primitives import (
     commit_transaction, fingerprint_artifact, stage_artifact_change, stage_state_change,
     validate_policy_invariants, validate_state_snapshot, validate_transaction, validate_write_boundary,
@@ -265,8 +266,22 @@ class TransactionCoordinator:
         validate_state_snapshot(staged)
         invariant_results = validate_policy_invariants(staged, prospective_artifacts)
         state_path = self._state_path(transaction["project"]["project_slug"])
-        files = {state_path: dump_state(staged), **artifact_files}
+        files = {state_path: dump_state(staged), **artifact_files, **self._approval_evidence_files(transaction, context, used_authorization_ids)}
         return StageResult(files, staged, state_path, resulting_revision, artifact_fingerprints, invariant_results)
+
+    @staticmethod
+    def _approval_evidence_files(transaction: dict[str, Any], context: dict[str, Any], used_authorization_ids: list[str]) -> dict[str, bytes]:
+        """Commit each passkey-signed authorization alongside the state it authorized, so it can be re-verified."""
+        auths = {a["authorization_id"]: a for a in context["human_authorizations"]}
+        files = {}
+        for mutation in transaction["state_mutations"]:
+            auth = auths.get(mutation.get("authorization_id"))
+            # Only authorizations checked by PasskeyApprovalVerifier carry an approver fingerprint.
+            if auth is None or auth["authorization_id"] not in used_authorization_ids or "approver_fingerprint" not in auth:
+                continue
+            path = f"projects/{transaction['project']['project_slug']}/ideation/approvals/{auth['authorization_id']}.json"
+            files[path] = (json.dumps(approval_evidence(transaction, mutation, auth), indent=2, sort_keys=True) + "\n").encode("utf-8")
+        return files
 
     def _commit_message(self, transaction: dict[str, Any], tx_hash: str, base_sha: str, stage: StageResult) -> str:
         manifest = self._manifest(stage.files)

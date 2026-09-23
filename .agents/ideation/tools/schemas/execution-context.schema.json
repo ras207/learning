@@ -7,7 +7,7 @@
   "required": ["schema_version","trust_mode","run_id","actor","project_id","project_slug","iteration","authorized_ref","expected_head_sha","content_store_root","policy_version","human_authorizations"],
   "properties": {
     "schema_version": {"const": 1},
-    "trust_mode": {"enum": ["local_harness"]},
+    "trust_mode": {"enum": ["local_harness", "passkey"]},
     "run_id": {"type": "string", "minLength": 1},
     "actor": {"type": "string", "minLength": 1},
     "project_id": {"type": "string", "minLength": 1},
@@ -23,13 +23,23 @@
         "type": "object", "additionalProperties": false,
         "required": ["authorization_id","project_id","iteration","transaction_id","action_hash","actor","issued_at"],
         "properties": {
-          "authorization_id": {"type": "string", "minLength": 1},
+          "authorization_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
           "project_id": {"type": "string", "minLength": 1},
           "iteration": {"type": "integer", "minimum": 1},
           "transaction_id": {"type": "string", "minLength": 1},
           "action_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
           "actor": {"type": "string", "minLength": 1},
-          "issued_at": {"type": "string", "minLength": 1}
+          "issued_at": {"type": "string", "minLength": 1},
+          "passkey": {
+            "type": "object", "additionalProperties": false,
+            "required": ["credential_id","authenticator_data","client_data_json","signature"],
+            "properties": {
+              "credential_id": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+              "authenticator_data": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+              "client_data_json": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"},
+              "signature": {"type": "string", "pattern": "^[A-Za-z0-9_-]+$"}
+            }
+          }
         }
       }
     }

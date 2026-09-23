@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+import re
 from typing import Any
 
 from .auth import mutation_action_hash, mutation_action_material, mutation_requires_direct_human_authorization
@@ -9,6 +10,7 @@ from .hashing import canonical_json_bytes
 from .primitives import validate_transaction
 
 REQUEST_KIND = "ideation_approval_request"
+AUTHORIZATION_ID = re.compile(r"[A-Za-z0-9_-]+")
 
 
 def _describe_value(value: Any) -> str:
@@ -51,6 +53,8 @@ def build_approval_requests(transaction: dict[str, Any], *, page_url: str) -> li
             raise ValidationRejected(
                 f"Mutation {mutation['operation']} on {mutation['section']} needs an authorization_id before approval can be requested"
             )
+        if not AUTHORIZATION_ID.fullmatch(mutation["authorization_id"]):
+            raise ValidationRejected("authorization_id may contain only letters, digits, '-' and '_'")
         action = mutation_action_material(transaction, mutation)
         payload = {
             "schema_version": 1,
