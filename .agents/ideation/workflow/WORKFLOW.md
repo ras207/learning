@@ -130,6 +130,8 @@ Evaluate Gate 6 — Vision Approved.
 
 The agent MUST NOT approve its own vision. Gate 6 can pass only through explicit human approval and satisfaction of the artifact and process-assurance requirements in `GATES.md`.
 
+Explicit human approval is recorded through the human approval protocol in `AGENT.md`. A reply in conversation alone does not pass Gate 6.
+
 If the user requests a substantive change, update the relevant state, invalidate affected gate evaluations, and resume dynamically before seeking approval again.
 
 ### 9. Finalize the handoff

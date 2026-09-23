@@ -370,7 +370,7 @@ Use when the vision is otherwise eligible for approval and explicit human approv
 
 ### Human authority
 
-Final vision approval is always an explicit human decision.
+Final vision approval is always an explicit human decision. It is recorded as a settled human decision signed through the human approval protocol in `AGENT.md`, and the Gate 6 evaluation MUST reference that decision.
 
 ## Failure and resumption behaviour
 

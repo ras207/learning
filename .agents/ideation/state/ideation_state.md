@@ -36,6 +36,8 @@ The YAML record is the source of truth for runtime status, routing, record valid
 
 Chat history, a previously displayed stage, and an unrecorded agent memory MUST NOT override the canonical state artifact.
 
+A settled human decision's `authorization_id` MUST be backed by an approval evidence record at `projects/<project-slug>/ideation/approvals/<authorization_id>.json`. The tools layer writes it in the same commit as the change it authorizes. Evidence records are signed proof referenced from state, not a competing runtime-state store; their format and verification are defined in `../tools/README.md`.
+
 The state record MUST be human-inspectable and deterministically parseable. A later machine-readable schema MAY enforce this contract, but schema absence does not weaken the requirements here.
 
 ## State model
