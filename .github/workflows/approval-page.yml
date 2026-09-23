@@ -1,0 +1,42 @@
+name: Publish approval page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".agents/ideation/approval-page/**"
+      - ".github/workflows/approval-page.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}approve/
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Assemble site
+        # Copy only the page's own files; tests and package.json stay out of the site.
+        run: |
+          mkdir -p _site/approve
+          cp .agents/ideation/approval-page/{index.html,page.js,canonical.js,style.css} _site/approve/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
