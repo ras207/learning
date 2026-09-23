@@ -13,7 +13,11 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=8.0"]
+test = [
+  "pytest>=8.0",
+  "cryptography>=42",
+  "playwright==1.56.0",
+]
 
 [project.scripts]
 ideation-tools = "ideation_tools.cli:main"

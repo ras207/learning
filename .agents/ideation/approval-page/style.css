@@ -1,0 +1,97 @@
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5c5c5c;
+  --border: #d0d0d0;
+  --signed-bg: #eef6ee;
+  --signed-border: #2e7d32;
+  --unsigned-bg: #f5f5f5;
+  --error-bg: #fdecea;
+  --error-text: #b3261e;
+  --button-bg: #1f5fbf;
+  --button-text: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --text: #ececec;
+    --muted: #a8a8a8;
+    --border: #3a3a3a;
+    --signed-bg: #16261a;
+    --signed-border: #66bb6a;
+    --unsigned-bg: #1e1e1e;
+    --error-bg: #3a1614;
+    --error-text: #ffb4ab;
+    --button-bg: #4d8ef0;
+    --button-text: #0b0b0b;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, sans-serif;
+}
+
+main { max-width: 40rem; margin: 0 auto; padding: 16px; }
+
+h1 { font-size: 1.4rem; }
+h2 { font-size: 1.1rem; margin-top: 1.5rem; }
+
+.note { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.5rem; }
+
+.signed, .unsigned {
+  padding: 12px;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+.signed { background: var(--signed-bg); border: 2px solid var(--signed-border); }
+.unsigned { background: var(--unsigned-bg); border: 1px dashed var(--border); }
+
+.headline { font-weight: 600; margin-top: 0; }
+
+dl { margin: 0.5rem 0 0; }
+dt { font-weight: 600; }
+dd { margin: 0 0 0.5rem; white-space: pre-wrap; }
+
+.hash { font-size: 0.8rem; color: var(--muted); overflow-wrap: anywhere; }
+
+.error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin: 1rem 0 0.5rem;
+  padding: 14px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+textarea { font-family: ui-monospace, monospace; font-size: 0.8rem; }
+
+details { margin-top: 2rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+summary { cursor: pointer; font-weight: 600; }
+label { display: block; margin: 0.75rem 0 0.25rem; }
