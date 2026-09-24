@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 6
+  revision: 7
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-23T22:15:35.500224Z'
+  updated_at: '2026-09-24T07:23:35.612650Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -46,12 +46,36 @@ artifacts:
     value: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
   repository_commit: null
   last_verified_at: '2026-09-23T22:14:55.304655Z'
-decisions: []
+decisions:
+- id: D-001
+  question: 'Who decides what the user works on next: the AI, or the user with the
+    AI advising?'
+  decision: The AI is free to decide what the user works on next, based on building
+    the user's desired capabilities. 'Retaining reasoning, understanding and judgement'
+    refers to the user doing the thinking, not to controlling the sequence of work.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - User decides direction; AI proposes and advises.
+  - 'Shared: AI proposes a plan; user approves or edits each step.'
+  dependencies:
+  - A-001
+  - WI-004
+  - art-intent-model
+  affected:
+  - A-001
+  - WI-004
+  - gate:4
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-24'
+  supersedes: null
+  authorization_id: auth-D-001-ai-direction
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
     own cognition and does not stop the AI from leading curriculum and sequencing.'
-  status: provisional
+  status: validated
   origin: clarify-intent
   basis: The seed explicitly asks the AI to 'decide what I should work on next' and
     to act as curriculum manager; 'rather than outsourcing them to AI' refers to thinking.
@@ -68,6 +92,8 @@ assumptions:
   blocking: false
   blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
     1 or change the direction of Gate 2 exploration.
+  validated_by: D-001
+  validated_at: '2026-09-24T00:00:00Z'
 - id: A-002
   proposition: 'The current intent is for a single learner: the user.'
   status: provisional
@@ -180,7 +206,7 @@ work_items:
   title: Authority split between AI direction and user judgement
   description: The seed asks the AI to decide what to work on next and also asks that
     the user keep judgement. A-001 records the working interpretation.
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Does not change the core intent, desired outcome, people or direction
@@ -198,8 +224,10 @@ work_items:
   review_point: Gate 4 boundary
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-24T00:00:00Z'
+  resolved_at: '2026-09-24T00:00:00Z'
+  resolution: 'Resolved by D-001: AI decides next work, driven by the user''s desired
+    capabilities.'
 - id: WI-005
   type: uncertainty
   title: 'Practical constraints: time, budget, privacy and data ownership'
@@ -403,3 +431,19 @@ history:
   transaction_id: tx-2026-09-23-05-checkpoint
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-24-06-decision-ai-direction
+  timestamp: '2026-09-24T07:23:35.612650Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-001
+  - A-001
+  - WI-004
+  summary: 'Record human decision D-001: AI decides what to work on next; A-001 validated;
+    WI-004 resolved. G1-E1 is unaffected because the decision confirms the reading
+    it relied on.'
+  resulting_revision: 7
+  transaction_id: tx-2026-09-24-06-decision-ai-direction
+  authorization_id: auth-D-001-ai-direction
+  authorization_ids:
+  - auth-D-001-ai-direction

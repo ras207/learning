@@ -1,0 +1,54 @@
+{
+  "action": {
+    "dependencies": [
+      "A-001",
+      "WI-004"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "A-001",
+        "WI-004",
+        "gate:4",
+        "gate:5"
+      ],
+      "alternatives_considered": [
+        "User decides direction; AI proposes and advises.",
+        "Shared: AI proposes a plan; user approves or edits each step."
+      ],
+      "authority": "human",
+      "decided_at": "2026-09-24",
+      "decided_by": "project owner",
+      "decision": "The AI is free to decide what the user works on next, based on building the user's desired capabilities. 'Retaining reasoning, understanding and judgement' refers to the user doing the thinking, not to controlling the sequence of work.",
+      "dependencies": [
+        "A-001",
+        "WI-004",
+        "art-intent-model"
+      ],
+      "id": "D-001",
+      "question": "Who decides what the user works on next: the AI, or the user with the AI advising?",
+      "status": "settled",
+      "supersedes": null
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-001",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-24-06-decision-ai-direction"
+  },
+  "action_hash": "e6439fb5cdf8d664114e12d28534836923785a6c70c49d8c5cab1aab26dc18b3",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-001-ai-direction",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiNWtPZnRjMzQxbVFSVGhMU2hUU0RhU040V214d3hKMk1YS3NhcXliY0dMTSIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEYCIQDdGaE7gbIleKOj-dr14Hf1c8ePqwZPsrTYdnLJIVRFPQIhAJLlUV_vI2vkkeNmdW7cWxLxCw_HsDMtlX4_ZM9WrShK"
+  },
+  "schema_version": 1
+}
