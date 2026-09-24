@@ -1,0 +1,52 @@
+{
+  "action": {
+    "dependencies": [
+      "WI-007"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "WI-007",
+        "WI-006",
+        "gate:2",
+        "gate:4"
+      ],
+      "alternatives_considered": [
+        "Build the system as off-the-shelf as possible, with no learning intent.",
+        "Treat building the system as the first learning project, structured by the system's own model."
+      ],
+      "authority": "human",
+      "decided_at": "2026-09-24",
+      "decided_by": "project owner",
+      "decision": "The user wants to learn while building the system. Building it should not be structured like the learning projects the system itself will run; the system should not be used to organise its own construction before it exists.",
+      "dependencies": [
+        "WI-007",
+        "art-intent-model"
+      ],
+      "id": "D-002",
+      "question": "Is building the system itself one of the user's learning projects, or should it be as off-the-shelf as possible?",
+      "status": "settled",
+      "supersedes": null
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-002",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-24-08-decision-build-as-learning"
+  },
+  "action_hash": "8e32054a509ec123a713115542bb56e166071b36e05d12525b469bfb83799bd2",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-002-build-as-learning",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiampJRlNsQ2V3U09uRXhGVlFydFc0V1lIR3piZ1hSSlNXMGFiLTRONW05SSIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEUCIE3ay9bySA3HsqsylRaoITeV-SolZZaADYA-uSJjJ6q7AiEAxEu0HADeMCLk_pEx4RBD-WvowZOvWP-1TzeZUYgKTxY"
+  },
+  "schema_version": 1
+}

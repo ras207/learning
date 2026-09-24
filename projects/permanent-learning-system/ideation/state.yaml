@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 8
+  revision: 9
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-24T07:23:45.748681Z'
+  updated_at: '2026-09-24T07:54:29.018881Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -73,6 +73,30 @@ decisions:
   decided_at: '2026-09-24'
   supersedes: null
   authorization_id: auth-D-001-ai-direction
+- id: D-002
+  question: Is building the system itself one of the user's learning projects, or
+    should it be as off-the-shelf as possible?
+  decision: The user wants to learn while building the system. Building it should
+    not be structured like the learning projects the system itself will run; the system
+    should not be used to organise its own construction before it exists.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - Build the system as off-the-shelf as possible, with no learning intent.
+  - Treat building the system as the first learning project, structured by the system's
+    own model.
+  dependencies:
+  - WI-007
+  - art-intent-model
+  affected:
+  - WI-007
+  - WI-006
+  - gate:2
+  - gate:4
+  decided_by: project owner
+  decided_at: '2026-09-24'
+  supersedes: null
+  authorization_id: auth-D-002-build-as-learning
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
@@ -285,7 +309,7 @@ work_items:
   title: Is building the system itself a learning project?
   description: Should building the system serve as a vehicle for technology and AI
     capability, or should it be as off-the-shelf as possible?
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Does not change the core intent, desired outcome, people or direction
@@ -303,8 +327,10 @@ work_items:
   review_point: Gate 2 boundary
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-24T00:30:00Z'
+  resolved_at: '2026-09-24T00:30:00Z'
+  resolution: 'Resolved by D-002: learning while building, outside the system''s own
+    project structure.'
 evidence: []
 gate_evaluations:
 - id: G1-E1
@@ -459,3 +485,17 @@ history:
   transaction_id: tx-2026-09-24-07-checkpoint
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-24-08-decision-build-as-learning
+  timestamp: '2026-09-24T07:54:29.018881Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-002
+  - WI-007
+  summary: 'Record human decision D-002: learn while building the system, but not
+    structured as one of its own learning projects; WI-007 resolved.'
+  resulting_revision: 9
+  transaction_id: tx-2026-09-24-08-decision-build-as-learning
+  authorization_id: auth-D-002-build-as-learning
+  authorization_ids:
+  - auth-D-002-build-as-learning
