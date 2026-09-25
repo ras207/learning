@@ -3,15 +3,15 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 21
+  revision: 22
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T22:56:17.175508Z'
+  updated_at: '2026-09-25T22:56:35.465324Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: understand_problem
+  spine_context: explore_alternatives
 session:
   status: active
   checkpointed_at: '2026-09-25T08:55:00Z'
@@ -27,18 +27,21 @@ session:
     modelling has not started.'
   pending_interaction_id: null
 routing:
-  saved_focus_id: gate:3
-  selection_rationale: Problem model reviewed and corrected with the user's answers;
-    no open question blocks the Gate 3 evaluation.
-  dependency_priority: Gate 3 problem modelling is a prerequisite for Gates 4 and
-    5. Gate 3 review points are now reached for WI-002, WI-003, WI-005, WI-006 and
-    deferred WI-010 (reactivates with WI-005).
-  expected_decision_value: 'High: WI-003 (what the capability is for, and why now)
-    most shapes the problem definition, followed by WI-005 (constraints, privacy)
-    with WI-010, then WI-002 (target capabilities and horizons).'
-  next_intervention: Evaluate Gate 3.
+  saved_focus_id: gate:4
+  selection_rationale: G1-E1, G2-E1 and G3-E1 are current and passing; no blocking
+    deficiency, invalid evaluation or open escalation exists. The next planned boundary
+    is Gate 4.
+  dependency_priority: 'Alternatives (Gate 4) are a prerequisite for convergence and
+    the focused challenge (Gate 5). Items with a Gate 4 review point: WI-006 (comparison
+    criterion), WI-013 (privacy versus cost axis), WI-014 (existing tools, research
+    only if blocking), A-003, A-004, A-005.'
+  expected_decision_value: 'High: materially different directions must be compared
+    on the constraints and mechanisms in art-problem-model, especially the two-halves
+    observation, M8 (AI hollowing out capability), M10 (meta-work) and WI-013.'
+  next_intervention: 'At the next sitting: re-orient, then invoke generate-alternatives
+    against art-problem-model. Not started this sitting by the user''s instruction.'
   action_owner: agent
-  selected_at: '2026-09-25T23:20:00Z'
+  selected_at: '2026-09-25T23:35:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -1216,5 +1219,15 @@ history:
   summary: 'Gate 3 Problem Understood: PASS_WITH_UNCERTAINTY (G3-E1)'
   resulting_revision: 21
   transaction_id: tx-2026-09-25-20-gate3
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-21-route-alternatives
+  timestamp: '2026-09-25T22:56:35.465324Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to alternatives (Gate 4); not started this sitting
+  resulting_revision: 22
+  transaction_id: tx-2026-09-25-21-route-alternatives
   authorization_id: null
   authorization_ids: []
