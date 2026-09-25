@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 13
+  revision: 14
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T08:04:09.529508Z'
+  updated_at: '2026-09-25T08:04:38.181299Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -543,6 +543,62 @@ gate_evaluations:
   invalidation_reason: null
   invalidated_by_event: null
   superseded_by: null
+- id: G2-E1
+  gate_id: 2
+  gate_name: Ambition Explored
+  gate_class: advisory
+  evaluated_at: '2026-09-25T08:35:00Z'
+  state_revision: 13
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - The initial framing (one learner; capability as the end; projects as means and
+    evidence) was challenged across five dimensions rather than restated.
+  - 'Materially broader possibilities were surfaced: other learners or productisation
+    (AM-1), real-world results as a goal (AM-2), learning in public (AM-6) and a third-party
+    credential service (AM-7).'
+  - Exploration covered beneficiaries, outcomes, scope, durability and leverage, and
+    second-order effects, not feature expansion.
+  - 'Every ambition has a disposition: carried AM-3, AM-4, AM-5, AM-10 (A-004); deferred
+    AM-1 (WI-009) and AM-6 (WI-010); rejected AM-7; AM-2 rejected by the user in D-003.'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-009
+  - WI-010
+  - A-004
+  - WI-003
+  human_judgement_required: The only consequential expansion (AM-2, WI-008) was escalated
+    and decided.
+  human_decision_ids:
+  - D-003
+  rationale: 'The opportunity space is explored well enough for problem modelling.
+    The consequential expansion was put to the user, who kept capability as the goal
+    against the agent''s recommendation after hearing the trade-off; the scope stays
+    as confirmed at Gate 1. What remains is non-blocking uncertainty about eventual
+    scale and openness: whether the system ever serves others (deferred with a trigger),
+    how openly to learn (tied to WI-005 at Gate 3), the agent''s compatibility judgement
+    on carried ambitions (A-004, user may reclassify), and what the capability is
+    ultimately for (WI-003, Gate 3). None requires downstream work to invent consequential
+    intent. G1-E1 is unaffected: D-003 confirms the intent reading it relied on.'
+  source_inputs:
+    ambition_map: projects/permanent-learning-system/ideation/ambition-map.md
+    ambition_map_sha256: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+  dependencies:
+  - art-ambition-map
+  - art-intent-model
+  - G1-E1
+  - D-002
+  - D-003
+  - A-002
+  - A-004
+  - WI-008
+  - WI-009
+  - WI-010
+  - WI-003
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
   outcome: null
   checks: []
@@ -700,3 +756,14 @@ history:
   authorization_id: auth-D-003-capability-goal
   authorization_ids:
   - auth-D-003-capability-goal
+- event_id: evt:tx-2026-09-25-13-gate2
+  timestamp: '2026-09-25T08:04:38.181299Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G2-E1
+  summary: 'Gate 2 Ambition Explored: PASS_WITH_UNCERTAINTY (G2-E1)'
+  resulting_revision: 14
+  transaction_id: tx-2026-09-25-13-gate2
+  authorization_id: null
+  authorization_ids: []
