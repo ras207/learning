@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 17
+  revision: 18
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T08:17:28.686424Z'
+  updated_at: '2026-09-25T22:21:56.235427Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,7 +13,7 @@ workflow:
   vision_status: not_started
   spine_context: understand_problem
 session:
-  status: paused
+  status: active
   checkpointed_at: '2026-09-25T08:55:00Z'
   resume_summary: 'G1-E1 (PASS_WITH_UNCERTAINTY) and G2-E1 (PASS_WITH_UNCERTAINTY)
     are current. This sitting: the user confirmed the intent model with no corrections;
@@ -25,23 +25,25 @@ session:
     to G2-E1). Open non-blocking items: WI-002, WI-003, WI-005, WI-006; deferred WI-009,
     WI-010. On resume: re-orient, then start problem modelling toward Gate 3. Problem
     modelling has not started.'
-  pending_interaction_id: null
+  pending_interaction_id: WI-003
 routing:
   saved_focus_id: gate:3
-  selection_rationale: G1-E1 and G2-E1 are current and passing; no blocking deficiency,
-    invalid evaluation or open escalation exists. The next planned boundary is Gate
-    3.
-  dependency_priority: 'Gate 3 problem modelling is a prerequisite for alternatives
-    (Gate 4) and convergence (Gate 5). Items with a Gate 3 review point: WI-002, WI-003,
-    WI-005, WI-006, and deferred WI-010 (reactivates when WI-005 is answered).'
-  expected_decision_value: 'High: the problem model constrains every later direction.
-    WI-003 (what capability is for) and WI-005 (time, budget, privacy) most shape
-    it.'
-  next_intervention: 'At the next sitting: re-orient, then ask the user WI-003 and
-    WI-005 (with WI-010), then invoke model-problem. Not started this sitting by the
-    user''s instruction.'
-  action_owner: agent
-  selected_at: '2026-09-25T08:40:00Z'
+  selection_rationale: 'Revalidated on resume at revision 17: artifact fingerprints
+    match state, all three approvals re-verify, the ideation system is unchanged since
+    the last sitting, and no material change has occurred. G1-E1 and G2-E1 remain
+    current and passing; no blocking deficiency, invalid evaluation or open escalation
+    exists. Gate 3 is the next planned boundary.'
+  dependency_priority: Gate 3 problem modelling is a prerequisite for Gates 4 and
+    5. Gate 3 review points are now reached for WI-002, WI-003, WI-005, WI-006 and
+    deferred WI-010 (reactivates with WI-005).
+  expected_decision_value: 'High: WI-003 (what the capability is for, and why now)
+    most shapes the problem definition, followed by WI-005 (constraints, privacy)
+    with WI-010, then WI-002 (target capabilities and horizons).'
+  next_intervention: Ask the user WI-003, then WI-005 with WI-010, then WI-002, one
+    at a time; then invoke model-problem, assessing WI-006 within the model; then
+    evaluate Gate 3.
+  action_owner: human
+  selected_at: '2026-09-25T22:40:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -817,5 +819,15 @@ history:
     as non-material to G2-E1
   resulting_revision: 17
   transaction_id: tx-2026-09-25-16-ambition-map-am2
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-17-resume-route-problem
+  timestamp: '2026-09-25T22:21:56.235427Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session; revalidate routing focus to problem modelling (Gate 3)
+  resulting_revision: 18
+  transaction_id: tx-2026-09-25-17-resume-route-problem
   authorization_id: null
   authorization_ids: []
