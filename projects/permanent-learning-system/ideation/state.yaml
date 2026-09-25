@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 20
+  revision: 21
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T22:55:43.155896Z'
+  updated_at: '2026-09-25T22:56:17.175508Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -671,6 +671,31 @@ work_items:
   created_at: '2026-09-25T23:05:00Z'
   updated_at: '2026-09-25T23:05:00Z'
   resolved_at: null
+- id: WI-014
+  type: uncertainty
+  title: Existing tools and services not researched
+  description: The current-approaches analysis of commercial AI tutors and learning
+    tools is agent inference, not research. If adopting or combining existing tools
+    is a credible alternative at Gate 4, a scoped scan may become blocking evidence.
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the problem definition; only affects the relative
+    strength of a possible alternative.
+  origin: evaluate-gate (Gate 3)
+  affected:
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: agent
+  next_action: At Gate 4, decide whether an adopt-existing-tools alternative is credible;
+    research only if the comparison is blocked without it.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking at Gate 3.
+  created_at: '2026-09-25T23:30:00Z'
+  updated_at: '2026-09-25T23:30:00Z'
+  resolved_at: null
 evidence:
 - id: E-001
   claim: 'The user''s starting point: economist leading a small team giving independent
@@ -837,6 +862,98 @@ gate_evaluations:
       WI-010) after its reactivation trigger WI-005 was answered. G2-E1 listed WI-010
       as a non-blocking uncertainty; resolving it within the confirmed scope does
       not affect any pass criterion or the outcome. G2-E1 remains current.
+- id: G3-E1
+  gate_id: 3
+  gate_name: Problem Understood
+  gate_class: hard
+  evaluated_at: '2026-09-25T23:30:00Z'
+  state_revision: 20
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'The problem is explained independently of any solution: turning about seven fragmented
+    hours a week, over years, into demonstrable, current, integrated capability at
+    the intersection of economics, AI systems and policy advisory business, without
+    losing ownership of one''s own thinking (art-problem-model section 1). No section
+    assumes a system is the answer.'
+  - 'Affected people and impact are clear: the user as sole learner with a stated
+    starting point and targets (E-001); indirect effects on team, government clients
+    and future policy clients; people as private sources of challenge (AM-5, C4).'
+  - 'Causal mechanisms are understood well enough to guide alternatives: M1 to M10
+    cover practice and feedback, the missing learner model, stale material, unstructured
+    self-direction, separation from real use, fragmented time, decay, AI hollowing
+    out capability, sustaining effort and meta-work; plus the two-halves observation
+    (work supports economics and advice but not AI practice).'
+  - 'Current approaches are understood: courses, unstructured AI chat, formal study,
+    learning on the job, mentors, spaced-repetition and note tools, and commercial
+    AI tutors, each with its specific inadequacy.'
+  - Inadequacy of the current state is explicit (section 6), grounded in the user's
+    three stated failures (E-002).
+  - 'Important assumptions are visible and labelled: A-003 (with the reputation challenge),
+    A-005, validated A-006 and A-007; every proposition carries a stated, inference,
+    general-knowledge or assumption label.'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-006
+  - WI-013
+  - WI-014
+  - A-003
+  - A-004
+  - A-005
+  human_judgement_required: null
+  human_decision_ids: []
+  rationale: 'The diagnosis rests on the user''s own statements for its core (purpose,
+    starting point, targets, constraints, failures of current learning, work as a
+    venue, the business being policy advice) and on labelled inference and general
+    learning-science knowledge for mechanisms, none of it researched in this project.
+    Those hypotheses are explicit, and being wrong on any of them would change emphasis
+    among alternatives rather than make exploration unsafe or misleading, which GATES.md
+    permits under PASS_WITH_UNCERTAINTY. No material ambiguity about which problem
+    is worth solving or for whom remains: the user answered every question asked,
+    and the problem statement follows from their stated targets within D-001 to D-003.
+    The user raised no corrections to the model; that is not treated as approval,
+    and none is required at this gate. Carried non-blocking uncertainty: meta-work
+    and permanence (WI-006, for the Gate 4 comparison and pre-Gate-5 challenge); privacy
+    versus cost (WI-013, a trade-off for Gates 4 and 5); existing commercial tools
+    not researched (WI-014, may matter if adopting an existing tool is a credible
+    alternative); reputation versus capability-only success (A-003); the agent''s
+    compatibility judgement on carried ambitions (A-004); and use of commute time
+    (A-005). G1-E1 and G2-E1 are unaffected: this sitting''s answers resolved uncertainties
+    they listed without changing the intent or ambition dispositions they relied on.'
+  source_inputs:
+    problem_model: projects/permanent-learning-system/ideation/problem-model.md
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+    ambition_map_sha256: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
+    intent_model_sha256: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  dependencies:
+  - art-problem-model
+  - art-intent-model
+  - art-ambition-map
+  - G1-E1
+  - G2-E1
+  - D-001
+  - D-002
+  - D-003
+  - A-003
+  - A-004
+  - A-005
+  - A-006
+  - A-007
+  - E-001
+  - E-002
+  - WI-002
+  - WI-003
+  - WI-005
+  - WI-006
+  - WI-010
+  - WI-011
+  - WI-012
+  - WI-013
+  - WI-014
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
   outcome: null
   checks: []
@@ -1087,5 +1204,17 @@ history:
     validate A-006 and A-007 from user statements'
   resulting_revision: 20
   transaction_id: tx-2026-09-25-19-problem-model-review
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-20-gate3
+  timestamp: '2026-09-25T22:56:17.175508Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-014
+  - G3-E1
+  summary: 'Gate 3 Problem Understood: PASS_WITH_UNCERTAINTY (G3-E1)'
+  resulting_revision: 21
+  transaction_id: tx-2026-09-25-20-gate3
   authorization_id: null
   authorization_ids: []
