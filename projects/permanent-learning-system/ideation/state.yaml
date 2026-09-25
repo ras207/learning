@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 16
+  revision: 17
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T08:05:01.691203Z'
+  updated_at: '2026-09-25T08:17:28.686424Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -14,15 +14,17 @@ workflow:
   spine_context: understand_problem
 session:
   status: paused
-  checkpointed_at: '2026-09-25T08:40:00Z'
+  checkpointed_at: '2026-09-25T08:55:00Z'
   resume_summary: 'G1-E1 (PASS_WITH_UNCERTAINTY) and G2-E1 (PASS_WITH_UNCERTAINTY)
     are current. This sitting: the user confirmed the intent model with no corrections;
     expand-ambition produced art-ambition-map, carrying AM-3, AM-4, AM-5 and AM-10
-    (A-004), deferring AM-1 (WI-009) and AM-6 (WI-010), rejecting AM-7, and escalating
-    AM-2. Human decision D-003 (passkey-approved): capability remains the goal; real
-    projects are means and evidence (agent had recommended joint goals). Open non-blocking
-    items: WI-002, WI-003, WI-005, WI-006; deferred WI-009, WI-010. On resume: re-orient,
-    then start problem modelling toward Gate 3. Problem modelling has not started.'
+    (A-004), deferring AM-1 (WI-009) and AM-6 (WI-010), and rejecting AM-7. AM-2 was
+    escalated and rejected by the user in D-003 (passkey-approved): capability remains
+    the goal; real projects are means and evidence (agent had recommended joint goals).
+    The ambition map was updated at the user''s request to show AM-2 rejected (non-material
+    to G2-E1). Open non-blocking items: WI-002, WI-003, WI-005, WI-006; deferred WI-009,
+    WI-010. On resume: re-orient, then start problem modelling toward Gate 3. Problem
+    modelling has not started.'
   pending_interaction_id: null
 routing:
   saved_focus_id: gate:3
@@ -56,9 +58,9 @@ artifacts:
   status: current
   fingerprint:
     algorithm: sha256
-    value: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+    value: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
   repository_commit: null
-  last_verified_at: '2026-09-25T07:56:07.425242Z'
+  last_verified_at: '2026-09-25T08:17:28.686424Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -607,6 +609,16 @@ gate_evaluations:
   invalidation_reason: null
   invalidated_by_event: null
   superseded_by: null
+  input_revalidations:
+  - input: art-ambition-map
+    previous_sha256: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+    current_sha256: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
+    assessed_at: '2026-09-25T08:55:00Z'
+    material: false
+    assessment: The only change records AM-2 as rejected by the user under D-003.
+      G2-E1 already lists D-003 as a dependency and classified AM-2 as rejected in
+      its rationale, so no pass criterion, uncertainty or outcome is affected. G2-E1
+      remains current. A-004 concerns other ambitions and is unaffected.
 finalization:
   outcome: null
   checks: []
@@ -793,5 +805,17 @@ history:
   summary: Checkpoint session after Gate 2 evaluation
   resulting_revision: 16
   transaction_id: tx-2026-09-25-15-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-16-ambition-map-am2
+  timestamp: '2026-09-25T08:17:28.686424Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - G2-E1
+  summary: Update ambition map to show AM-2 rejected by the user (D-003); change assessed
+    as non-material to G2-E1
+  resulting_revision: 17
+  transaction_id: tx-2026-09-25-16-ambition-map-am2
   authorization_id: null
   authorization_ids: []

@@ -1,6 +1,6 @@
 # Ambition map: Permanent Learning System
 
-Iteration 1 · produced by `expand-ambition` · 2026-09-25
+Iteration 1 · produced by `expand-ambition` · 2026-09-25 · updated 2026-09-25 to record the user's decision on AM-2 (D-003)
 
 Inputs: intent model `art-intent-model` (sha256 `d417dfdf…0fdd5`), current Gate 1 evaluation G1-E1, decisions D-001 and D-002, assumptions A-001 to A-003. On 2026-09-25 the user confirmed the intent model with no corrections.
 
@@ -23,7 +23,7 @@ The first framing is a *personal learning system*: one learner, whose aim is *ca
 
 | ID | Possibility | Value | Risk or cost | Compatible? | Recommendation |
 |---|---|---|---|---|---|
-| AM-2 | Real-world results become a goal alongside capability, for example income, ventures, roles, published work and impact. The system then helps choose and pursue consequential opportunities that build capability *and* achieve something. | Possibly the largest gain available. It connects learning directly to what the capability is for (WI-003), makes artefacts valuable by design rather than by accident, and supplies the strongest evidence of capability there is. | Optimising for output can crowd out deliberate practice, breadth and foundations. It raises the stakes of AI direction (D-001), because choosing real commitments affects money, time and other people. It widens scope toward life and career strategy. | Partly. The seed leans this way ("consequential activity", artefacts "valuable in their own right"), but its stated end point is *capability*. Making real results a goal changes the desired outcome. | **[decision]** See WI-008. |
+| AM-2 | Real-world results become a goal alongside capability, for example income, ventures, roles, published work and impact. The system then helps choose and pursue consequential opportunities that build capability *and* achieve something. | Possibly the largest gain available. It connects learning directly to what the capability is for (WI-003), makes artefacts valuable by design rather than by accident, and supplies the strongest evidence of capability there is. | Optimising for output can crowd out deliberate practice, breadth and foundations. It raises the stakes of AI direction (D-001), because choosing real commitments affects money, time and other people. It widens scope toward life and career strategy. | Partly. The seed leans this way ("consequential activity", artefacts "valuable in their own right"), but its stated end point is *capability*. Making real results a goal changes the desired outcome. | **[reject]**, decided by the user in D-003 (WI-008). The user chose option A: capability remains the goal, and real projects and consequential activity remain the means of learning and the evidence of capability. The agent had recommended joint goals (option B). |
 | AM-10 | Keep capabilities alive over decades rather than only acquiring new ones: maintenance, refreshing and recombination. | High for a permanent system. Capability decays without use, and over years retaining capability is as large an effect as acquiring it. | Competes with new learning for limited time. | Yes. It follows directly from B3 (permanent) and "genuinely useful capabilities". | **[carry]** |
 
 ### 3. Scope and boundaries
@@ -50,8 +50,7 @@ The first framing is a *personal learning system*: one learner, whose aim is *ca
 | Disposition | Items |
 |---|---|
 | Carry forward | AM-3 durable, portable, user-owned record · AM-4 AI-frontier-aware capability selection · AM-5 people as sources of challenge and evidence · AM-10 capability maintenance over decades |
-| Awaiting user decision | AM-2 real-world results as a goal (WI-008) |
 | Deferred | AM-1 other learners or productisation (WI-009) · AM-6 learning in public (WI-010, with WI-005) |
-| Rejected | AM-7 capability verification or credential service |
+| Rejected | AM-2 real-world results as a goal (by the user, D-003) · AM-7 capability verification or credential service |
 
 The carried ambitions are the agent's judgement that they fit the intent as confirmed (A-004). The user can reclassify any of them.
