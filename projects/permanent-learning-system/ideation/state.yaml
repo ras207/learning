@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 19
+  revision: 20
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T22:49:25.687801Z'
+  updated_at: '2026-09-25T22:55:43.155896Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -25,22 +25,20 @@ session:
     to G2-E1). Open non-blocking items: WI-002, WI-003, WI-005, WI-006; deferred WI-009,
     WI-010. On resume: re-orient, then start problem modelling toward Gate 3. Problem
     modelling has not started.'
-  pending_interaction_id: WI-011
+  pending_interaction_id: null
 routing:
   saved_focus_id: gate:3
-  selection_rationale: Problem model produced; WI-002, WI-003, WI-005 and WI-010 resolved
-    by user statements. Two cheap non-blocking diagnostic questions (WI-011, WI-012)
-    and user review of the model precede the Gate 3 evaluation.
+  selection_rationale: Problem model reviewed and corrected with the user's answers;
+    no open question blocks the Gate 3 evaluation.
   dependency_priority: Gate 3 problem modelling is a prerequisite for Gates 4 and
     5. Gate 3 review points are now reached for WI-002, WI-003, WI-005, WI-006 and
     deferred WI-010 (reactivates with WI-005).
   expected_decision_value: 'High: WI-003 (what the capability is for, and why now)
     most shapes the problem definition, followed by WI-005 (constraints, privacy)
     with WI-010, then WI-002 (target capabilities and horizons).'
-  next_intervention: User reviews art-problem-model and answers WI-011 and WI-012;
-    apply any corrections; then evaluate Gate 3.
-  action_owner: human
-  selected_at: '2026-09-25T23:05:00Z'
+  next_intervention: Evaluate Gate 3.
+  action_owner: agent
+  selected_at: '2026-09-25T23:20:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -66,9 +64,9 @@ artifacts:
   status: current
   fingerprint:
     algorithm: sha256
-    value: 56f0202237de275a97ff5a2294a2d8c56c093b7ddd58eb03eaba8a00a1702ff9
+    value: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
   repository_commit: null
-  last_verified_at: '2026-09-25T22:49:25.687801Z'
+  last_verified_at: '2026-09-25T22:55:43.155896Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -249,10 +247,10 @@ assumptions:
   blocking: false
   blocking_reason: Explicit and reversible; shapes alternatives, not the problem definition.
 - id: A-006
-  proposition: Confidentiality in government advisory work limits using work material
-    with AI tools, so the day job cannot simply be the main place for AI-assisted
-    learning, though it remains a major source of real-world performance and judgement.
-  status: provisional
+  proposition: The day job is a real learning venue, but the AI tools available there
+    are extremely limited, so it cannot be the main place for AI-assisted learning;
+    it remains a major source of real-world performance and judgement.
+  status: validated
   origin: model-problem
   basis: Nature of independent advice to government; not stated by the user.
   materiality: medium
@@ -267,10 +265,12 @@ assumptions:
   blocking: false
   blocking_reason: Alternatives can cover either answer; does not change the problem
     definition.
+  validated_by: User statement in the 2026-09-25 sitting (WI-011)
+  validated_at: '2026-09-25T23:20:00Z'
 - id: A-007
-  proposition: The 10-year advisory aim and the business aim are compatible; an independent
-    advisory or analysis business is one natural form of both.
-  status: provisional
+  proposition: 'The 10-year advisory aim and the business aim are the same path: the
+    business is policy advice.'
+  status: validated
   origin: model-problem
   basis: User's stated purpose (WI-003) and 10-year target (WI-002).
   materiality: medium
@@ -284,6 +284,8 @@ assumptions:
   - gate:4
   blocking: false
   blocking_reason: Both readings lead to the same capability trajectory.
+  validated_by: User statement in the 2026-09-25 sitting (WI-012)
+  validated_at: '2026-09-25T23:20:00Z'
 work_items:
 - id: WI-001
   type: deficiency
@@ -591,7 +593,7 @@ work_items:
   description: The most consequential activity available is the user's government
     advisory work. Whether and how it can be used for learning, and whether work material
     can be used with AI tools, is unknown (A-006).
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Changes where consequential practice comes from, which alternatives
@@ -608,15 +610,18 @@ work_items:
   review_point: Problem-model review before Gate 3
   priority_rationale: Non-blocking; cheap to ask while the user is present.
   created_at: '2026-09-25T23:05:00Z'
-  updated_at: '2026-09-25T23:05:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T23:20:00Z'
+  resolved_at: '2026-09-25T23:20:00Z'
+  resolution: 'User statement (2026-09-25): the workplace is somewhere the user could
+    learn, but the AI tools available there are extremely limited. Recorded in art-problem-model
+    (M5, section 2, and the two-halves observation in section 3).'
 - id: WI-012
   type: question
   title: Relationship between the business aim and the 10-year advisory aim
   description: The user's purpose is to build their own business one day; the 10-year
     target is to be a respected policy advisor. A-007 reads these as compatible (an
     independent advisory or analysis business).
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Both readings point the problem toward the same capability trajectory;
@@ -633,8 +638,9 @@ work_items:
   review_point: Problem-model review before Gate 3
   priority_rationale: Non-blocking; cheap to ask while the user is present.
   created_at: '2026-09-25T23:05:00Z'
-  updated_at: '2026-09-25T23:05:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T23:20:00Z'
+  resolved_at: '2026-09-25T23:20:00Z'
+  resolution: 'User statement (2026-09-25): the policy advice is the business.'
 - id: WI-013
   type: uncertainty
   title: Privacy preference versus cost constraint
@@ -1066,5 +1072,20 @@ history:
     map for AM-6 (non-material to G2-E1)
   resulting_revision: 19
   transaction_id: tx-2026-09-25-18-model-problem
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-19-problem-model-review
+  timestamp: '2026-09-25T22:55:43.155896Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-011
+  - WI-012
+  - A-006
+  - A-007
+  summary: 'Update problem model with the user''s review: resolve WI-011 and WI-012;
+    validate A-006 and A-007 from user statements'
+  resulting_revision: 20
+  transaction_id: tx-2026-09-25-19-problem-model-review
   authorization_id: null
   authorization_ids: []

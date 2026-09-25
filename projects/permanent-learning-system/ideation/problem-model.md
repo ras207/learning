@@ -1,6 +1,6 @@
 # Problem model: Permanent Learning System
 
-Iteration 1 · produced by `model-problem` · 2026-09-25
+Iteration 1 · produced by `model-problem` · 2026-09-25 · updated 2026-09-25 with the user's answers to WI-011 and WI-012
 
 Inputs: intent model `art-intent-model`, ambition map `art-ambition-map`, current evaluations G1-E1 and G2-E1, decisions D-001 to D-003, and the user's answers in the 2026-09-25 sitting to WI-003 (purpose and why now), WI-005 with WI-010 (constraints and openness) and WI-002 (starting point and target capabilities).
 
@@ -19,8 +19,8 @@ In short: **turning about seven hours a week, over many years, into demonstrable
 | Party | How they are affected | Basis |
 |---|---|---|
 | **The user** (primary, sole learner) | Economist, five years leading a small team that gives independent advice to government, after a year in consulting. Holds a master's in economics. Has done six months of unstructured learning about AI. Has never run a business. Feels their current learning is not interactive, not current and not tailored. | [stated] |
-| **The user's team and government clients** (indirect) | They benefit if the user's analytical and AI capability grows. They are also a likely source of constraints: confidentiality of advice and of data. | [inference] |
-| **Future clients of the user's business** (indirect, future) | Their eventual value depends on capability built now. They are not users of anything in scope. | [inference], consistent with D-003 and deferred WI-009 |
+| **The user's team and government clients** (indirect) | They benefit if the user's analytical and AI capability grows. The workplace is a real venue for learning, but the AI tools available there are extremely limited. | [stated] venue and tools; [inference] benefit |
+| **Future clients of the user's business** (indirect, future) | The business is independent policy advice, so these are future policy clients. Their eventual value depends on capability built now. They are not users of anything in scope. | [stated] business form; [inference] otherwise; consistent with D-003 and deferred WI-009 |
 | **People as sources of challenge and feedback** (AM-5) | Academic economists, senior officials, mentors and peers are both where the user must eventually perform and the most credible judges of their capability. The user's default is privacy, so feedback comes through private channels, not an audience. | [stated] targets and privacy; [inference] role |
 
 ## 3. Starting point and target capability
@@ -33,6 +33,8 @@ In short: **turning about seven hours a week, over many years, into demonstrable
 | ~3 years | Develop and validate agentic systems that produce robust economic analysis. Converse credibly with academic economists and senior officials about policy. Sell valuable insights. | Integration across domains. "Validate" and "robust" demand methodological judgement, which is exactly what B1 protects. Selling is a new capability with no current practice. |
 | 10+ years | A respected advisor on key policy issues, with wide understanding of economics, financial markets and technology, delivering influential insights that improve policy. | Breadth, judgement and reputation. "Respected" and "influential" depend partly on how others perceive the user, not only on ability. |
 
+**Observation [inference]: the two halves of the trajectory draw on different time.** Economics and advisory capability can be practised at work, on real problems, with stakes. The AI-systems half has almost no outlet at work, so it depends mostly on the roughly seven personal hours a week. Integrating the two, meaning AI-enabled economic analysis, has no natural venue at present. It must be created in personal time or through work outside the day job. This sharpens M6 and M10.
+
 **Observation [inference].** The targets form one coherent trajectory, not a set of scattered interests: economics depth, then AI-enabled analysis, then advisory influence and business. This matters for the problem. The hard part is less "learn many subjects" and more **integration**: building capabilities that are valuable because they are combined, and that no external curriculum assembles.
 
 ## 4. Mechanisms: why capability is not developing as wanted
@@ -43,7 +45,7 @@ In short: **turning about seven hours a week, over many years, into demonstrable
 | M2 | **No persistent picture of the learner.** Nothing remembers what the user has mastered, where they go wrong, or how they learn best. Each session starts cold, so tailoring is impossible and effort goes to the wrong places. | [stated] "not tailored"; [inference] cause |
 | M3 | **Fast-moving fields make static material stale.** AI practice changes in months. Economics and policy debates move too. Fixed curricula and older content lag, and choosing *what* is worth learning is itself a moving target (AM-4). | [stated] "not responsive to advances"; [inference] |
 | M4 | **Unstructured self-direction lacks sequencing and calibration.** Six months of unstructured AI learning gives exposure, but no reliable sense of what is known, what comes next, or whether it has stuck. | [stated] unstructured; [inference] effect |
-| M5 | **Learning sits apart from real use.** Capability that is never applied to a consequential problem transfers poorly and is hard to demonstrate (B4, B6). The most consequential activity available, the day job, may be hard to learn through with AI because of confidentiality (A-006). | [general knowledge]; [assumption] A-006 |
+| M5 | **Learning sits apart from real use.** Capability that is never applied to a consequential problem transfers poorly and is hard to demonstrate (B4, B6). The day job is a real venue for consequential practice in economics, advice and judgement. However, the AI tools available there are extremely limited, so it offers little AI practice (A-006). | [general knowledge]; [stated] venue and tools |
 | M6 | **Fragmented time.** About seven hours a week. Weekdays are short slots around a commute, and weekends have longer blocks. Project-based learning needs continuity and longer blocks. Short slots lose context unless something carries it between sessions. | [stated] time; [inference] effect; [assumption] A-005 |
 | M7 | **Decay without maintenance.** Skills not used fade, and the econometrics refresh shows this has already happened once. Over a decade, keeping capabilities matters as much as gaining them (AM-10). | [stated] "refresh"; [general knowledge] |
 | M8 | **AI assistance can hollow out capability.** The tools that make interactive, current learning cheap can also do the thinking. Output then improves while the user's own reasoning does not. This is the core risk behind B1, and it is sharpest for "validate" and "robust" in the three-year target. | [stated] B1; [inference] mechanism |
@@ -57,7 +59,7 @@ In short: **turning about seven hours a week, over many years, into demonstrable
 | Courses, MOOCs, books, videos | Structured content, often high quality | Not interactive (M1), not tailored (M2), often lag the frontier (M3), no connection across domains, and produce completion rather than demonstrable capability (B2). **[stated/inference]** |
 | Unstructured learning with AI chat (the user's last six months) | Interactive, current, on demand | Nothing persists between sessions (M2), no sequencing or assessment (M4), and it easily does the thinking for the user (M8). **[stated/inference]** |
 | Formal study (for example a further degree) | Depth, credentials, academic network | Expensive, slow, a fixed curriculum, poorly matched to seven hours a week, and weighted toward credentials (B2). It may still serve credibility for the 10-year goal (A-003 challenge). **[inference]** |
-| Learning on the job | Real stakes and real feedback | Limited to what the role demands, and weak on AI engineering and business. Confidentiality may limit AI use (A-006). **[inference]** |
+| Learning on the job | Real stakes and real feedback. The user confirms work is somewhere they could learn. | Limited to what the role demands. AI tools at work are extremely limited, so it is weak on AI engineering, and weak on running a business. **[stated/inference]** |
 | Mentors, coaches, tutors | Tailored challenge and credible judgement | Costly or intermittent, and hard to find at this intersection. They remain valuable as sources of evidence (AM-5). **[inference]** |
 | Spaced repetition and note systems | Retention and a personal knowledge base | Maintain knowledge rather than build applied capability. They do no diagnosis or sequencing. Heavy setups themselves invite meta-work (M10). **[general knowledge/inference]** |
 | Commercial AI tutors | Interactive and somewhat adaptive | Generic curricula, usually held by the provider (conflicts with privacy and AM-3), rarely lifelong or cross-domain. **[inference, not researched]** |
@@ -84,10 +86,10 @@ No current approach combines **interaction and feedback**, **a persistent pictur
 |---|---|---|
 | A-003 | Useful capability is judged by real-world application and demonstrable output, not credentials. **Challenge:** the 10-year aim ("respected", "influential") also depends on reputation, which may partly require recognised signals. | Provisional; strengthened by the user's ability-framed targets |
 | A-005 | Weekday commute slots suit short, low-setup activity (practice, retrieval, reading, reflection) more than build work, which falls mainly at weekends. | Provisional, [inference] from C1 |
-| A-006 | Confidentiality in government advisory work limits using work material with AI tools, so the day job cannot simply be the main place for AI-assisted learning, although it remains a major source of real-world performance and judgement. | Provisional, [assumption]; user to confirm (WI-011) |
-| A-007 | The 10-year advisory aim and the business aim are compatible: an independent advisory or analysis business is one natural form of both. | Provisional, [inference]; user to confirm (WI-012) |
+| A-006 | The day job is a real learning venue, but the AI tools available there are extremely limited, so it cannot be the main place for AI-assisted learning. It remains a major source of real-world performance and judgement. | Validated by the user's statement, 2026-09-25 (WI-011) |
+| A-007 | The 10-year advisory aim and the business aim are the same path: the business is policy advice. | Validated by the user's statement, 2026-09-25 (WI-012) |
 
-Open diagnostic questions carried forward: WI-011 (can the day job be a learning venue, and within what confidentiality limits), WI-012 (the relationship between the business and the advisory role), WI-013 (privacy versus cost), and WI-006 (meta-work and permanence, assessed in M9 and M10, due for the pre-Gate-5 challenge).
+Resolved by the user: WI-011 (the day job is a learning venue, but its AI tools are extremely limited) and WI-012 (the policy advice is the business). Carried forward: WI-013 (privacy versus cost) and WI-006 (meta-work and permanence, assessed in M9 and M10, due for the pre-Gate-5 challenge).
 
 ## 9. What successful change would look like (problem-level, not a design)
 
