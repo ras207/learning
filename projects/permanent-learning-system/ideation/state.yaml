@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 18
+  revision: 19
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T22:21:56.235427Z'
+  updated_at: '2026-09-25T22:49:25.687801Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -25,25 +25,22 @@ session:
     to G2-E1). Open non-blocking items: WI-002, WI-003, WI-005, WI-006; deferred WI-009,
     WI-010. On resume: re-orient, then start problem modelling toward Gate 3. Problem
     modelling has not started.'
-  pending_interaction_id: WI-003
+  pending_interaction_id: WI-011
 routing:
   saved_focus_id: gate:3
-  selection_rationale: 'Revalidated on resume at revision 17: artifact fingerprints
-    match state, all three approvals re-verify, the ideation system is unchanged since
-    the last sitting, and no material change has occurred. G1-E1 and G2-E1 remain
-    current and passing; no blocking deficiency, invalid evaluation or open escalation
-    exists. Gate 3 is the next planned boundary.'
+  selection_rationale: Problem model produced; WI-002, WI-003, WI-005 and WI-010 resolved
+    by user statements. Two cheap non-blocking diagnostic questions (WI-011, WI-012)
+    and user review of the model precede the Gate 3 evaluation.
   dependency_priority: Gate 3 problem modelling is a prerequisite for Gates 4 and
     5. Gate 3 review points are now reached for WI-002, WI-003, WI-005, WI-006 and
     deferred WI-010 (reactivates with WI-005).
   expected_decision_value: 'High: WI-003 (what the capability is for, and why now)
     most shapes the problem definition, followed by WI-005 (constraints, privacy)
     with WI-010, then WI-002 (target capabilities and horizons).'
-  next_intervention: Ask the user WI-003, then WI-005 with WI-010, then WI-002, one
-    at a time; then invoke model-problem, assessing WI-006 within the model; then
-    evaluate Gate 3.
+  next_intervention: User reviews art-problem-model and answers WI-011 and WI-012;
+    apply any corrections; then evaluate Gate 3.
   action_owner: human
-  selected_at: '2026-09-25T22:40:00Z'
+  selected_at: '2026-09-25T23:05:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -60,9 +57,18 @@ artifacts:
   status: current
   fingerprint:
     algorithm: sha256
-    value: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
+    value: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
   repository_commit: null
-  last_verified_at: '2026-09-25T08:17:28.686424Z'
+  last_verified_at: '2026-09-25T22:49:25.687801Z'
+- artifact_id: art-problem-model
+  role: problem_model
+  path: projects/permanent-learning-system/ideation/problem-model.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 56f0202237de275a97ff5a2294a2d8c56c093b7ddd58eb03eaba8a00a1702ff9
+  repository_commit: null
+  last_verified_at: '2026-09-25T22:49:25.687801Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -185,15 +191,20 @@ assumptions:
     output, not credentials.
   status: provisional
   origin: clarify-intent
-  basis: Boundaries B2 and B6 in the seed.
+  basis: Boundaries B2 and B6 in the seed; strengthened by the user's ability-framed
+    targets (2026-09-25).
   materiality: medium
   risk: low
   confidence: high
-  validation_method: Confirm when success conditions are modelled (Gate 3).
+  validation_method: 'Challenge recorded in art-problem-model section 8: the 10-year
+    aim (''respected'', ''influential'') also depends on reputation, which may partly
+    require recognised signals. Confirm or revise at Gate 4 when success conditions
+    shape alternatives.'
   dependencies:
   - art-intent-model
   affected_records:
   - gate:3
+  - gate:4
   blocking: false
   blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
     1 or change the direction of Gate 2 exploration.
@@ -221,6 +232,58 @@ assumptions:
   blocking: false
   blocking_reason: Explicit, reversible, and within the agent's authority to carry
     compatible ambitions (GATES.md Gate 2).
+- id: A-005
+  proposition: Weekday commute slots suit short, low-setup activity (practice, retrieval,
+    reading, reflection) more than build work, which falls mainly at weekends.
+  status: provisional
+  origin: model-problem
+  basis: User's stated time pattern (C1).
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User confirms or corrects at problem-model review or later.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit and reversible; shapes alternatives, not the problem definition.
+- id: A-006
+  proposition: Confidentiality in government advisory work limits using work material
+    with AI tools, so the day job cannot simply be the main place for AI-assisted
+    learning, though it remains a major source of real-world performance and judgement.
+  status: provisional
+  origin: model-problem
+  basis: Nature of independent advice to government; not stated by the user.
+  materiality: medium
+  risk: moderate
+  confidence: medium
+  validation_method: User answers WI-011.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - WI-011
+  - gate:4
+  blocking: false
+  blocking_reason: Alternatives can cover either answer; does not change the problem
+    definition.
+- id: A-007
+  proposition: The 10-year advisory aim and the business aim are compatible; an independent
+    advisory or analysis business is one natural form of both.
+  status: provisional
+  origin: model-problem
+  basis: User's stated purpose (WI-003) and 10-year target (WI-002).
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User answers WI-012.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - WI-012
+  - gate:4
+  blocking: false
+  blocking_reason: Both readings lead to the same capability trajectory.
 work_items:
 - id: WI-001
   type: deficiency
@@ -252,7 +315,7 @@ work_items:
   title: Concrete target capabilities and horizons
   description: Which capabilities or ambitions matter most over roughly 1, 3 and 10+
     years?
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Does not change the core intent, desired outcome, people or direction
@@ -270,14 +333,23 @@ work_items:
   review_point: Gate 3 boundary
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): economist leading a small team giving
+    independent advice to government (5 years, after 1 year in consulting), master''s
+    in economics, 6 months of unstructured AI learning, no business experience. Targets:
+    ~1y run automated agentic workflows, refresh economic theory and econometrics,
+    begin to understand building good software; ~3y develop and validate agentic systems
+    for robust economic analysis, converse with academic economists and senior officials,
+    sell valuable insights; 10+y respected advisor on key policy issues with wide
+    understanding of economics, financial markets and technology. Recorded in art-problem-model
+    section 3.'
 - id: WI-003
   type: question
   title: Ultimate purpose of capability and why now
   description: Is the capability mainly for income or career, ventures, intellectual
     mastery, impact or a mix, and what prompted the idea now?
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Does not change the core intent, desired outcome, people or direction
@@ -293,8 +365,15 @@ work_items:
   review_point: Gate 3 boundary
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): capability serves a mix of career, being
+    able to build things independently, and understanding for its own sake, aimed
+    at one day building their own business that combines a growing command of technology
+    with their existing economics experience. Why now: current learning is not interactive,
+    not responsive to advances in their fields, and not tailored to their strengths
+    and weaknesses. Read as consistent with D-003 (business is what capability is
+    for, not a system goal); recorded as a user statement, not a signed decision.'
 - id: WI-004
   type: uncertainty
   title: Authority split between AI direction and user judgement
@@ -327,7 +406,7 @@ work_items:
   title: 'Practical constraints: time, budget, privacy and data ownership'
   description: Weekly time, budget, and how a lifelong personal model and its data
     should be held have not been expressed.
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Does not change the core intent, desired outcome, people or direction
@@ -345,13 +424,21 @@ work_items:
   review_point: Gate 3 boundary
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): about an hour a day on average with large
+    variation (short weekday slots around the commute, more at weekends); budget of
+    about a couple of subscriptions a month; would ideally not have the detailed model
+    held by a cloud AI provider but cannot spend much on hardware (tension carried
+    as WI-013). Recorded as constraints C1 to C3 in art-problem-model.'
 - id: WI-006
   type: uncertainty
   title: 'Challenge: meta-work displacing learning; sustaining permanence'
-  description: Building and maintaining the system may crowd out learning. Permanence
-    depends on lasting motivation and habit.
+  description: Building and maintaining the system may crowd out learning; permanence
+    depends on lasting motivation and habit. Assessed in art-problem-model as M9 (sustaining
+    effort) and M10 (meta-work competes for about seven hours a week; D-002 converts
+    building AI workflows and software into target learning, but upkeep and tinkering
+    remain pure cost and could starve economics).
   status: open
   materiality: high
   blocking: false
@@ -366,11 +453,12 @@ work_items:
   - gate:3
   - gate:5
   owner: agent
-  next_action: Ask the user at the next sitting; reassess at the review point.
-  review_point: Gate 3 boundary and pre-Gate-5 focused challenge
+  next_action: Carry into alternatives as a comparison criterion; test in the pre-Gate-5
+    focused challenge.
+  review_point: Gate 4 comparison and pre-Gate-5 focused challenge
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
   resolved_at: null
 - id: WI-007
   type: question
@@ -472,7 +560,7 @@ work_items:
   title: Learning in public (AM-6)
   description: How openly artefacts, reasoning and progress should be shared to build
     reputation, network and outside feedback.
-  status: deferred
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: A question of degree within the current intent; depends on the
@@ -493,9 +581,122 @@ work_items:
   review_point: Gate 3 boundary
   priority_rationale: Deferred; not routed ahead of open work.
   created_at: '2026-09-25T08:05:00Z'
-  updated_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): learning is private by default; sharing
+    chosen case by case (constraint C4). Ambition map updated to show AM-6 resolved.'
+- id: WI-011
+  type: question
+  title: Can the day job be a learning venue, and within what confidentiality limits?
+  description: The most consequential activity available is the user's government
+    advisory work. Whether and how it can be used for learning, and whether work material
+    can be used with AI tools, is unknown (A-006).
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Changes where consequential practice comes from, which alternatives
+    must cover either way; does not change the problem definition.
+  origin: model-problem
+  affected:
+  - gate:3
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: human
+  next_action: Ask the user during problem-model review.
+  review_point: Problem-model review before Gate 3
+  priority_rationale: Non-blocking; cheap to ask while the user is present.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
   resolved_at: null
-evidence: []
+- id: WI-012
+  type: question
+  title: Relationship between the business aim and the 10-year advisory aim
+  description: The user's purpose is to build their own business one day; the 10-year
+    target is to be a respected policy advisor. A-007 reads these as compatible (an
+    independent advisory or analysis business).
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Both readings point the problem toward the same capability trajectory;
+    affects emphasis between business skills and policy credibility at Gate 4.
+  origin: model-problem
+  affected:
+  - gate:3
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: human
+  next_action: Ask the user during problem-model review.
+  review_point: Problem-model review before Gate 3
+  priority_rationale: Non-blocking; cheap to ask while the user is present.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: null
+- id: WI-013
+  type: uncertainty
+  title: Privacy preference versus cost constraint
+  description: The user would prefer the detailed learner model not be held by a cloud
+    AI provider (C3) but has a budget of about two subscriptions and no large hardware
+    spend (C2). Capable affordable AI is mostly cloud-hosted today. Holding the record
+    under the user's control while AI sees it per session is one axis alternatives
+    must address.
+  status: open
+  materiality: high
+  blocking: false
+  blocking_reason: A trade-off between solution directions, not an ambiguity in the
+    problem; belongs to alternatives and convergence, where the user may need to accept
+    a trade-off.
+  origin: model-problem
+  affected:
+  - gate:4
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:4
+  - gate:5
+  owner: human
+  next_action: Make it an explicit comparison dimension at Gate 4; escalate at convergence
+    if a consequential trade-off must be accepted.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking at Gate 3.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: null
+evidence:
+- id: E-001
+  claim: 'The user''s starting point: economist leading a small team giving independent
+    advice to government for five years after a year in consulting; master''s in economics;
+    six months of unstructured AI learning; no business experience.'
+  source_reference: User testimony in the ideation sitting of 2026-09-25 (answer to
+    WI-002)
+  observed_at: '2026-09-25'
+  evidence_type: first-hand testimony
+  provenance: Stated by the user; not independently verified.
+  relevance: Establishes affected party and starting capability in art-problem-model
+    sections 2 and 3.
+  limitations: Self-reported; capability levels are not assessed.
+  relied_on_by:
+  - art-problem-model
+  - gate:3
+- id: E-002
+  claim: The user's current learning is not interactive, not responsive to advances
+    in their fields, and not tailored to their strengths and weaknesses as a learner;
+    six months of AI learning have been unstructured.
+  source_reference: User testimony in the ideation sitting of 2026-09-25 (answers
+    to WI-003 and WI-002)
+  observed_at: '2026-09-25'
+  evidence_type: first-hand testimony
+  provenance: Stated by the user about their own experience.
+  relevance: Direct symptoms behind mechanisms M1 to M4 and the inadequacy summary
+    in art-problem-model.
+  limitations: One learner's experience; the causal mechanisms beyond the symptoms
+    are agent inference and general knowledge, not researched here.
+  relied_on_by:
+  - art-problem-model
+  - gate:3
 gate_evaluations:
 - id: G1-E1
   gate_id: 1
@@ -621,6 +822,15 @@ gate_evaluations:
       G2-E1 already lists D-003 as a dependency and classified AM-2 as rejected in
       its rationale, so no pass criterion, uncertainty or outcome is affected. G2-E1
       remains current. A-004 concerns other ambitions and is unaffected.
+  - input: art-ambition-map
+    previous_sha256: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
+    current_sha256: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
+    assessed_at: '2026-09-25T23:05:00Z'
+    material: false
+    assessment: The only change records AM-6 as resolved by the user (private by default,
+      WI-010) after its reactivation trigger WI-005 was answered. G2-E1 listed WI-010
+      as a non-blocking uncertainty; resolving it within the confirmed scope does
+      not affect any pass criterion or the outcome. G2-E1 remains current.
 finalization:
   outcome: null
   checks: []
@@ -829,5 +1039,32 @@ history:
   summary: Resume session; revalidate routing focus to problem modelling (Gate 3)
   resulting_revision: 18
   transaction_id: tx-2026-09-25-17-resume-route-problem
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-18-model-problem
+  timestamp: '2026-09-25T22:49:25.687801Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-003
+  - WI-005
+  - WI-010
+  - WI-002
+  - WI-006
+  - WI-011
+  - WI-012
+  - WI-013
+  - A-003
+  - A-005
+  - A-006
+  - A-007
+  - E-001
+  - E-002
+  - G2-E1
+  summary: Record problem model; resolve WI-002, WI-003, WI-005 and WI-010 from user
+    statements; add A-005 to A-007, WI-011 to WI-013, E-001 and E-002; update ambition
+    map for AM-6 (non-material to G2-E1)
+  resulting_revision: 19
+  transaction_id: tx-2026-09-25-18-model-problem
   authorization_id: null
   authorization_ids: []

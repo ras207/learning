@@ -1,10 +1,10 @@
 # Ambition map: Permanent Learning System
 
-Iteration 1 · produced by `expand-ambition` · 2026-09-25 · updated 2026-09-25 to record the user's decision on AM-2 (D-003)
+Iteration 1 · produced by `expand-ambition` · 2026-09-25 · updated 2026-09-25 to record the user's decision on AM-2 (D-003) and the user's answer on AM-6 (WI-010)
 
 Inputs: intent model `art-intent-model` (sha256 `d417dfdf…0fdd5`), current Gate 1 evaluation G1-E1, decisions D-001 and D-002, assumptions A-001 to A-003. On 2026-09-25 the user confirmed the intent model with no corrections.
 
-Labels: **[carry]** means carried forward because it is compatible with the current intent, so it needs no change of scope. **[defer]** means not pursued now, with a trigger to revisit. **[reject]** means not pursued. **[decision]** means a consequential expansion that only the user can adopt. "Carry" means the ambition goes into problem modelling (Gate 3) and alternatives (Gate 4) as something to account for. It does not commit to any mechanism.
+Labels: **[carry]** means carried forward because it is compatible with the current intent, so it needs no change of scope. **[defer]** means not pursued now, with a trigger to revisit. **[reject]** means not pursued. **[decision]** means a consequential expansion that only the user can adopt. **[resolved]** means a deferred question the user has since answered. "Carry" means the ambition goes into problem modelling (Gate 3) and alternatives (Gate 4) as something to account for. It does not commit to any mechanism.
 
 ## Starting framing being challenged
 
@@ -30,7 +30,7 @@ The first framing is a *personal learning system*: one learner, whose aim is *ca
 
 | ID | Possibility | Value | Risk or cost | Compatible? | Recommendation |
 |---|---|---|---|---|---|
-| AM-6 | Learning in public: artefacts, reasoning and progress are shared openly to build reputation, network and a stream of outside feedback. | Medium to high. It compounds the value of the artefacts and strengthens AM-5. | Exposure and privacy concerns, and possibly performative work. It depends on the user's privacy stance, which is not yet expressed (WI-005). | It is a question of how much to share, not a change of intent. | **[defer]** Review together with WI-005 at the Gate 3 boundary. |
+| AM-6 | Learning in public: artefacts, reasoning and progress are shared openly to build reputation, network and a stream of outside feedback. | Medium to high. It compounds the value of the artefacts and strengthens AM-5. | Exposure and privacy concerns, and possibly performative work. It depends on the user's privacy stance, which is not yet expressed (WI-005). | It is a question of how much to share, not a change of intent. | **[resolved]** The user answered with WI-005 at the Gate 3 boundary: learning is **private by default**, with sharing chosen case by case (WI-010). |
 | AM-7 | A capability-verification or credential service that third parties (employers, clients) rely on. | Commercial potential. | It is a different product, with different beneficiaries and trust obligations. It also runs against B2 (capability over credentials). | No. | **[reject]** Demonstrable artefacts (B6) already serve the user's need to show capability. |
 
 ### 4. Leverage and durability
@@ -50,7 +50,8 @@ The first framing is a *personal learning system*: one learner, whose aim is *ca
 | Disposition | Items |
 |---|---|
 | Carry forward | AM-3 durable, portable, user-owned record · AM-4 AI-frontier-aware capability selection · AM-5 people as sources of challenge and evidence · AM-10 capability maintenance over decades |
-| Deferred | AM-1 other learners or productisation (WI-009) · AM-6 learning in public (WI-010, with WI-005) |
+| Deferred | AM-1 other learners or productisation (WI-009) |
+| Resolved by the user | AM-6 learning in public: private by default, sharing case by case (WI-010) |
 | Rejected | AM-2 real-world results as a goal (by the user, D-003) · AM-7 capability verification or credential service |
 
 The carried ambitions are the agent's judgement that they fit the intent as confirmed (A-004). The user can reclassify any of them.
