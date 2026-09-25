@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 10
+  revision: 11
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-24T07:54:29.508054Z'
+  updated_at: '2026-09-25T07:52:56.220704Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,31 +13,29 @@ workflow:
   vision_status: not_started
   spine_context: expand_ambition
 session:
-  status: paused
+  status: active
   checkpointed_at: '2026-09-24T00:40:00Z'
-  resume_summary: 'Gate 1 is PASS_WITH_UNCERTAINTY (G1-E1) and still current. Human
-    decisions (passkey-approved): D-001, the AI decides what to work on next based
-    on the user''s desired capabilities; D-002, the user learns while building the
-    system, but building is not structured as one of the system''s own learning projects.
-    WI-004 and WI-007 are resolved. Open non-blocking items: WI-002, WI-003, WI-005
-    (user input, reviewed at Gate 3) and WI-006 (meta-work risk, sharpened by D-002).
-    On resume: re-orient, then invoke expand-ambition toward Gate 2. Ambition expansion
-    has not started.'
+  resume_summary: 'Resumed 2026-09-25. Orientation: state validates, art-intent-model
+    and seed fingerprints match, committed approvals for D-001 and D-002 re-verify,
+    no material change since revision 10. Scope of this sitting: ambition expansion
+    and Gate 2 evaluation only.'
   pending_interaction_id: null
 routing:
   saved_focus_id: gate:2
-  selection_rationale: G1-E1 is current and passing with no blocking deficiency or
-    open escalation. All open items are non-blocking with review points at Gate 2
-    or later. The next forward step is ambition expansion toward Gate 2.
-  dependency_priority: Gate 2 is the next planned boundary; WI-007 (building the system
-    as a learning project) is reviewed there.
-  expected_decision_value: 'High: tests the single-learner framing before the problem
-    model narrows scope.'
-  next_intervention: At the next sitting, first give the user the intent model and
-    G1-E1 to correct. Any correction is a material change that requires re-evaluating
-    Gate 1. If the user raises no corrections, invoke expand-ambition.
+  selection_rationale: Saved focus revalidated. G1-E1 is current and passing; no blocking
+    deficiency, invalid evaluation or open escalation exists. WI-007, the only item
+    with a Gate 2 review point, is resolved by D-002. Open items WI-002, WI-003, WI-005
+    and WI-006 review at Gate 3 or later and are non-blocking, so they are not routed
+    ahead of Gate 2.
+  dependency_priority: Gate 2 is the next planned boundary; Gate 3 problem modelling
+    depends on the scope and beneficiary framing that ambition expansion tests (A-002).
+  expected_decision_value: 'High: tests the single-learner, personal-use framing and
+    the scale of the desired outcome before the problem model narrows scope.'
+  next_intervention: Give the user a short check of the intent model (a correction
+    would be a material change requiring Gate 1 re-evaluation), then invoke expand-ambition
+    and put any consequential expansion to the user.
   action_owner: agent
-  selected_at: '2026-09-23T22:55:00Z'
+  selected_at: '2026-09-25T07:52:35Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -507,5 +505,15 @@ history:
   summary: Checkpoint session after recording D-002
   resulting_revision: 10
   transaction_id: tx-2026-09-24-09-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-10-resume-route-ambition
+  timestamp: '2026-09-25T07:52:56.220704Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session; revalidate routing focus to ambition expansion (Gate 2)
+  resulting_revision: 11
+  transaction_id: tx-2026-09-25-10-resume-route-ambition
   authorization_id: null
   authorization_ids: []
