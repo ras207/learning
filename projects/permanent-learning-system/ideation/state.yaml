@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 22
+  revision: 23
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T22:56:35.465324Z'
+  updated_at: '2026-09-25T22:56:35.849564Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,18 +13,20 @@ workflow:
   vision_status: not_started
   spine_context: explore_alternatives
 session:
-  status: active
-  checkpointed_at: '2026-09-25T08:55:00Z'
-  resume_summary: 'G1-E1 (PASS_WITH_UNCERTAINTY) and G2-E1 (PASS_WITH_UNCERTAINTY)
-    are current. This sitting: the user confirmed the intent model with no corrections;
-    expand-ambition produced art-ambition-map, carrying AM-3, AM-4, AM-5 and AM-10
-    (A-004), deferring AM-1 (WI-009) and AM-6 (WI-010), and rejecting AM-7. AM-2 was
-    escalated and rejected by the user in D-003 (passkey-approved): capability remains
-    the goal; real projects are means and evidence (agent had recommended joint goals).
-    The ambition map was updated at the user''s request to show AM-2 rejected (non-material
-    to G2-E1). Open non-blocking items: WI-002, WI-003, WI-005, WI-006; deferred WI-009,
-    WI-010. On resume: re-orient, then start problem modelling toward Gate 3. Problem
-    modelling has not started.'
+  status: paused
+  checkpointed_at: '2026-09-25T23:40:00Z'
+  resume_summary: 'G1-E1, G2-E1 and G3-E1 (all PASS_WITH_UNCERTAINTY) are current.
+    This sitting: the user answered WI-003 (capability for career, building and understanding,
+    toward a future policy-advice business), WI-005 (about an hour a day, fragmented
+    around the commute with more at weekends; about two subscriptions; prefer the
+    detailed model not held by a cloud provider; private by default), WI-010 (private
+    by default) and WI-002 (economist leading a government advisory team; 1/3/10-year
+    targets). model-problem produced art-problem-model; the user''s review resolved
+    WI-011 (work is a learning venue but AI tools there are extremely limited) and
+    WI-012 (the policy advice is the business). Open non-blocking items: WI-006, WI-013
+    (privacy versus cost), WI-014 (existing tools not researched); deferred WI-009.
+    On resume: re-orient, then start generate-alternatives toward Gate 4. Alternatives
+    have not started.'
   pending_interaction_id: null
 routing:
   saved_focus_id: gate:4
@@ -1229,5 +1231,15 @@ history:
   summary: Route next focus to alternatives (Gate 4); not started this sitting
   resulting_revision: 22
   transaction_id: tx-2026-09-25-21-route-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-22-checkpoint
+  timestamp: '2026-09-25T22:56:35.849564Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 3 evaluation
+  resulting_revision: 23
+  transaction_id: tx-2026-09-25-22-checkpoint
   authorization_id: null
   authorization_ids: []
