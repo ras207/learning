@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 11
+  revision: 12
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T07:52:56.220704Z'
+  updated_at: '2026-09-25T07:56:07.425242Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -21,21 +21,17 @@ session:
     and Gate 2 evaluation only.'
   pending_interaction_id: null
 routing:
-  saved_focus_id: gate:2
-  selection_rationale: Saved focus revalidated. G1-E1 is current and passing; no blocking
-    deficiency, invalid evaluation or open escalation exists. WI-007, the only item
-    with a Gate 2 review point, is resolved by D-002. Open items WI-002, WI-003, WI-005
-    and WI-006 review at Gate 3 or later and are non-blocking, so they are not routed
-    ahead of Gate 2.
+  saved_focus_id: WI-008
+  selection_rationale: WI-008 is the only blocking item and it blocks Gate 2; human
+    judgement is required.
   dependency_priority: Gate 2 is the next planned boundary; Gate 3 problem modelling
     depends on the scope and beneficiary framing that ambition expansion tests (A-002).
   expected_decision_value: 'High: tests the single-learner, personal-use framing and
     the scale of the desired outcome before the problem model narrows scope.'
-  next_intervention: Give the user a short check of the intent model (a correction
-    would be a material change requiring Gate 1 re-evaluation), then invoke expand-ambition
-    and put any consequential expansion to the user.
-  action_owner: agent
-  selected_at: '2026-09-25T07:52:35Z'
+  next_intervention: Put WI-008 options to the user; on a decision, request passkey
+    approval and record it; then evaluate Gate 2.
+  action_owner: human
+  selected_at: '2026-09-25T08:05:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -46,6 +42,15 @@ artifacts:
     value: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
   repository_commit: null
   last_verified_at: '2026-09-23T22:14:55.304655Z'
+- artifact_id: art-ambition-map
+  role: ambition_map
+  path: projects/permanent-learning-system/ideation/ambition-map.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+  repository_commit: null
+  last_verified_at: '2026-09-25T07:56:07.425242Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -151,6 +156,30 @@ assumptions:
   blocking: false
   blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
     1 or change the direction of Gate 2 exploration.
+- id: A-004
+  proposition: Carried-forward ambitions AM-3 (durable, portable, user-owned record),
+    AM-4 (AI-frontier-aware capability selection), AM-5 (people as sources of challenge
+    and evidence) and AM-10 (capability maintenance) are compatible with the confirmed
+    intent and do not change scope, beneficiary or desired outcome.
+  status: provisional
+  origin: expand-ambition
+  basis: 'Each follows from a stated boundary: AM-3 and AM-10 from B3, AM-4 from ''genuinely
+    useful'' (B2), AM-5 from B4 ''real-world performance''.'
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User may reclassify any item; disconfirmed if the user treats
+    any as a scope change.
+  dependencies:
+  - art-ambition-map
+  - art-intent-model
+  affected_records:
+  - gate:2
+  - gate:3
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit, reversible, and within the agent's authority to carry
+    compatible ambitions (GATES.md Gate 2).
 work_items:
 - id: WI-001
   type: deficiency
@@ -329,6 +358,100 @@ work_items:
   resolved_at: '2026-09-24T00:30:00Z'
   resolution: 'Resolved by D-002: learning while building, outside the system''s own
     project structure.'
+- id: WI-008
+  type: escalation
+  title: Should real-world results become a goal alongside capability? (AM-2)
+  description: Adopting AM-2 would change the desired outcome from capability (with
+    projects as means and evidence) to capability plus real-world results such as
+    income, ventures, roles, published work and impact, with the system helping choose
+    and pursue consequential opportunities.
+  status: open
+  materiality: high
+  blocking: true
+  blocking_reason: Consequential change to desired outcome and risk profile (GATES.md
+    Gate 2 ESCALATE condition); the agent must not choose it.
+  origin: expand-ambition
+  affected:
+  - gate:2
+  - gate:3
+  - gate:4
+  - WI-003
+  prerequisites: []
+  downstream:
+  - gate:2
+  - gate:3
+  - gate:4
+  owner: human
+  next_action: Present options and recommendation; obtain the user's decision via
+    the approval protocol.
+  options:
+  - 'A: Capability stays the goal; real projects remain means and evidence (current
+    reading).'
+  - 'B: Capability and real-world results are joint goals; the system helps choose
+    consequential opportunities that do both. Committing to outside obligations (money,
+    roles, ventures, other people) stays the user''s decision.'
+  - 'C: Full life and career strategy system in which capability is one lever among
+    many.'
+  recommendation: B
+  priority_rationale: Only open item that blocks Gate 2; highest decision value because
+    it shapes the Gate 3 problem model.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T08:05:00Z'
+  resolved_at: null
+- id: WI-009
+  type: uncertainty
+  title: Other learners or productisation (AM-1)
+  description: Whether the system should later serve people other than the user, as
+    a circle, cohort, product or open method.
+  status: deferred
+  materiality: medium
+  blocking: false
+  blocking_reason: Deferral keeps the current single-learner scope (A-002); nothing
+    downstream depends on it now.
+  origin: expand-ambition
+  affected:
+  - A-002
+  prerequisites: []
+  downstream: []
+  owner: human
+  next_action: Reassess when a trigger is reached.
+  deferral_reason: Would change beneficiary and risk profile and amplify the meta-work
+    risk (WI-006) before the system has proven value for the user.
+  reactivation_trigger: The system has demonstrably worked for the user over a sustained
+    period, or the user decides to pursue the system as a venture (see WI-008).
+  review_point: Gate 5 focused challenge
+  priority_rationale: Deferred; not routed ahead of open work.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T08:05:00Z'
+  resolved_at: null
+- id: WI-010
+  type: uncertainty
+  title: Learning in public (AM-6)
+  description: How openly artefacts, reasoning and progress should be shared to build
+    reputation, network and outside feedback.
+  status: deferred
+  materiality: medium
+  blocking: false
+  blocking_reason: A question of degree within the current intent; depends on the
+    privacy stance in WI-005.
+  origin: expand-ambition
+  affected:
+  - gate:3
+  - WI-005
+  prerequisites:
+  - WI-005
+  downstream:
+  - gate:3
+  owner: human
+  next_action: Ask together with WI-005.
+  deferral_reason: Depends on the user's privacy and ownership stance, not yet expressed
+    (WI-005).
+  reactivation_trigger: WI-005 is answered.
+  review_point: Gate 3 boundary
+  priority_rationale: Deferred; not routed ahead of open work.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T08:05:00Z'
+  resolved_at: null
 evidence: []
 gate_evaluations:
 - id: G1-E1
@@ -515,5 +638,20 @@ history:
   summary: Resume session; revalidate routing focus to ambition expansion (Gate 2)
   resulting_revision: 11
   transaction_id: tx-2026-09-25-10-resume-route-ambition
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-11-expand-ambition
+  timestamp: '2026-09-25T07:56:07.425242Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-004
+  - WI-008
+  - WI-009
+  - WI-010
+  summary: 'Record ambition map: carry AM-3/4/5/10 (A-004), defer AM-1 (WI-009) and
+    AM-6 (WI-010), reject AM-7, escalate AM-2 (WI-008)'
+  resulting_revision: 12
+  transaction_id: tx-2026-09-25-11-expand-ambition
   authorization_id: null
   authorization_ids: []
