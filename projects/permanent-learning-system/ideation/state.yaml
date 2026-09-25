@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 12
+  revision: 13
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T07:56:07.425242Z'
+  updated_at: '2026-09-25T08:04:09.529508Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -100,6 +100,35 @@ decisions:
   decided_at: '2026-09-24'
   supersedes: null
   authorization_id: auth-D-002-build-as-learning
+- id: D-003
+  question: Should real-world results (income, ventures, roles, published work, impact)
+    become a goal alongside capability? (AM-2)
+  decision: No. Capability remains the goal. Real projects and consequential activity
+    remain the means of learning and the evidence of capability, not goals in their
+    own right.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'B: Capability and real-world results as joint goals; the system helps choose
+    consequential opportunities, with outside commitments kept as the user''s decision
+    (agent recommendation).'
+  - 'C: Full life and career strategy system in which capability is one lever among
+    many.'
+  dependencies:
+  - WI-008
+  - art-ambition-map
+  - art-intent-model
+  affected:
+  - WI-008
+  - WI-003
+  - WI-009
+  - gate:2
+  - gate:3
+  - gate:4
+  decided_by: project owner
+  decided_at: '2026-09-25'
+  supersedes: null
+  authorization_id: auth-D-003-capability-goal
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
@@ -365,7 +394,7 @@ work_items:
     projects as means and evidence) to capability plus real-world results such as
     income, ventures, roles, published work and impact, with the system helping choose
     and pursue consequential opportunities.
-  status: open
+  status: resolved
   materiality: high
   blocking: true
   blocking_reason: Consequential change to desired outcome and risk profile (GATES.md
@@ -396,8 +425,10 @@ work_items:
   priority_rationale: Only open item that blocks Gate 2; highest decision value because
     it shapes the Gate 3 problem model.
   created_at: '2026-09-25T08:05:00Z'
-  updated_at: '2026-09-25T08:05:00Z'
-  resolved_at: null
+  updated_at: '2026-09-25T08:20:00Z'
+  resolved_at: '2026-09-25T08:20:00Z'
+  resolution: 'Resolved by D-003: capability remains the goal; AM-2 rejected by the
+    user.'
 - id: WI-009
   type: uncertainty
   title: Other learners or productisation (AM-1)
@@ -655,3 +686,17 @@ history:
   transaction_id: tx-2026-09-25-11-expand-ambition
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-25-12-decision-capability-goal
+  timestamp: '2026-09-25T08:04:09.529508Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-003
+  - WI-008
+  summary: 'Record human decision D-003: capability remains the goal (AM-2 option
+    A); WI-008 resolved.'
+  resulting_revision: 13
+  transaction_id: tx-2026-09-25-12-decision-capability-goal
+  authorization_id: auth-D-003-capability-goal
+  authorization_ids:
+  - auth-D-003-capability-goal

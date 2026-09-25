@@ -1,0 +1,55 @@
+{
+  "action": {
+    "dependencies": [
+      "WI-008"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "WI-008",
+        "WI-003",
+        "WI-009",
+        "gate:2",
+        "gate:3",
+        "gate:4"
+      ],
+      "alternatives_considered": [
+        "B: Capability and real-world results as joint goals; the system helps choose consequential opportunities, with outside commitments kept as the user's decision (agent recommendation).",
+        "C: Full life and career strategy system in which capability is one lever among many."
+      ],
+      "authority": "human",
+      "decided_at": "2026-09-25",
+      "decided_by": "project owner",
+      "decision": "No. Capability remains the goal. Real projects and consequential activity remain the means of learning and the evidence of capability, not goals in their own right.",
+      "dependencies": [
+        "WI-008",
+        "art-ambition-map",
+        "art-intent-model"
+      ],
+      "id": "D-003",
+      "question": "Should real-world results (income, ventures, roles, published work, impact) become a goal alongside capability? (AM-2)",
+      "status": "settled",
+      "supersedes": null
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-003",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-25-12-decision-capability-goal"
+  },
+  "action_hash": "226812f0b96775efd3543f6f356637dfdbd6af17d2e4ca286a50fe0689b2f877",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-003-capability-goal",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiSW1nUzhMbG5kZV9UVkQ5dk5XWTMzOXZXcnhmUzVNb29hbEQtQm9teS1IYyIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEYCIQCOP80uOKoYuo3izBWuy-2IcKeXsc780h2f40xUAZXSGAIhAPGXQVinu4Cyoyoh_kS6Hoi8n8QwJnfhKz8xE1QbkvGM"
+  },
+  "schema_version": 1
+}
