@@ -3,15 +3,15 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 14
+  revision: 15
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-25T08:04:38.181299Z'
+  updated_at: '2026-09-25T08:04:59.670756Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: expand_ambition
+  spine_context: understand_problem
 session:
   status: active
   checkpointed_at: '2026-09-24T00:40:00Z'
@@ -21,17 +21,21 @@ session:
     and Gate 2 evaluation only.'
   pending_interaction_id: null
 routing:
-  saved_focus_id: WI-008
-  selection_rationale: WI-008 is the only blocking item and it blocks Gate 2; human
-    judgement is required.
-  dependency_priority: Gate 2 is the next planned boundary; Gate 3 problem modelling
-    depends on the scope and beneficiary framing that ambition expansion tests (A-002).
-  expected_decision_value: 'High: tests the single-learner, personal-use framing and
-    the scale of the desired outcome before the problem model narrows scope.'
-  next_intervention: Put WI-008 options to the user; on a decision, request passkey
-    approval and record it; then evaluate Gate 2.
-  action_owner: human
-  selected_at: '2026-09-25T08:05:00Z'
+  saved_focus_id: gate:3
+  selection_rationale: G1-E1 and G2-E1 are current and passing; no blocking deficiency,
+    invalid evaluation or open escalation exists. The next planned boundary is Gate
+    3.
+  dependency_priority: 'Gate 3 problem modelling is a prerequisite for alternatives
+    (Gate 4) and convergence (Gate 5). Items with a Gate 3 review point: WI-002, WI-003,
+    WI-005, WI-006, and deferred WI-010 (reactivates when WI-005 is answered).'
+  expected_decision_value: 'High: the problem model constrains every later direction.
+    WI-003 (what capability is for) and WI-005 (time, budget, privacy) most shape
+    it.'
+  next_intervention: 'At the next sitting: re-orient, then ask the user WI-003 and
+    WI-005 (with WI-010), then invoke model-problem. Not started this sitting by the
+    user''s instruction.'
+  action_owner: agent
+  selected_at: '2026-09-25T08:40:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -765,5 +769,15 @@ history:
   summary: 'Gate 2 Ambition Explored: PASS_WITH_UNCERTAINTY (G2-E1)'
   resulting_revision: 14
   transaction_id: tx-2026-09-25-13-gate2
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-14-route-problem
+  timestamp: '2026-09-25T08:04:59.670756Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to problem modelling (Gate 3); not started this sitting
+  resulting_revision: 15
+  transaction_id: tx-2026-09-25-14-route-problem
   authorization_id: null
   authorization_ids: []
