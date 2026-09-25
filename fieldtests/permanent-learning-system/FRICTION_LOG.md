@@ -65,4 +65,47 @@ _No entries yet._
 
 ## Gate 2 — Ambition Explored
 
-_No entries yet._
+### G2-1 IN-THE-WAY Procedure far outweighs substance at Gate 2
+- Gate / stage: Gate 2, expand ambition
+- Where: revisions 11–17 (`cdee694`…`003deb5`)
+- Rule: AGENT.md "Human approval protocol"; ideation_state.md "Persistence and consistency rules"
+- What happened: The human gave two substantive answers ("no corrections", "A"). The sitting took 7 transactions, 1 passkey signing, 1 change-impact assessment and a long explanation of persistence. Most of the conversation was about process, not the idea.
+- Impact: medium. It tires the human and hides the value of the sitting. The human asked "what was the point?"
+- Proposed action: eval. Consider merging route and checkpoint transactions, and keeping bookkeeping out of chat unless asked.
+
+### G2-2 STATE Human cannot see where decisions live
+- Gate / stage: Gate 2, end of sitting
+- Where: human asked "how/where the decisions we've made have been recorded"
+- What happened: Decisions exist only in `state.yaml` (YAML, run branch only) and signed JSON evidence. There is no human-readable summary of settled decisions, and nothing appears on `main`.
+- Impact: medium. The human cannot easily check that their decisions will stick.
+- Proposed action: later. Add a generated, readable decisions summary to the project folder, or link it at every checkpoint.
+
+### G2-3 TOOLING S4 confirmed: session branch conflicts with run branch
+- Gate / stage: resume
+- Where: session start
+- What happened: The session was told by its environment to develop on `claude/permanent-learning-ideation-dtgdp1`. The checkpoint existed only on `ideation/permanent-learning-system`, and `main` holds the revision-1 state. The agent followed the human's explicit authorization in the kick-off prompt and used the run branch.
+- Impact: high if missed. On the default branch the agent would have seen an unstarted project.
+- Proposed action: fix now. Name the run branch and a checkout instruction in the kick-off prompt, and launch with it as the outcome branch.
+
+### G2-4 STATE Artifact left stale after a decision; fixing it forced bookkeeping
+- Gate / stage: Gate 2
+- Where: `ambition-map.md` still said "awaiting decision" after D-003, until the human asked; fixed in `003deb5`
+- Rule: ideation_state.md "Artifact references and fingerprints"
+- What happened: The agent recorded D-003 in state but did not update the artifact. The later edit changed its fingerprint, requiring a change-impact assessment on G2-E1. With no schema slot for a "non-material revalidation", the agent added an ad hoc `input_revalidations` field.
+- Impact: low to medium. The artifact and state briefly disagreed, and the new field is non-standard.
+- Proposed action: eval (update artifacts in the same transaction as the decision) and later (define a revalidation annotation in the state schema).
+
+### G2-5 GOOD Agent held the sitting's scope boundary
+- Gate / stage: after Gate 2
+- Where: human said "Okay let's proceed"
+- What happened: The agent asked for explicit confirmation before crossing the kick-off's "do not start modelling the problem" boundary, instead of treating an ambiguous reply as permission. The human chose to stop.
+- Impact: low. It cost one exchange and prevented unplanned scope.
+- Proposed action: keep.
+
+### G2-6 GOOD Consequential expansion escalated with a recommendation, and the override respected
+- Gate / stage: Gate 2
+- Where: WI-008, D-003
+- What happened: The agent carried forward compatible ambitions by itself and escalated only AM-2. It gave options, a recommendation and the strongest objection. The human chose against the recommendation, and the agent recorded that without arguing it again.
+- Impact: medium. The human decided the one thing that needed them, with the trade-off visible.
+- Proposed action: keep.
+
