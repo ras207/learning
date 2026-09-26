@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 24
+  revision: 25
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-26T12:36:18.251752Z'
+  updated_at: '2026-09-26T12:38:01.473222Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -76,6 +76,15 @@ artifacts:
     value: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
   repository_commit: null
   last_verified_at: '2026-09-25T22:55:43.155896Z'
+- artifact_id: art-alternatives
+  role: alternative_set
+  path: projects/permanent-learning-system/ideation/alternatives.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+  repository_commit: null
+  last_verified_at: '2026-09-26T12:38:01.473222Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -295,6 +304,49 @@ assumptions:
   blocking_reason: Both readings lead to the same capability trajectory.
   validated_by: User statement in the 2026-09-25 sitting (WI-012)
   validated_at: '2026-09-25T23:20:00Z'
+- id: A-008
+  proposition: A general-purpose cloud AI, given a well-kept user-held record at the
+    start of each session, can tutor, assess and sequence well enough across months
+    to act as the curriculum manager in Directions A, B and E.
+  status: provisional
+  origin: generate-alternatives
+  basis: Agent inference from the user's six months of AI use and general knowledge
+    of current assistants; not researched.
+  materiality: high
+  risk: moderate
+  confidence: medium
+  validation_method: Cheap early trial of the record-plus-session mechanism; disconfirmed
+    if assessment and sequencing are unreliable after a few weeks.
+  dependencies:
+  - art-alternatives
+  - art-problem-model
+  affected_records:
+  - gate:4
+  - gate:5
+  blocking: false
+  blocking_reason: Affects the relative strength of Directions A, B and E; it can
+    be tested after convergence and does not prevent comparison.
+- id: A-009
+  proposition: A small number of credible people (mentors, academic or official sparring
+    partners) are available and willing to give private challenge at a cost within
+    C2.
+  status: provisional
+  origin: generate-alternatives
+  basis: Assumption; the user's network has not been discussed.
+  materiality: medium
+  risk: moderate
+  confidence: low
+  validation_method: Ask the user about available people if Direction D or AM-5 becomes
+    central at convergence.
+  dependencies:
+  - art-alternatives
+  - art-ambition-map
+  affected_records:
+  - gate:4
+  - gate:5
+  blocking: false
+  blocking_reason: Affects Direction D most; every other direction treats people as
+    optional sources of evidence.
 work_items:
 - id: WI-001
   type: deficiency
@@ -653,11 +705,11 @@ work_items:
 - id: WI-013
   type: uncertainty
   title: Privacy preference versus cost constraint
-  description: The user would prefer the detailed learner model not be held by a cloud
-    AI provider (C3) but has a budget of about two subscriptions and no large hardware
-    spend (C2). Capable affordable AI is mostly cloud-hosted today. Holding the record
-    under the user's control while AI sees it per session is one axis alternatives
-    must address.
+  description: 'The user would prefer the detailed learner model not be held by a
+    cloud AI provider (C3) but has a budget of about two subscriptions and no large
+    hardware spend (C2). art-alternatives section 4 sets out three positions: P1 provider-held,
+    P2 user-held record with cloud AI per session, P3 fully local. Only P2 fits both
+    C2 and the core of C3, but session content still passes through a cloud provider.'
   status: open
   materiality: high
   blocking: false
@@ -673,19 +725,21 @@ work_items:
   - gate:4
   - gate:5
   owner: human
-  next_action: Make it an explicit comparison dimension at Gate 4; escalate at convergence
-    if a consequential trade-off must be accepted.
+  next_action: Compare in direction-comparison; put the P2 trade-off to the user for
+    acceptance at convergence (Gate 5).
   review_point: Gate 4 boundary
   priority_rationale: Non-blocking at Gate 3.
   created_at: '2026-09-25T23:05:00Z'
-  updated_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-26T06:20:00Z'
   resolved_at: null
 - id: WI-014
   type: uncertainty
   title: Existing tools and services not researched
   description: The current-approaches analysis of commercial AI tutors and learning
-    tools is agent inference, not research. If adopting or combining existing tools
-    is a credible alternative at Gate 4, a scoped scan may become blocking evidence.
+    tools is agent inference, not research. An adopt-existing-tools direction (Direction
+    C in art-alternatives) is credible, so its relative strength depends on what existing
+    products actually offer, especially a user-owned, exportable, cross-domain learner
+    model.
   status: open
   materiality: medium
   blocking: false
@@ -698,12 +752,12 @@ work_items:
   downstream:
   - gate:4
   owner: agent
-  next_action: At Gate 4, decide whether an adopt-existing-tools alternative is credible;
-    research only if the comparison is blocked without it.
+  next_action: Carry into the Gate 4 comparison as a disconfirming condition for Direction
+    C; research becomes blocking only if the user leans toward Direction C at convergence.
   review_point: Gate 4 boundary
   priority_rationale: Non-blocking at Gate 3.
   created_at: '2026-09-25T23:30:00Z'
-  updated_at: '2026-09-25T23:30:00Z'
+  updated_at: '2026-09-26T06:20:00Z'
   resolved_at: null
 evidence:
 - id: E-001
@@ -1255,5 +1309,20 @@ history:
   summary: Resume session; revalidate routing focus to alternatives (Gate 4)
   resulting_revision: 24
   transaction_id: tx-2026-09-26-24-resume-route-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-25-generate-alternatives
+  timestamp: '2026-09-26T12:38:01.473222Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-008
+  - A-009
+  - WI-013
+  - WI-014
+  summary: Record alternative set (Directions A to E, three cross-cutting axes); add
+    A-008 and A-009; update WI-013 and WI-014
+  resulting_revision: 25
+  transaction_id: tx-2026-09-26-25-generate-alternatives
   authorization_id: null
   authorization_ids: []
