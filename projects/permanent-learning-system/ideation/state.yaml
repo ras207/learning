@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 26
+  revision: 27
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-26T12:39:09.679867Z'
+  updated_at: '2026-09-26T12:39:33.194930Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -1073,6 +1073,97 @@ gate_evaluations:
   invalidation_reason: null
   invalidated_by_event: null
   superseded_by: null
+- id: G4-E1
+  gate_id: 4
+  gate_name: Alternatives Explored
+  gate_class: advisory
+  evaluated_at: '2026-09-26T06:55:00Z'
+  state_revision: 26
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'The solution space contains materially different approaches, not variants: Directions
+    A to E differ in primary learning mechanism (designed tutoring, integrating projects,
+    assembled products, human judgement, split venues), in venue of consequential
+    practice and in source of capability evidence (art-alternatives sections 2 and
+    3).'
+  - 'Important plausible regions are explored without a fixed count: three further
+    dimensions (learner-model location, build extent, cadence) are set out as cross-cutting
+    axes rather than multiplied into cosmetic variants, and five further regions (formal
+    study, learning in public, productisation, results as goal, AI does the work)
+    are recorded with reasons for not developing them (art-alternatives sections 4
+    and 5).'
+  - 'Credible alternatives are compared on consequential trade-offs: 13 criteria drawn
+    from M1 to M10, C1 to C7, AM-3/4/5/10, A-003 and reversibility, with four dominant
+    trade-offs and disconfirming conditions made explicit, and evidence-backed versus
+    assumption-driven judgements separated (art-direction-comparison sections 1 to
+    3).'
+  - 'The basis for later convergence is visible: a recommendation with reasons why
+    each credible alternative is weaker as the main direction, its own honest cost,
+    and the smallest remaining human decisions (art-direction-comparison sections
+    4 and 5; WI-015).'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-014
+  - A-008
+  - A-009
+  - A-005
+  - A-003
+  - WI-006
+  - WI-013
+  human_judgement_required: Not for this gate. Convergence (Gate 5) requires the user
+    to choose a direction and accept a privacy position; this is recorded as escalation
+    WI-015 and is not decided here.
+  human_decision_ids: []
+  rationale: 'Gate 4 is advisory and concerns breadth and comparison; both are met.
+    The directions are genuinely distinct in mechanism and evidence source, and every
+    plausible region is either developed, folded into a cross-cutting axis, or set
+    aside with a reason tied to a user decision or constraint. All ratings are agent
+    inference from the problem model and general knowledge; no research was done.
+    Non-blocking uncertainty affects relative strength, not the breadth of the set:
+    WI-014 (existing products untested, could strengthen Direction C; research becomes
+    blocking only if the user leans toward C), A-008 (record-plus-session tutoring
+    untested), A-009 (availability of credible people), A-005 (commute and weekend
+    fit), A-003 (reputation), WI-006 (meta-work, main risk of the recommended hybrid)
+    and WI-013 (privacy position, coupled to WI-015). The remaining choice between
+    viable directions is a Gate 5 matter reserved to the user, so it is escalated
+    as WI-015 rather than resolved or used to fail this gate. The user has not yet
+    reviewed the alternatives; that is not treated as approval, and none is required
+    at this gate. G1-E1 to G3-E1 are unaffected: no intent, ambition or problem conclusion
+    changed.'
+  source_inputs:
+    alternatives: projects/permanent-learning-system/ideation/alternatives.md
+    alternatives_sha256: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+    direction_comparison: projects/permanent-learning-system/ideation/direction-comparison.md
+    direction_comparison_sha256: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+  dependencies:
+  - art-alternatives
+  - art-direction-comparison
+  - art-problem-model
+  - art-ambition-map
+  - art-intent-model
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - D-001
+  - D-002
+  - D-003
+  - A-003
+  - A-004
+  - A-005
+  - A-006
+  - A-007
+  - A-008
+  - A-009
+  - WI-006
+  - WI-013
+  - WI-014
+  - WI-015
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
   outcome: null
   checks: []
@@ -1394,5 +1485,16 @@ history:
     build); open escalation WI-015 for the direction and privacy choice at convergence
   resulting_revision: 26
   transaction_id: tx-2026-09-26-26-compare-directions
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-27-gate4
+  timestamp: '2026-09-26T12:39:33.194930Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G4-E1
+  summary: 'Gate 4 Alternatives Explored: PASS_WITH_UNCERTAINTY (G4-E1)'
+  resulting_revision: 27
+  transaction_id: tx-2026-09-26-27-gate4
   authorization_id: null
   authorization_ids: []
