@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 25
+  revision: 26
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-26T12:38:01.473222Z'
+  updated_at: '2026-09-26T12:39:09.679867Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -85,6 +85,15 @@ artifacts:
     value: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
   repository_commit: null
   last_verified_at: '2026-09-26T12:38:01.473222Z'
+- artifact_id: art-direction-comparison
+  role: direction_comparison
+  path: projects/permanent-learning-system/ideation/direction-comparison.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+  repository_commit: null
+  last_verified_at: '2026-09-26T12:39:09.679867Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -516,12 +525,13 @@ work_items:
   - gate:3
   - gate:5
   owner: agent
-  next_action: Carry into alternatives as a comparison criterion; test in the pre-Gate-5
-    focused challenge.
+  next_action: Used as comparison criterion 9 in art-direction-comparison; the hybrid
+    recommendation's main risk is combined meta-work. Test in the pre-Gate-5 focused
+    challenge.
   review_point: Gate 4 comparison and pre-Gate-5 focused challenge
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-26T06:40:00Z'
   resolved_at: null
 - id: WI-007
   type: question
@@ -725,12 +735,11 @@ work_items:
   - gate:4
   - gate:5
   owner: human
-  next_action: Compare in direction-comparison; put the P2 trade-off to the user for
-    acceptance at convergence (Gate 5).
+  next_action: Decided together with WI-015 at convergence; the agent recommends P2.
   review_point: Gate 4 boundary
   priority_rationale: Non-blocking at Gate 3.
   created_at: '2026-09-25T23:05:00Z'
-  updated_at: '2026-09-26T06:20:00Z'
+  updated_at: '2026-09-26T06:40:00Z'
   resolved_at: null
 - id: WI-014
   type: uncertainty
@@ -758,6 +767,53 @@ work_items:
   priority_rationale: Non-blocking at Gate 3.
   created_at: '2026-09-25T23:30:00Z'
   updated_at: '2026-09-26T06:20:00Z'
+  resolved_at: null
+- id: WI-015
+  type: escalation
+  title: Converge on a broad direction and accept a privacy position
+  description: 'Materially different viable directions remain (art-alternatives A
+    to E). Choosing among them, and accepting where the learner model lives (WI-013),
+    are consequential preferences reserved to the user (GATES.md Gate 4 and Gate 5
+    human authority). The agent recommends a hybrid: a project spine (B) run on a
+    user-owned record with AI-designed practice and maintenance (A), with periodic
+    human calibration (D), at position P2 (user-held record, cloud AI per session)
+    and a light build.'
+  status: open
+  materiality: high
+  blocking: true
+  blocking_reason: Convergence and the Gate 5 focused challenge cannot proceed without
+    the user's choice of direction and acceptance of the privacy trade-off; the agent
+    must not choose. Does not block the Gate 4 evaluation, which concerns breadth
+    and comparison.
+  origin: compare-and-converge
+  affected:
+  - gate:5
+  - WI-013
+  - WI-006
+  prerequisites: []
+  downstream:
+  - gate:5
+  - gate:6
+  owner: human
+  next_action: Put the decision to the user with recommendation, alternatives and
+    trade-offs; record the answer through the approval protocol.
+  options:
+  - 'Recommended: B project spine on A owned record, D as periodic calibration, P2,
+    light build.'
+  - B-led only (project-first, no structured practice or maintenance layer).
+  - A-led only (AI tutor on owned record, projects later).
+  - C as a low-effort start (assembled existing products), which may make WI-014 research
+    blocking.
+  - D-led (human-anchored, AI as preparer).
+  - 'Privacy alternatives to P2: P3 fully local (higher hardware cost, weaker tutoring)
+    or P1 provider-held (loss of ownership).'
+  recommendation: Hybrid B+A+D at P2 with a light build (art-direction-comparison
+    section 4).
+  review_point: Gate 5 convergence
+  priority_rationale: 'Highest decision value: every later gate depends on the chosen
+    direction.'
+  created_at: '2026-09-26T06:40:00Z'
+  updated_at: '2026-09-26T06:40:00Z'
   resolved_at: null
 evidence:
 - id: E-001
@@ -1324,5 +1380,19 @@ history:
     A-008 and A-009; update WI-013 and WI-014
   resulting_revision: 25
   transaction_id: tx-2026-09-26-25-generate-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-26-compare-directions
+  timestamp: '2026-09-26T12:39:09.679867Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-015
+  - WI-013
+  - WI-006
+  summary: Record direction comparison and recommendation (hybrid B+A+D at P2, light
+    build); open escalation WI-015 for the direction and privacy choice at convergence
+  resulting_revision: 26
+  transaction_id: tx-2026-09-26-26-compare-directions
   authorization_id: null
   authorization_ids: []
