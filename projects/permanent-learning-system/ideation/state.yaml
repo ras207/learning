@@ -3,15 +3,15 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 27
+  revision: 28
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-26T12:39:33.194930Z'
+  updated_at: '2026-09-26T12:39:48.096198Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: explore_alternatives
+  spine_context: converge_and_challenge
 session:
   status: active
   checkpointed_at: '2026-09-25T23:40:00Z'
@@ -29,25 +29,19 @@ session:
     have not started.'
   pending_interaction_id: null
 routing:
-  saved_focus_id: gate:4
-  selection_rationale: 'Re-orientation on 2026-09-26: the ideation system files on
-    this branch are identical to main and unchanged since the last sitting; no artifact,
-    decision or evidence changed since G3-E1; no user input has arrived since the
-    checkpoint. G1-E1, G2-E1 and G3-E1 remain current and passing; no blocking deficiency,
-    invalid evaluation or open escalation exists. The next planned boundary is Gate
-    4.'
-  dependency_priority: 'Alternatives (Gate 4) are a prerequisite for convergence and
-    the focused challenge (Gate 5). Items with a Gate 4 review point: WI-006 (comparison
-    criterion), WI-013 (privacy versus cost axis), WI-014 (existing tools, research
-    only if blocking), A-003, A-004, A-005.'
-  expected_decision_value: 'High: materially different directions must be compared
-    on the constraints and mechanisms in art-problem-model, especially the two-halves
-    observation, M8 (AI hollowing out capability), M10 (meta-work) and WI-013.'
-  next_intervention: Invoke generate-alternatives against art-problem-model, then
-    compare-and-converge for the Gate 4 comparison, then evaluate Gate 4. Stop after
-    the Gate 4 record per the sitting scope.
-  action_owner: agent
-  selected_at: '2026-09-26T06:00:00Z'
+  saved_focus_id: WI-015
+  selection_rationale: 'G1-E1 to G4-E1 are current and passing. The only blocking
+    item is escalation WI-015: the user must choose a broad direction and accept a
+    privacy position before convergence and the focused challenge can proceed.'
+  dependency_priority: WI-015 precedes the pre-Gate-5 focused challenge and Gate 5;
+    WI-013 is coupled to it. WI-014 becomes blocking only if the user leans toward
+    Direction C.
+  expected_decision_value: 'Highest: every later gate depends on the chosen direction.'
+  next_intervention: 'At the next sitting: re-orient; if the user has answered WI-015,
+    prepare the decision transaction and request passkey approval; then run the focused
+    challenge toward Gate 5. Not started this sitting by the sitting scope.'
+  action_owner: human
+  selected_at: '2026-09-26T07:00:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -1496,5 +1490,16 @@ history:
   summary: 'Gate 4 Alternatives Explored: PASS_WITH_UNCERTAINTY (G4-E1)'
   resulting_revision: 27
   transaction_id: tx-2026-09-26-27-gate4
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-28-route-convergence
+  timestamp: '2026-09-26T12:39:48.096198Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to convergence decision WI-015 (awaiting the user); Gate
+    5 work not started this sitting
+  resulting_revision: 28
+  transaction_id: tx-2026-09-26-28-route-convergence
   authorization_id: null
   authorization_ids: []
