@@ -3,15 +3,15 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 39
+  revision: 40
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:07:09.119756Z'
+  updated_at: '2026-09-27T09:07:09.746433Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
   vision_status: not_started
-  spine_context: converge_and_challenge
+  spine_context: synthesize_and_validate
 session:
   status: active
   checkpointed_at: '2026-09-27T08:25:00Z'
@@ -25,21 +25,17 @@ session:
     day-job self-reports as evidence), then evaluate Gate 5.'
   pending_interaction_id: null
 routing:
-  saved_focus_id: gate:5
-  selection_rationale: G1-E1 to G4-E1 are current; WI-015 is resolved by D-004 and
-    D-005; no blocking item or open escalation remains. The next planned step is the
-    focused challenge of the chosen direction before Gate 5.
-  dependency_priority: 'The focused challenge precedes Gate 5. Items to test: A-010
-    (model separation), A-003 (reputation without human evidence), A-008, A-005, WI-006
-    (meta-work), WI-014 (non-blocking now that C was not chosen), day-job self-reports
-    as evidence.'
-  expected_decision_value: 'High: tests whether the chosen direction holds before
-    synthesis.'
-  next_intervention: 'Invoke focused-challenge on D-005 and D-004, then evaluate Gate
-    5. Not started: the scheduled sitting was scoped to one gate; awaiting the user''s
-    go-ahead or the next sitting.'
+  saved_focus_id: gate:6
+  selection_rationale: G1-E1 to G5-E1 are current and passing; no blocking item or
+    open escalation remains. The next step is synthesis and validation of vision.md,
+    then Gate 6.
+  dependency_priority: Synthesis precedes Gate 6. WI-016 (agent-proposed evidence
+    principles) must be visible in the draft for the user to correct.
+  expected_decision_value: 'High: produces the candidate the user approves.'
+  next_intervention: Invoke synthesize-vision, then validate-vision; if valid, commit
+    the candidate and request Gate 6 approval with the vision fingerprint.
   action_owner: agent
-  selected_at: '2026-09-27T08:20:00Z'
+  selected_at: '2026-09-27T09:15:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -1844,5 +1840,15 @@ history:
   summary: 'Gate 5 Ready for Synthesis: PASS_WITH_UNCERTAINTY (G5-E1)'
   resulting_revision: 39
   transaction_id: tx-2026-09-27-39-gate5
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-40-route-synthesis
+  timestamp: '2026-09-27T09:07:09.746433Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to vision synthesis; not started this sitting
+  resulting_revision: 40
+  transaction_id: tx-2026-09-27-40-route-synthesis
   authorization_id: null
   authorization_ids: []
