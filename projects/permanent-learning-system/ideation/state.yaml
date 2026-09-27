@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 46
+  revision: 47
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:12:01.091179Z'
+  updated_at: '2026-09-27T11:44:16.233333Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -229,6 +229,29 @@ decisions:
   decided_at: '2026-09-27'
   supersedes: null
   authorization_id: auth-D-005-direction
+- id: D-006
+  question: Do you approve candidate vision.md version 0.1 (commit 72a551f) as the
+    handoff to product design?
+  decision: 'Approved: candidate vision 0.1 of the Permanent Learning System, including
+    the agent-proposed principles and boundaries it attributes (WI-016) and its non-blocking
+    uncertainties.'
+  authority: human
+  status: settled
+  alternatives_considered:
+  - Request changes to the vision before approval.
+  - Defer or close the idea.
+  dependencies:
+  - art-vision
+  - G5-E1
+  affected:
+  - gate:6
+  - WI-016
+  - art-vision
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+  authorization_id: auth-D-006-vision-approval
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
@@ -912,7 +935,7 @@ work_items:
     unaided reasoning; prefer evidence the world can check (running code, reproduced
     results, scored forecasts); the user''s own notes on day-job performance count
     as self-reported evidence; projects use public material only.'
-  status: open
+  status: resolved
   materiality: medium
   blocking: false
   blocking_reason: Each is compatible with D-005 and B1 and reversible; the user may
@@ -929,8 +952,9 @@ work_items:
   review_point: Gate 6 approval
   priority_rationale: Non-blocking; visible for correction.
   created_at: '2026-09-27T09:00:00Z'
-  updated_at: '2026-09-27T09:00:00Z'
-  resolved_at: null
+  updated_at: '2026-09-27T10:00:00Z'
+  resolved_at: '2026-09-27T10:00:00Z'
+  resolution: Accepted by the user's approval of the vision that attributes them (D-006).
 evidence:
 - id: E-001
   claim: 'The user''s starting point: economist leading a small team giving independent
@@ -1370,6 +1394,51 @@ gate_evaluations:
   - WI-009
   - WI-014
   - WI-016
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+- id: G6-E1
+  gate_id: 6
+  gate_name: Vision Approved
+  gate_class: hard
+  evaluated_at: '2026-09-27T10:00:00Z'
+  state_revision: 46
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - The candidate vision satisfies VISION_CONTRACT.md (validate-vision, tx-2026-09-27-45).
+  - No blocking unresolved question remains in the vision (section 10).
+  - G1-E1 to G5-E1 are current with no unresolved blocking deficiency.
+  - The user explicitly approved the candidate text by passkey signature (D-006),
+    bound to its vision_fingerprint.
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-009
+  human_judgement_required: Explicit approval of the candidate vision.
+  human_decision_ids:
+  - D-006
+  rationale: Artifact and process-assurance checks pass, and the user approved the
+    exact candidate text with its non-blocking uncertainties visible in sections 8
+    and 10, which the vision contract permits.
+  source_inputs:
+    vision: projects/permanent-learning-system/ideation/vision.md
+    vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+    candidate_commit: 72a551f239fe1174e29f06f614abd016b3bba360
+  dependencies:
+  - art-vision
+  - D-006
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - G4-E1
+  - G5-E1
   validity: current
   invalidation_reason: null
   invalidated_by_event: null
@@ -1922,3 +1991,18 @@ history:
   transaction_id: tx-2026-09-27-47-checkpoint-await-gate6
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-27-46-gate6-approval
+  timestamp: '2026-09-27T11:44:16.233333Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-006
+  - G6-E1
+  - WI-016
+  summary: 'Record human decision D-006 approving candidate vision 0.1; Gate 6 Vision
+    Approved: PASS_WITH_UNCERTAINTY (G6-E1); resolve WI-016'
+  resulting_revision: 47
+  transaction_id: tx-2026-09-27-46-gate6-approval
+  authorization_id: auth-D-006-vision-approval
+  authorization_ids:
+  - auth-D-006-vision-approval

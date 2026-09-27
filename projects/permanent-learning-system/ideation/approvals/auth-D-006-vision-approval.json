@@ -1,0 +1,54 @@
+{
+  "action": {
+    "dependencies": [
+      "art-vision",
+      "G5-E1"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "gate:6",
+        "WI-016",
+        "art-vision"
+      ],
+      "alternatives_considered": [
+        "Request changes to the vision before approval.",
+        "Defer or close the idea."
+      ],
+      "authority": "human",
+      "authorization_id": "auth-D-006-vision-approval",
+      "decided_at": "2026-09-27",
+      "decided_by": "project owner",
+      "decision": "Approved: candidate vision 0.1 of the Permanent Learning System, including the agent-proposed principles and boundaries it attributes (WI-016) and its non-blocking uncertainties.",
+      "dependencies": [
+        "art-vision",
+        "G5-E1"
+      ],
+      "id": "D-006",
+      "question": "Do you approve candidate vision.md version 0.1 (commit 72a551f) as the handoff to product design?",
+      "status": "settled",
+      "supersedes": null,
+      "vision_fingerprint": "343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e"
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-006",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-27-46-gate6-approval"
+  },
+  "action_hash": "fc8f71f75a427864fb2e853f1ba4faec8c517ce17f1dcc78f1aef1bd4e5e4c29",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-006-vision-approval",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiX0k5eDkxcENlR1Q3TG9VX0c2VDY3SXhSZk9GX0hjeDQ4YTd4dlU1ZVRDayIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEUCIE-f2NJGjKit-HWvQlRkpYYcN7OZNojXQr8K4F01cMLsAiEArYaawumXEXqk444Cejbs8Crn62Ns5S80cz2GwuirqHs"
+  },
+  "schema_version": 1
+}
