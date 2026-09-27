@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 45
+  revision: 46
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:11:28.375686Z'
+  updated_at: '2026-09-27T09:12:01.091179Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,28 +13,27 @@ workflow:
   vision_status: candidate
   spine_context: synthesize_and_validate
 session:
-  status: active
-  checkpointed_at: '2026-09-27T09:20:00Z'
-  resume_summary: 'G1-E1 to G5-E1 current (all PASS_WITH_UNCERTAINTY). Decisions D-001
-    to D-005 settled. art-focused-challenge recorded six non-blocking findings; the
-    agent proposed evidence principles within D-005 (WI-016: unaided reasoning, world-checkable
-    evidence, day-job self-reports, public material only), which the user may reject.
-    On resume: re-orient, then synthesize vision.md as draft, validate it against
-    VISION_CONTRACT.md, commit the candidate and request Gate 6 approval with the
-    vision fingerprint. Silence is not approval.'
-  pending_interaction_id: null
+  status: paused
+  checkpointed_at: '2026-09-27T10:05:00Z'
+  resume_summary: Candidate vision 0.1 committed at 72a551f (vision_fingerprint 343aa725…ef71e).
+    Gate 6 approval requested for transaction tx-2026-09-27-46-gate6-approval (D-006,
+    G6-E1, resolve WI-016); if that transaction file is lost with the container, rebuild
+    it and request a fresh approval. G1-E1 to G5-E1 current. Silence is not approval.
+  pending_interaction_id: gate:6
 routing:
   saved_focus_id: gate:6
-  selection_rationale: G1-E1 to G5-E1 are current and passing; no blocking item or
-    open escalation remains. The next step is synthesis and validation of vision.md,
-    then Gate 6.
+  selection_rationale: Candidate vision 0.1 is committed at 72a551f and validated;
+    G1-E1 to G5-E1 current. Gate 6 needs the user's passkey approval.
   dependency_priority: Synthesis precedes Gate 6. WI-016 (agent-proposed evidence
     principles) must be visible in the draft for the user to correct.
   expected_decision_value: 'High: produces the candidate the user approves.'
-  next_intervention: Invoke synthesize-vision, then validate-vision; if valid, commit
-    the candidate and request Gate 6 approval with the vision fingerprint.
-  action_owner: agent
-  selected_at: '2026-09-27T09:15:00Z'
+  next_intervention: 'On the approval code: attach-approval and apply tx-2026-09-27-46-gate6-approval
+    (auth-D-006-vision-approval, action hash fc8f71f75a427864fb2e853f1ba4faec8c517ce17f1dcc78f1aef1bd4e5e4c29,
+    vision_fingerprint 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e),
+    then finalize the approved handoff. If the user requests changes, revise the vision
+    and request a new approval.'
+  action_owner: human
+  selected_at: '2026-09-27T10:05:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -1910,5 +1909,16 @@ history:
     conditions pass; status draft to candidate'
   resulting_revision: 45
   transaction_id: tx-2026-09-27-45-validate-vision-candidate
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-47-checkpoint-await-gate6
+  timestamp: '2026-09-27T09:12:01.091179Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session awaiting Gate 6 passkey approval of candidate vision
+    0.1
+  resulting_revision: 46
+  transaction_id: tx-2026-09-27-47-checkpoint-await-gate6
   authorization_id: null
   authorization_ids: []
