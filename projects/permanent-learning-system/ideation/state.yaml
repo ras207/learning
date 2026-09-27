@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 35
+  revision: 36
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:55:33.483396Z'
+  updated_at: '2026-09-27T08:55:33.989009Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -14,16 +14,16 @@ workflow:
   spine_context: converge_and_challenge
 session:
   status: paused
-  checkpointed_at: '2026-09-27T07:30:00Z'
-  resume_summary: 'D-004 (privacy position P2) recorded with passkey approval auth-D-004-privacy-p2;
-    WI-013 resolved. G1-E1 to G4-E1 current. Still open on WI-015: the user described
-    an AI-maintained capability graph with evidence, choosing per session what to
-    build, maintain or test; the agent asked whether build steps are mainly real projects
-    (B) and whether people''s judgement counts as evidence (D), recommending yes to
-    both. On the user''s answer: record the direction decision through request-approval
-    and attach-approval, then start the focused challenge toward Gate 5. Silence is
-    not approval.'
-  pending_interaction_id: WI-015
+  checkpointed_at: '2026-09-27T08:25:00Z'
+  resume_summary: 'G1-E1 to G4-E1 current. Decisions recorded with passkey approval
+    on 2026-09-27: D-004 (privacy position P2) and D-005 (project-led learning on
+    an AI-maintained, user-owned capability graph with evidence; the AI chooses what
+    to build, maintain or test each session; evidence from AI and self-assessment,
+    people not required). A-010 records the user''s proposed guard: an assessing model
+    separate from the tutoring model, questioning unaided reasoning. On resume: re-orient,
+    run focused-challenge on the chosen direction (A-010, A-003, A-008, A-005, WI-006,
+    day-job self-reports as evidence), then evaluate Gate 5.'
+  pending_interaction_id: null
 routing:
   saved_focus_id: gate:5
   selection_rationale: G1-E1 to G4-E1 are current; WI-015 is resolved by D-004 and
@@ -1665,5 +1665,15 @@ history:
     pending the user's go-ahead
   resulting_revision: 35
   transaction_id: tx-2026-09-27-35-route-focused-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-36-checkpoint
+  timestamp: '2026-09-27T08:55:33.989009Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-005
+  resulting_revision: 36
+  transaction_id: tx-2026-09-27-36-checkpoint
   authorization_id: null
   authorization_ids: []
