@@ -1,4 +1,4 @@
-status: draft
+status: candidate
 version: 0.1
 
 # Vision: Permanent Learning System
