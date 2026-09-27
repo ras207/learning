@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 40
+  revision: 41
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:07:09.746433Z'
+  updated_at: '2026-09-27T09:07:10.283690Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,16 +13,15 @@ workflow:
   vision_status: not_started
   spine_context: synthesize_and_validate
 session:
-  status: active
-  checkpointed_at: '2026-09-27T08:25:00Z'
-  resume_summary: 'G1-E1 to G4-E1 current. Decisions recorded with passkey approval
-    on 2026-09-27: D-004 (privacy position P2) and D-005 (project-led learning on
-    an AI-maintained, user-owned capability graph with evidence; the AI chooses what
-    to build, maintain or test each session; evidence from AI and self-assessment,
-    people not required). A-010 records the user''s proposed guard: an assessing model
-    separate from the tutoring model, questioning unaided reasoning. On resume: re-orient,
-    run focused-challenge on the chosen direction (A-010, A-003, A-008, A-005, WI-006,
-    day-job self-reports as evidence), then evaluate Gate 5.'
+  status: paused
+  checkpointed_at: '2026-09-27T09:20:00Z'
+  resume_summary: 'G1-E1 to G5-E1 current (all PASS_WITH_UNCERTAINTY). Decisions D-001
+    to D-005 settled. art-focused-challenge recorded six non-blocking findings; the
+    agent proposed evidence principles within D-005 (WI-016: unaided reasoning, world-checkable
+    evidence, day-job self-reports, public material only), which the user may reject.
+    On resume: re-orient, then synthesize vision.md as draft, validate it against
+    VISION_CONTRACT.md, commit the candidate and request Gate 6 approval with the
+    vision fingerprint. Silence is not approval.'
   pending_interaction_id: null
 routing:
   saved_focus_id: gate:6
@@ -1850,5 +1849,15 @@ history:
   summary: Route next focus to vision synthesis; not started this sitting
   resulting_revision: 40
   transaction_id: tx-2026-09-27-40-route-synthesis
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-41-checkpoint
+  timestamp: '2026-09-27T09:07:10.283690Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 5 evaluation
+  resulting_revision: 41
+  transaction_id: tx-2026-09-27-41-checkpoint
   authorization_id: null
   authorization_ids: []
