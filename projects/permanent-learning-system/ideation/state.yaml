@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 30
+  revision: 31
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:46:20.190995Z'
+  updated_at: '2026-09-27T08:46:54.800307Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,19 +13,18 @@ workflow:
   vision_status: not_started
   spine_context: converge_and_challenge
 session:
-  status: active
-  checkpointed_at: '2026-09-26T07:05:00Z'
-  resume_summary: 'G1-E1, G2-E1, G3-E1 and G4-E1 (all PASS_WITH_UNCERTAINTY) are current.
-    This sitting (2026-09-26, scheduled, no live user input): generate-alternatives
-    produced art-alternatives (Directions A AI tutor on owned record, B project spine,
-    C assembled products, D human-anchored, E two venues; axes for learner-model location
-    P1-P3, build extent, cadence); compare-and-converge produced art-direction-comparison
-    recommending a hybrid of B on A with D as calibration, at P2 and a light build;
-    added A-008, A-009; opened escalation WI-015 (direction plus privacy position,
-    coupled to WI-013). Open non-blocking: WI-006, WI-014, A-003, A-005, A-008, A-009;
-    deferred WI-009. On resume: re-orient; if the user has answered WI-015, record
-    it via request-approval and attach-approval, then start the focused challenge
-    toward Gate 5. Silence is not approval.'
+  status: paused
+  checkpointed_at: '2026-09-27T07:10:00Z'
+  resume_summary: 'The user replied to WI-015 on 2026-09-27: accepted privacy position
+    P2, and said they had envisaged the AI maintaining a graph of their capabilities
+    with a record of evidence, choosing which part of the graph to build on, maintain
+    or test each session. Not yet recorded: D-004 (P2) awaits passkey approval of
+    transaction tx-2026-09-27-31-decision-privacy-p2 (authorization auth-D-004-privacy-p2,
+    action hash 2af078a800e2a66a1acaf9d7912f13fb83120581ef629e3f10bdd0431312a655).
+    If that transaction file is lost with the container, rebuild the change and request
+    a fresh approval rather than guessing. Still open on WI-015: whether build steps
+    are mainly real projects (B) and whether people''s judgement counts as evidence
+    (D). G1-E1 to G4-E1 current. Gate 5 work not started. Silence is not approval.'
   pending_interaction_id: WI-015
 routing:
   saved_focus_id: WI-015
@@ -1520,5 +1519,15 @@ history:
   summary: Resume session on the user's reply to WI-015
   resulting_revision: 30
   transaction_id: tx-2026-09-27-30-resume-wi015
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-32-checkpoint-await-approval
+  timestamp: '2026-09-27T08:46:54.800307Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session awaiting passkey approval of D-004 and the rest of WI-015
+  resulting_revision: 31
+  transaction_id: tx-2026-09-27-32-checkpoint-await-approval
   authorization_id: null
   authorization_ids: []
