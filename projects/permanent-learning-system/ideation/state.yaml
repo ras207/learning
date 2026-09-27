@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 33
+  revision: 34
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:51:07.100520Z'
+  updated_at: '2026-09-27T08:55:18.408528Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -186,6 +186,35 @@ decisions:
   decided_at: '2026-09-27'
   supersedes: null
   authorization_id: auth-D-004-privacy-p2
+- id: D-005
+  question: Which broad direction should the idea converge on (WI-015)?
+  decision: Learning happens mainly through real, private projects where economics,
+    AI and policy meet. The AI maintains a user-owned graph of capabilities with the
+    evidence for each, and each session chooses which part to build, maintain or test.
+    Evidence comes from AI assessment and self-assessment; judgement from other people
+    is not a required evidence source.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'Agent recommendation: the same, plus judgement from credible people as periodic
+    evidence (Direction D as calibration).'
+  - Mainly AI-designed sessions, with projects occasionally (Direction A-led).
+  - Assembled existing products (C), human-anchored (D-led) or two venues (E).
+  dependencies:
+  - WI-015
+  - D-004
+  - art-alternatives
+  - art-direction-comparison
+  affected:
+  - WI-015
+  - A-003
+  - A-009
+  - A-010
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  authorization_id: auth-D-005-direction
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
@@ -370,6 +399,30 @@ assumptions:
   blocking: false
   blocking_reason: Affects Direction D most; every other direction treats people as
     optional sources of evidence.
+- id: A-010
+  proposition: Separating the AI that assesses from the AI that tutors and helps build
+    (an independent examiner that sees only the capability claim and the user's own
+    work, questions the user's unaided reasoning, and ideally is a different model)
+    reduces self-grading bias and protects B1 enough to make AI and self-assessment
+    credible evidence.
+  status: provisional
+  origin: user question (2026-09-27) with agent assessment
+  basis: 'Raised by the user as a guard for D-005. Agent inference: helps against
+    leniency and marking its own teaching; does not help with blind spots shared across
+    models, real-world consequence, or reputation with people (A-003).'
+  materiality: high
+  risk: moderate
+  confidence: medium
+  validation_method: Test in the pre-Gate-5 focused challenge; later check examiner
+    judgements against real-world outcomes such as work performance.
+  dependencies:
+  - D-005
+  affected_records:
+  - gate:5
+  - A-003
+  blocking: false
+  blocking_reason: A mitigation to be tested in the focused challenge; does not block
+    recording the direction.
 work_items:
 - id: WI-001
   type: deficiency
@@ -794,7 +847,7 @@ work_items:
     AI-chosen build/maintain/test steps (the core of Direction A, shared by the recommended
     hybrid), but does not yet say whether building happens mainly through real projects
     (B) or whether people''s judgement counts as evidence (D).'
-  status: open
+  status: resolved
   materiality: high
   blocking: true
   blocking_reason: Convergence and the Gate 5 focused challenge cannot proceed without
@@ -830,8 +883,10 @@ work_items:
   priority_rationale: 'Highest decision value: every later gate depends on the chosen
     direction.'
   created_at: '2026-09-26T06:40:00Z'
-  updated_at: '2026-09-27T07:00:00Z'
-  resolved_at: null
+  updated_at: '2026-09-27T08:00:00Z'
+  resolved_at: '2026-09-27T08:00:00Z'
+  resolution: Resolved by D-004 (privacy position P2) and D-005 (project-led direction
+    on an AI-maintained capability graph, AI and self-assessment as evidence).
 evidence:
 - id: E-001
   claim: 'The user''s starting point: economist leading a small team giving independent
@@ -1583,3 +1638,19 @@ history:
   transaction_id: tx-2026-09-27-33-checkpoint-after-d004
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-27-34-decision-direction
+  timestamp: '2026-09-27T08:55:18.408528Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-005
+  - WI-015
+  - A-010
+  summary: 'Record human decision D-005: project-led direction on an AI-maintained
+    capability graph, with AI and self-assessment as evidence; resolve WI-015; add
+    A-010 (model separation as evidence guard)'
+  resulting_revision: 34
+  transaction_id: tx-2026-09-27-34-decision-direction
+  authorization_id: auth-D-005-direction
+  authorization_ids:
+  - auth-D-005-direction
