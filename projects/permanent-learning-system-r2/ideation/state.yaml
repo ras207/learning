@@ -1,0 +1,43 @@
+schema_version: 1
+project:
+  project_id: permanent-learning-system-r2
+  project_slug: permanent-learning-system-r2
+  iteration: 1
+  revision: 1
+  created_at: '2026-09-27T12:48:50.552319Z'
+  updated_at: '2026-09-27T12:48:54.976438Z'
+workflow:
+  status: active
+  vision_status: not_started
+  spine_context: orient_and_initialize
+session:
+  status: paused
+  checkpointed_at: '2026-09-27T12:48:50.552319Z'
+  resume_summary: Project deterministically initialized from minimal seed; ideation
+    has not begun.
+  pending_interaction_id: null
+routing:
+  saved_focus_id: null
+artifacts: []
+decisions: []
+assumptions: []
+work_items: []
+evidence: []
+gate_evaluations: []
+finalization:
+  outcome: null
+  checks: []
+  authorized_by_decision_id: null
+history:
+- event_id: evt:init-permanent-learning-system-r2
+  timestamp: '2026-09-27T12:48:54.976438Z'
+  event_type: workflow_operation
+  actor: observer-session
+  affected_record_ids: []
+  summary: Initialize ideation project
+  resulting_revision: 1
+  transaction_id: init-permanent-learning-system-r2
+  authorization_id: null
+  authorization_ids: []
+agent_provenance:
+  repository_commit: baf9e99bbbfc562c8e27252e74bfc839cd93a64a
