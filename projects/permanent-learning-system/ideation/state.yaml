@@ -3,14 +3,14 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 42
+  revision: 43
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:10:07.911166Z'
+  updated_at: '2026-09-27T09:10:57.305178Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
   status: active
-  vision_status: not_started
+  vision_status: draft
   spine_context: synthesize_and_validate
 session:
   status: active
@@ -90,6 +90,15 @@ artifacts:
     value: 0801e8483761d31f8c31914a2ad622b8b96eae70c3cf023ce058118a73fbeeda
   repository_commit: null
   last_verified_at: '2026-09-27T09:06:39.615035Z'
+- artifact_id: art-vision
+  role: vision
+  path: projects/permanent-learning-system/ideation/vision.md
+  status: draft
+  fingerprint:
+    algorithm: sha256
+    value: fce2de4a24b320235c5b5684e2ff7b93372bbd66f84c464a9b39cd1360468ef9
+  repository_commit: null
+  last_verified_at: '2026-09-27T09:10:57.305178Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -1869,5 +1878,15 @@ history:
   summary: Resume session on the user's go-ahead for vision synthesis
   resulting_revision: 42
   transaction_id: tx-2026-09-27-42-resume-synthesis
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-43-synthesize-vision
+  timestamp: '2026-09-27T09:10:57.305178Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Synthesize vision.md as draft 0.1 from D-001 to D-005 and art-* sources
+  resulting_revision: 43
+  transaction_id: tx-2026-09-27-43-synthesize-vision
   authorization_id: null
   authorization_ids: []
