@@ -1,0 +1,54 @@
+{
+  "action": {
+    "dependencies": [
+      "WI-013",
+      "WI-015"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "WI-013",
+        "WI-015",
+        "gate:5"
+      ],
+      "alternatives_considered": [
+        "P1: provider-held learner model (cheapest; loses ownership, conflicts with C3 and AM-3).",
+        "P3: record and AI fully local (meets C3 fully; likely needs hardware beyond C2 and weakens tutoring)."
+      ],
+      "authority": "human",
+      "authorization_id": "auth-D-004-privacy-p2",
+      "decided_at": "2026-09-27",
+      "decided_by": "project owner",
+      "decision": "P2: the durable record of capabilities and evidence is held in files the user controls; the parts needed for a session are shown to a cloud AI, accepting that session content passes through the provider.",
+      "dependencies": [
+        "WI-013",
+        "art-alternatives",
+        "art-direction-comparison"
+      ],
+      "id": "D-004",
+      "question": "Where should the detailed learner model live (WI-013)?",
+      "status": "settled",
+      "supersedes": null
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-004",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-27-31-decision-privacy-p2"
+  },
+  "action_hash": "2af078a800e2a66a1acaf9d7912f13fb83120581ef629e3f10bdd0431312a655",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-004-privacy-p2",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiS3ZCNHFBRGlwbW9heXZuWGtTOFQtNE1TQllIdllwNF9FTDNRUXhNU3BsVSIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEUCIEFgaS-CRo_a5f2mU-ZJZyDI5XbsQ2vuDHTRNdcdNwbEAiEA2UmxPPR1hJYnxZ4B1hgV8JlYskkkqIqHEK7uyitAStY"
+  },
+  "schema_version": 1
+}

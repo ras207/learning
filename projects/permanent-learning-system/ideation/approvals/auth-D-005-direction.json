@@ -1,0 +1,57 @@
+{
+  "action": {
+    "dependencies": [
+      "WI-015"
+    ],
+    "operation": "create",
+    "patch": {
+      "affected": [
+        "WI-015",
+        "A-003",
+        "A-009",
+        "A-010",
+        "gate:5"
+      ],
+      "alternatives_considered": [
+        "Agent recommendation: the same, plus judgement from credible people as periodic evidence (Direction D as calibration).",
+        "Mainly AI-designed sessions, with projects occasionally (Direction A-led).",
+        "Assembled existing products (C), human-anchored (D-led) or two venues (E)."
+      ],
+      "authority": "human",
+      "authorization_id": "auth-D-005-direction",
+      "decided_at": "2026-09-27",
+      "decided_by": "project owner",
+      "decision": "Learning happens mainly through real, private projects where economics, AI and policy meet. The AI maintains a user-owned graph of capabilities with the evidence for each, and each session chooses which part to build, maintain or test. Evidence comes from AI assessment and self-assessment; judgement from other people is not a required evidence source.",
+      "dependencies": [
+        "WI-015",
+        "D-004",
+        "art-alternatives",
+        "art-direction-comparison"
+      ],
+      "id": "D-005",
+      "question": "Which broad direction should the idea converge on (WI-015)?",
+      "status": "settled",
+      "supersedes": null
+    },
+    "project": {
+      "iteration": 1,
+      "project_id": "permanent-learning-system",
+      "project_slug": "permanent-learning-system"
+    },
+    "record_id": "D-005",
+    "section": "decisions",
+    "transaction_id": "tx-2026-09-27-34-decision-direction"
+  },
+  "action_hash": "379671733fa558233a9106d663df18be77a8b2d1dea74a964c03da33ea915a0b",
+  "approver": "Ross Stewart",
+  "approver_fingerprint": "B1C0-3322-85FF-5BD7",
+  "authorization_id": "auth-D-005-direction",
+  "kind": "ideation_approval_evidence",
+  "passkey": {
+    "authenticator_data": "lLRlKTVYiJJdouBOcjBZXM3M3lg_I-jmFy8IVZNbAiEdAAAAAA",
+    "client_data_json": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiTjVaeGN6LWxXQ002a1FiV1k5OFl2bmVvc3RIZXAwcVdUQVBhTS1xUldncyIsIm9yaWdpbiI6Imh0dHBzOi8vcmFzMjA3LmdpdGh1Yi5pbyIsImNyb3NzT3JpZ2luIjpmYWxzZX0",
+    "credential_id": "MwKmQ0A-8PFGn85nsOldbWgPyng",
+    "signature": "MEQCIAUbi8L2nWP5UGhrjaxdVOmRiZUA2kbHkMNXjXzC-sy1AiB4D-LOtGjHqgUgeEh3DYmXwdf49mS-cakCEWltbd2rkQ"
+  },
+  "schema_version": 1
+}

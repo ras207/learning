@@ -3,30 +3,2043 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 1
+  revision: 48
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-22T22:45:00Z'
+  updated_at: '2026-09-27T11:44:40.278948Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
-  status: active
-  vision_status: not_started
-  spine_context: orient_and_initialize
+  status: approved
+  vision_status: approved
+  spine_context: synthesize_and_validate
 session:
   status: paused
-  checkpointed_at: '2026-09-22T22:45:00Z'
-  resume_summary: "Project deterministically initialized from minimal seed; ideation has not begun."
+  checkpointed_at: '2026-09-27T10:30:00Z'
+  resume_summary: 'Ideation complete: vision approved (D-006) and finalized on 2026-09-27.
+    The approved vision.md is the authoritative handoff to product design. Non-blocking
+    uncertainties carried forward: A-003, A-005, A-008, A-010, WI-006, WI-014; WI-009
+    deferred.'
   pending_interaction_id: null
 routing:
   saved_focus_id: null
-artifacts: []
-decisions: []
-assumptions: []
-work_items: []
-evidence: []
-gate_evaluations: []
+  selection_rationale: Workflow finalized as approved; no further ideation action.
+  dependency_priority: Synthesis precedes Gate 6. WI-016 (agent-proposed evidence
+    principles) must be visible in the draft for the user to correct.
+  expected_decision_value: 'High: produces the candidate the user approves.'
+  next_intervention: None. The approved vision is the handoff to product design.
+  action_owner: human
+  selected_at: '2026-09-27T10:30:00Z'
+artifacts:
+- artifact_id: art-intent-model
+  role: intent_model
+  path: projects/permanent-learning-system/ideation/intent-model.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  repository_commit: null
+  last_verified_at: '2026-09-23T22:14:55.304655Z'
+- artifact_id: art-ambition-map
+  role: ambition_map
+  path: projects/permanent-learning-system/ideation/ambition-map.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
+  repository_commit: null
+  last_verified_at: '2026-09-25T22:49:25.687801Z'
+- artifact_id: art-problem-model
+  role: problem_model
+  path: projects/permanent-learning-system/ideation/problem-model.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+  repository_commit: null
+  last_verified_at: '2026-09-25T22:55:43.155896Z'
+- artifact_id: art-alternatives
+  role: alternative_set
+  path: projects/permanent-learning-system/ideation/alternatives.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+  repository_commit: null
+  last_verified_at: '2026-09-26T12:38:01.473222Z'
+- artifact_id: art-direction-comparison
+  role: direction_comparison
+  path: projects/permanent-learning-system/ideation/direction-comparison.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+  repository_commit: null
+  last_verified_at: '2026-09-26T12:39:09.679867Z'
+- artifact_id: art-focused-challenge
+  role: challenge_assessment
+  path: projects/permanent-learning-system/ideation/focused-challenge.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 0801e8483761d31f8c31914a2ad622b8b96eae70c3cf023ce058118a73fbeeda
+  repository_commit: null
+  last_verified_at: '2026-09-27T09:06:39.615035Z'
+- artifact_id: art-vision
+  role: vision
+  path: projects/permanent-learning-system/ideation/vision.md
+  status: approved
+  fingerprint:
+    algorithm: sha256
+    value: 2f9fe5c3425de480bb00097299846812dd70b0d70dbe51833ff5ff41e40857b0
+  repository_commit: null
+  last_verified_at: '2026-09-27T11:44:40.278948Z'
+decisions:
+- id: D-001
+  question: 'Who decides what the user works on next: the AI, or the user with the
+    AI advising?'
+  decision: The AI is free to decide what the user works on next, based on building
+    the user's desired capabilities. 'Retaining reasoning, understanding and judgement'
+    refers to the user doing the thinking, not to controlling the sequence of work.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - User decides direction; AI proposes and advises.
+  - 'Shared: AI proposes a plan; user approves or edits each step.'
+  dependencies:
+  - A-001
+  - WI-004
+  - art-intent-model
+  affected:
+  - A-001
+  - WI-004
+  - gate:4
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-24'
+  supersedes: null
+  authorization_id: auth-D-001-ai-direction
+- id: D-002
+  question: Is building the system itself one of the user's learning projects, or
+    should it be as off-the-shelf as possible?
+  decision: The user wants to learn while building the system. Building it should
+    not be structured like the learning projects the system itself will run; the system
+    should not be used to organise its own construction before it exists.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - Build the system as off-the-shelf as possible, with no learning intent.
+  - Treat building the system as the first learning project, structured by the system's
+    own model.
+  dependencies:
+  - WI-007
+  - art-intent-model
+  affected:
+  - WI-007
+  - WI-006
+  - gate:2
+  - gate:4
+  decided_by: project owner
+  decided_at: '2026-09-24'
+  supersedes: null
+  authorization_id: auth-D-002-build-as-learning
+- id: D-003
+  question: Should real-world results (income, ventures, roles, published work, impact)
+    become a goal alongside capability? (AM-2)
+  decision: No. Capability remains the goal. Real projects and consequential activity
+    remain the means of learning and the evidence of capability, not goals in their
+    own right.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'B: Capability and real-world results as joint goals; the system helps choose
+    consequential opportunities, with outside commitments kept as the user''s decision
+    (agent recommendation).'
+  - 'C: Full life and career strategy system in which capability is one lever among
+    many.'
+  dependencies:
+  - WI-008
+  - art-ambition-map
+  - art-intent-model
+  affected:
+  - WI-008
+  - WI-003
+  - WI-009
+  - gate:2
+  - gate:3
+  - gate:4
+  decided_by: project owner
+  decided_at: '2026-09-25'
+  supersedes: null
+  authorization_id: auth-D-003-capability-goal
+- id: D-004
+  question: Where should the detailed learner model live (WI-013)?
+  decision: 'P2: the durable record of capabilities and evidence is held in files
+    the user controls; the parts needed for a session are shown to a cloud AI, accepting
+    that session content passes through the provider.'
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'P1: provider-held learner model (cheapest; loses ownership, conflicts with C3
+    and AM-3).'
+  - 'P3: record and AI fully local (meets C3 fully; likely needs hardware beyond C2
+    and weakens tutoring).'
+  dependencies:
+  - WI-013
+  - art-alternatives
+  - art-direction-comparison
+  affected:
+  - WI-013
+  - WI-015
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  authorization_id: auth-D-004-privacy-p2
+- id: D-005
+  question: Which broad direction should the idea converge on (WI-015)?
+  decision: Learning happens mainly through real, private projects where economics,
+    AI and policy meet. The AI maintains a user-owned graph of capabilities with the
+    evidence for each, and each session chooses which part to build, maintain or test.
+    Evidence comes from AI assessment and self-assessment; judgement from other people
+    is not a required evidence source.
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'Agent recommendation: the same, plus judgement from credible people as periodic
+    evidence (Direction D as calibration).'
+  - Mainly AI-designed sessions, with projects occasionally (Direction A-led).
+  - Assembled existing products (C), human-anchored (D-led) or two venues (E).
+  dependencies:
+  - WI-015
+  - D-004
+  - art-alternatives
+  - art-direction-comparison
+  affected:
+  - WI-015
+  - A-003
+  - A-009
+  - A-010
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  authorization_id: auth-D-005-direction
+- id: D-006
+  question: Do you approve candidate vision.md version 0.1 (commit 72a551f) as the
+    handoff to product design?
+  decision: 'Approved: candidate vision 0.1 of the Permanent Learning System, including
+    the agent-proposed principles and boundaries it attributes (WI-016) and its non-blocking
+    uncertainties.'
+  authority: human
+  status: settled
+  alternatives_considered:
+  - Request changes to the vision before approval.
+  - Defer or close the idea.
+  dependencies:
+  - art-vision
+  - G5-E1
+  affected:
+  - gate:6
+  - WI-016
+  - art-vision
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+  authorization_id: auth-D-006-vision-approval
+assumptions:
+- id: A-001
+  proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
+    own cognition and does not stop the AI from leading curriculum and sequencing.'
+  status: validated
+  origin: clarify-intent
+  basis: The seed explicitly asks the AI to 'decide what I should work on next' and
+    to act as curriculum manager; 'rather than outsourcing them to AI' refers to thinking.
+  materiality: medium
+  risk: moderate
+  confidence: medium
+  validation_method: Confirm with the user; disconfirmed if the user wants to own
+    direction with AI advising.
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - WI-004
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
+  validated_by: D-001
+  validated_at: '2026-09-24T00:00:00Z'
+- id: A-002
+  proposition: 'The current intent is for a single learner: the user.'
+  status: provisional
+  origin: clarify-intent
+  basis: '''personal'', ''me'' throughout the seed.'
+  materiality: medium
+  risk: low
+  confidence: high
+  validation_method: Gate 2 explores broadening; the user decides any change of beneficiary.
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - gate:2
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
+- id: A-003
+  proposition: Useful capability is judged by real-world application and demonstrable
+    output, not credentials.
+  status: provisional
+  origin: clarify-intent
+  basis: Boundaries B2 and B6 in the seed; strengthened by the user's ability-framed
+    targets (2026-09-25).
+  materiality: medium
+  risk: low
+  confidence: high
+  validation_method: 'Tested in art-focused-challenge F2: the system evidences capability,
+    not reputation. Reputation stays outside the system, as the user accepted in D-005;
+    day-job self-reports can serve as partial evidence.'
+  dependencies:
+  - art-intent-model
+  affected_records:
+  - gate:3
+  - gate:4
+  - gate:5
+  blocking: false
+  blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
+    1 or change the direction of Gate 2 exploration.
+- id: A-004
+  proposition: Carried-forward ambitions AM-3 (durable, portable, user-owned record),
+    AM-4 (AI-frontier-aware capability selection), AM-5 (people as sources of challenge
+    and evidence) and AM-10 (capability maintenance) are compatible with the confirmed
+    intent and do not change scope, beneficiary or desired outcome.
+  status: provisional
+  origin: expand-ambition
+  basis: 'Each follows from a stated boundary: AM-3 and AM-10 from B3, AM-4 from ''genuinely
+    useful'' (B2), AM-5 from B4 ''real-world performance''.'
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User may reclassify any item; disconfirmed if the user treats
+    any as a scope change.
+  dependencies:
+  - art-ambition-map
+  - art-intent-model
+  affected_records:
+  - gate:2
+  - gate:3
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit, reversible, and within the agent's authority to carry
+    compatible ambitions (GATES.md Gate 2).
+- id: A-005
+  proposition: Weekday commute slots suit short, low-setup activity (practice, retrieval,
+    reading, reflection) more than build work, which falls mainly at weekends.
+  status: provisional
+  origin: model-problem
+  basis: User's stated time pattern (C1).
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User confirms or corrects at problem-model review or later.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - gate:4
+  blocking: false
+  blocking_reason: Explicit and reversible; shapes alternatives, not the problem definition.
+- id: A-006
+  proposition: The day job is a real learning venue, but the AI tools available there
+    are extremely limited, so it cannot be the main place for AI-assisted learning;
+    it remains a major source of real-world performance and judgement.
+  status: validated
+  origin: model-problem
+  basis: Nature of independent advice to government; not stated by the user.
+  materiality: medium
+  risk: moderate
+  confidence: medium
+  validation_method: User answers WI-011.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - WI-011
+  - gate:4
+  blocking: false
+  blocking_reason: Alternatives can cover either answer; does not change the problem
+    definition.
+  validated_by: User statement in the 2026-09-25 sitting (WI-011)
+  validated_at: '2026-09-25T23:20:00Z'
+- id: A-007
+  proposition: 'The 10-year advisory aim and the business aim are the same path: the
+    business is policy advice.'
+  status: validated
+  origin: model-problem
+  basis: User's stated purpose (WI-003) and 10-year target (WI-002).
+  materiality: medium
+  risk: low
+  confidence: medium
+  validation_method: User answers WI-012.
+  dependencies:
+  - art-problem-model
+  affected_records:
+  - WI-012
+  - gate:4
+  blocking: false
+  blocking_reason: Both readings lead to the same capability trajectory.
+  validated_by: User statement in the 2026-09-25 sitting (WI-012)
+  validated_at: '2026-09-25T23:20:00Z'
+- id: A-008
+  proposition: A general-purpose cloud AI, given a well-kept user-held record at the
+    start of each session, can tutor, assess and sequence well enough across months
+    to act as the curriculum manager in Directions A, B and E.
+  status: provisional
+  origin: generate-alternatives
+  basis: Agent inference from the user's six months of AI use and general knowledge
+    of current assistants; not researched.
+  materiality: high
+  risk: moderate
+  confidence: medium
+  validation_method: Cheap early trial of the record-plus-session mechanism; disconfirmed
+    if assessment and sequencing are unreliable after a few weeks.
+  dependencies:
+  - art-alternatives
+  - art-problem-model
+  affected_records:
+  - gate:4
+  - gate:5
+  blocking: false
+  blocking_reason: Affects the relative strength of Directions A, B and E; it can
+    be tested after convergence and does not prevent comparison.
+- id: A-009
+  proposition: A small number of credible people (mentors, academic or official sparring
+    partners) are available and willing to give private challenge at a cost within
+    C2.
+  status: provisional
+  origin: generate-alternatives
+  basis: Assumption; the user's network has not been discussed.
+  materiality: medium
+  risk: moderate
+  confidence: low
+  validation_method: Ask the user about available people if Direction D or AM-5 becomes
+    central at convergence.
+  dependencies:
+  - art-alternatives
+  - art-ambition-map
+  affected_records:
+  - gate:4
+  - gate:5
+  blocking: false
+  blocking_reason: Affects Direction D most; every other direction treats people as
+    optional sources of evidence.
+- id: A-010
+  proposition: Separating the AI that assesses from the AI that tutors and helps build
+    (an independent examiner that sees only the capability claim and the user's own
+    work, questions the user's unaided reasoning, and ideally is a different model)
+    reduces self-grading bias and protects B1 enough to make AI and self-assessment
+    credible evidence.
+  status: provisional
+  origin: user question (2026-09-27) with agent assessment
+  basis: 'Raised by the user as a guard for D-005. Agent inference: helps against
+    leniency and marking its own teaching; does not help with blind spots shared across
+    models, real-world consequence, or reputation with people (A-003).'
+  materiality: high
+  risk: moderate
+  confidence: medium
+  validation_method: 'Early use: compare examiner judgements with world-checkable
+    outcomes (running code, reproduced results, scored forecasts) and with day-job
+    self-reports. Residual risk: models from different providers can share blind spots
+    (art-focused-challenge F1).'
+  dependencies:
+  - D-005
+  affected_records:
+  - gate:5
+  - A-003
+  - art-focused-challenge
+  blocking: false
+  blocking_reason: A mitigation to be tested in the focused challenge; does not block
+    recording the direction.
+work_items:
+- id: WI-001
+  type: deficiency
+  title: Starting intent not yet structured
+  description: Only the free-form seed in PROJECT.md exists. Trigger, desired change,
+    relevant people, expressed boundaries and material ambiguities have not been extracted,
+    so Gate 1 cannot be evaluated.
+  status: resolved
+  materiality: high
+  blocking: true
+  origin: orientation of new run (revision 1, no prior gate evaluations)
+  affected:
+  - gate:1
+  prerequisites: []
+  downstream:
+  - gate:1
+  - gate:2
+  - gate:3
+  owner: agent
+  next_action: Invoke clarify-intent on PROJECT.md seed.
+  priority_rationale: Earliest causal deficiency; every later gate depends on a captured
+    intent.
+  created_at: '2026-09-23T22:30:00Z'
+  updated_at: '2026-09-23T22:40:00Z'
+  resolved_at: '2026-09-23T22:40:00Z'
+  resolution: Intent model produced at art-intent-model.
+- id: WI-002
+  type: question
+  title: Concrete target capabilities and horizons
+  description: Which capabilities or ambitions matter most over roughly 1, 3 and 10+
+    years?
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): economist leading a small team giving
+    independent advice to government (5 years, after 1 year in consulting), master''s
+    in economics, 6 months of unstructured AI learning, no business experience. Targets:
+    ~1y run automated agentic workflows, refresh economic theory and econometrics,
+    begin to understand building good software; ~3y develop and validate agentic systems
+    for robust economic analysis, converse with academic economists and senior officials,
+    sell valuable insights; 10+y respected advisor on key policy issues with wide
+    understanding of economics, financial markets and technology. Recorded in art-problem-model
+    section 3.'
+- id: WI-003
+  type: question
+  title: Ultimate purpose of capability and why now
+  description: Is the capability mainly for income or career, ventures, intellectual
+    mastery, impact or a mix, and what prompted the idea now?
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  prerequisites: []
+  downstream:
+  - gate:3
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): capability serves a mix of career, being
+    able to build things independently, and understanding for its own sake, aimed
+    at one day building their own business that combines a growing command of technology
+    with their existing economics experience. Why now: current learning is not interactive,
+    not responsive to advances in their fields, and not tailored to their strengths
+    and weaknesses. Read as consistent with D-003 (business is what capability is
+    for, not a system goal); recorded as a user statement, not a signed decision.'
+- id: WI-004
+  type: uncertainty
+  title: Authority split between AI direction and user judgement
+  description: The seed asks the AI to decide what to work on next and also asks that
+    the user keep judgement. A-001 records the working interpretation.
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:4
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:4
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-24T00:00:00Z'
+  resolved_at: '2026-09-24T00:00:00Z'
+  resolution: 'Resolved by D-001: AI decides next work, driven by the user''s desired
+    capabilities.'
+- id: WI-005
+  type: uncertainty
+  title: 'Practical constraints: time, budget, privacy and data ownership'
+  description: Weekly time, budget, and how a lifelong personal model and its data
+    should be held have not been expressed.
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 3 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): about an hour a day on average with large
+    variation (short weekday slots around the commute, more at weekends); budget of
+    about a couple of subscriptions a month; would ideally not have the detailed model
+    held by a cloud AI provider but cannot spend much on hardware (tension carried
+    as WI-013). Recorded as constraints C1 to C3 in art-problem-model.'
+- id: WI-006
+  type: uncertainty
+  title: 'Challenge: meta-work displacing learning; sustaining permanence'
+  description: Building and maintaining the system may crowd out learning; permanence
+    depends on lasting motivation and habit. Assessed in art-problem-model as M9 (sustaining
+    effort) and M10 (meta-work competes for about seven hours a week; D-002 converts
+    building AI workflows and software into target learning, but upkeep and tinkering
+    remain pure cost and could starve economics).
+  status: open
+  materiality: high
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:3
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:3
+  - gate:5
+  owner: agent
+  next_action: Tested in art-focused-challenge F3; carried into the vision as the
+    principle that learning time comes before system time, and into downstream design
+    and early use.
+  review_point: Downstream design and early use
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-27T09:00:00Z'
+  resolved_at: null
+- id: WI-007
+  type: question
+  title: Is building the system itself a learning project?
+  description: Should building the system serve as a vehicle for technology and AI
+    capability, or should it be as off-the-shelf as possible?
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the core intent, desired outcome, people or direction
+    of exploration at Gate 1.
+  origin: clarify-intent over PROJECT.md seed
+  affected:
+  - gate:2
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:2
+  - gate:4
+  owner: human
+  next_action: Ask the user at the next sitting; reassess at the review point.
+  review_point: Gate 2 boundary
+  priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
+  created_at: '2026-09-23T22:40:00Z'
+  updated_at: '2026-09-24T00:30:00Z'
+  resolved_at: '2026-09-24T00:30:00Z'
+  resolution: 'Resolved by D-002: learning while building, outside the system''s own
+    project structure.'
+- id: WI-008
+  type: escalation
+  title: Should real-world results become a goal alongside capability? (AM-2)
+  description: Adopting AM-2 would change the desired outcome from capability (with
+    projects as means and evidence) to capability plus real-world results such as
+    income, ventures, roles, published work and impact, with the system helping choose
+    and pursue consequential opportunities.
+  status: resolved
+  materiality: high
+  blocking: true
+  blocking_reason: Consequential change to desired outcome and risk profile (GATES.md
+    Gate 2 ESCALATE condition); the agent must not choose it.
+  origin: expand-ambition
+  affected:
+  - gate:2
+  - gate:3
+  - gate:4
+  - WI-003
+  prerequisites: []
+  downstream:
+  - gate:2
+  - gate:3
+  - gate:4
+  owner: human
+  next_action: Present options and recommendation; obtain the user's decision via
+    the approval protocol.
+  options:
+  - 'A: Capability stays the goal; real projects remain means and evidence (current
+    reading).'
+  - 'B: Capability and real-world results are joint goals; the system helps choose
+    consequential opportunities that do both. Committing to outside obligations (money,
+    roles, ventures, other people) stays the user''s decision.'
+  - 'C: Full life and career strategy system in which capability is one lever among
+    many.'
+  recommendation: B
+  priority_rationale: Only open item that blocks Gate 2; highest decision value because
+    it shapes the Gate 3 problem model.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T08:20:00Z'
+  resolved_at: '2026-09-25T08:20:00Z'
+  resolution: 'Resolved by D-003: capability remains the goal; AM-2 rejected by the
+    user.'
+- id: WI-009
+  type: uncertainty
+  title: Other learners or productisation (AM-1)
+  description: Whether the system should later serve people other than the user, as
+    a circle, cohort, product or open method.
+  status: deferred
+  materiality: medium
+  blocking: false
+  blocking_reason: Deferral keeps the current single-learner scope (A-002); nothing
+    downstream depends on it now.
+  origin: expand-ambition
+  affected:
+  - A-002
+  prerequisites: []
+  downstream: []
+  owner: human
+  next_action: Reassess when a trigger is reached.
+  deferral_reason: Would change beneficiary and risk profile and amplify the meta-work
+    risk (WI-006) before the system has proven value for the user.
+  reactivation_trigger: The system has demonstrably worked for the user over a sustained
+    period, or the user decides to pursue the system as a venture (see WI-008).
+  review_point: Gate 5 focused challenge
+  priority_rationale: Deferred; not routed ahead of open work.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T08:05:00Z'
+  resolved_at: null
+- id: WI-010
+  type: uncertainty
+  title: Learning in public (AM-6)
+  description: How openly artefacts, reasoning and progress should be shared to build
+    reputation, network and outside feedback.
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: A question of degree within the current intent; depends on the
+    privacy stance in WI-005.
+  origin: expand-ambition
+  affected:
+  - gate:3
+  - WI-005
+  prerequisites:
+  - WI-005
+  downstream:
+  - gate:3
+  owner: human
+  next_action: Ask together with WI-005.
+  deferral_reason: Depends on the user's privacy and ownership stance, not yet expressed
+    (WI-005).
+  reactivation_trigger: WI-005 is answered.
+  review_point: Gate 3 boundary
+  priority_rationale: Deferred; not routed ahead of open work.
+  created_at: '2026-09-25T08:05:00Z'
+  updated_at: '2026-09-25T23:05:00Z'
+  resolved_at: '2026-09-25T23:05:00Z'
+  resolution: 'User statement (2026-09-25): learning is private by default; sharing
+    chosen case by case (constraint C4). Ambition map updated to show AM-6 resolved.'
+- id: WI-011
+  type: question
+  title: Can the day job be a learning venue, and within what confidentiality limits?
+  description: The most consequential activity available is the user's government
+    advisory work. Whether and how it can be used for learning, and whether work material
+    can be used with AI tools, is unknown (A-006).
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Changes where consequential practice comes from, which alternatives
+    must cover either way; does not change the problem definition.
+  origin: model-problem
+  affected:
+  - gate:3
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: human
+  next_action: Ask the user during problem-model review.
+  review_point: Problem-model review before Gate 3
+  priority_rationale: Non-blocking; cheap to ask while the user is present.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-25T23:20:00Z'
+  resolved_at: '2026-09-25T23:20:00Z'
+  resolution: 'User statement (2026-09-25): the workplace is somewhere the user could
+    learn, but the AI tools available there are extremely limited. Recorded in art-problem-model
+    (M5, section 2, and the two-halves observation in section 3).'
+- id: WI-012
+  type: question
+  title: Relationship between the business aim and the 10-year advisory aim
+  description: The user's purpose is to build their own business one day; the 10-year
+    target is to be a respected policy advisor. A-007 reads these as compatible (an
+    independent advisory or analysis business).
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Both readings point the problem toward the same capability trajectory;
+    affects emphasis between business skills and policy credibility at Gate 4.
+  origin: model-problem
+  affected:
+  - gate:3
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: human
+  next_action: Ask the user during problem-model review.
+  review_point: Problem-model review before Gate 3
+  priority_rationale: Non-blocking; cheap to ask while the user is present.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-25T23:20:00Z'
+  resolved_at: '2026-09-25T23:20:00Z'
+  resolution: 'User statement (2026-09-25): the policy advice is the business.'
+- id: WI-013
+  type: uncertainty
+  title: Privacy preference versus cost constraint
+  description: 'The user would prefer the detailed learner model not be held by a
+    cloud AI provider (C3) but has a budget of about two subscriptions and no large
+    hardware spend (C2). art-alternatives section 4 sets out three positions: P1 provider-held,
+    P2 user-held record with cloud AI per session, P3 fully local. Only P2 fits both
+    C2 and the core of C3, but session content still passes through a cloud provider.'
+  status: resolved
+  materiality: high
+  blocking: false
+  blocking_reason: A trade-off between solution directions, not an ambiguity in the
+    problem; belongs to alternatives and convergence, where the user may need to accept
+    a trade-off.
+  origin: model-problem
+  affected:
+  - gate:4
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:4
+  - gate:5
+  owner: human
+  next_action: Decided together with WI-015 at convergence; the agent recommends P2.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking at Gate 3.
+  created_at: '2026-09-25T23:05:00Z'
+  updated_at: '2026-09-27T07:00:00Z'
+  resolved_at: '2026-09-27T07:00:00Z'
+  resolution: 'Resolved by D-004: position P2.'
+- id: WI-014
+  type: uncertainty
+  title: Existing tools and services not researched
+  description: The current-approaches analysis of commercial AI tutors and learning
+    tools is agent inference, not research. An adopt-existing-tools direction (Direction
+    C in art-alternatives) is credible, so its relative strength depends on what existing
+    products actually offer, especially a user-owned, exportable, cross-domain learner
+    model.
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Does not change the problem definition; only affects the relative
+    strength of a possible alternative.
+  origin: evaluate-gate (Gate 3)
+  affected:
+  - gate:4
+  prerequisites: []
+  downstream:
+  - gate:4
+  owner: agent
+  next_action: Carry into the Gate 4 comparison as a disconfirming condition for Direction
+    C; research becomes blocking only if the user leans toward Direction C at convergence.
+  review_point: Gate 4 boundary
+  priority_rationale: Non-blocking at Gate 3.
+  created_at: '2026-09-25T23:30:00Z'
+  updated_at: '2026-09-26T06:20:00Z'
+  resolved_at: null
+- id: WI-015
+  type: escalation
+  title: Converge on a broad direction and accept a privacy position
+  description: 'Privacy part resolved by D-004 (P2). Direction part partly answered
+    by the user''s statement (2026-09-27): "I had envisaged the AI maintaining a graph
+    of my capabilities with a record of evidence that demonstrates the capability,
+    deciding on which portion of the graph to build on, maintain or test in each session."
+    Agent reading: this confirms the owned, evidence-backed capability record and
+    AI-chosen build/maintain/test steps (the core of Direction A, shared by the recommended
+    hybrid), but does not yet say whether building happens mainly through real projects
+    (B) or whether people''s judgement counts as evidence (D).'
+  status: resolved
+  materiality: high
+  blocking: true
+  blocking_reason: Convergence and the Gate 5 focused challenge cannot proceed without
+    the user's choice of direction and acceptance of the privacy trade-off; the agent
+    must not choose. Does not block the Gate 4 evaluation, which concerns breadth
+    and comparison.
+  origin: compare-and-converge
+  affected:
+  - gate:5
+  - WI-013
+  - WI-006
+  prerequisites: []
+  downstream:
+  - gate:5
+  - gate:6
+  owner: human
+  next_action: Ask the user whether "build" steps are mainly real projects and whether
+    judgement from people counts as evidence; then record the direction decision through
+    the approval protocol.
+  options:
+  - 'Recommended: B project spine on A owned record, D as periodic calibration, P2,
+    light build.'
+  - B-led only (project-first, no structured practice or maintenance layer).
+  - A-led only (AI tutor on owned record, projects later).
+  - C as a low-effort start (assembled existing products), which may make WI-014 research
+    blocking.
+  - D-led (human-anchored, AI as preparer).
+  - 'Privacy alternatives to P2: P3 fully local (higher hardware cost, weaker tutoring)
+    or P1 provider-held (loss of ownership).'
+  recommendation: Hybrid B+A+D at P2 with a light build (art-direction-comparison
+    section 4).
+  review_point: Gate 5 convergence
+  priority_rationale: 'Highest decision value: every later gate depends on the chosen
+    direction.'
+  created_at: '2026-09-26T06:40:00Z'
+  updated_at: '2026-09-27T08:00:00Z'
+  resolved_at: '2026-09-27T08:00:00Z'
+  resolution: Resolved by D-004 (privacy position P2) and D-005 (project-led direction
+    on an AI-maintained capability graph, AI and self-assessment as evidence).
+- id: WI-016
+  type: uncertainty
+  title: Agent-proposed evidence principles within D-005
+  description: 'The focused challenge proposes principles compatible with D-005 that
+    the user has not stated: capability counts as evidenced only when the user shows
+    unaided reasoning; prefer evidence the world can check (running code, reproduced
+    results, scored forecasts); the user''s own notes on day-job performance count
+    as self-reported evidence; projects use public material only.'
+  status: resolved
+  materiality: medium
+  blocking: false
+  blocking_reason: Each is compatible with D-005 and B1 and reversible; the user may
+    reject any of them, which would be a material change to be re-assessed.
+  origin: focused-challenge
+  affected:
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:6
+  owner: human
+  next_action: Show the user; carry into the draft vision unless the user objects.
+    Review at Gate 6 approval at the latest.
+  review_point: Gate 6 approval
+  priority_rationale: Non-blocking; visible for correction.
+  created_at: '2026-09-27T09:00:00Z'
+  updated_at: '2026-09-27T10:00:00Z'
+  resolved_at: '2026-09-27T10:00:00Z'
+  resolution: Accepted by the user's approval of the vision that attributes them (D-006).
+evidence:
+- id: E-001
+  claim: 'The user''s starting point: economist leading a small team giving independent
+    advice to government for five years after a year in consulting; master''s in economics;
+    six months of unstructured AI learning; no business experience.'
+  source_reference: User testimony in the ideation sitting of 2026-09-25 (answer to
+    WI-002)
+  observed_at: '2026-09-25'
+  evidence_type: first-hand testimony
+  provenance: Stated by the user; not independently verified.
+  relevance: Establishes affected party and starting capability in art-problem-model
+    sections 2 and 3.
+  limitations: Self-reported; capability levels are not assessed.
+  relied_on_by:
+  - art-problem-model
+  - gate:3
+- id: E-002
+  claim: The user's current learning is not interactive, not responsive to advances
+    in their fields, and not tailored to their strengths and weaknesses as a learner;
+    six months of AI learning have been unstructured.
+  source_reference: User testimony in the ideation sitting of 2026-09-25 (answers
+    to WI-003 and WI-002)
+  observed_at: '2026-09-25'
+  evidence_type: first-hand testimony
+  provenance: Stated by the user about their own experience.
+  relevance: Direct symptoms behind mechanisms M1 to M4 and the inadequacy summary
+    in art-problem-model.
+  limitations: One learner's experience; the causal mechanisms beyond the symptoms
+    are agent inference and general knowledge, not researched here.
+  relied_on_by:
+  - art-problem-model
+  - gate:3
+gate_evaluations:
+- id: G1-E1
+  gate_id: 1
+  gate_name: Intent Captured
+  gate_class: hard
+  evaluated_at: '2026-09-23T22:50:00Z'
+  state_revision: 3
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'Core intent is understandable: a permanent, personal, evidence-driven, AI-orchestrated
+    learning system aimed at demonstrable real-world capability.'
+  - 'Desired outcome is clear enough to guide exploration: broad ambitions become
+    demonstrable capability over years, with valuable durable artefacts and strengthened
+    personal judgement.'
+  - 'Relevant people are clear enough for this stage: a single learner (the user);
+    secondary beneficiaries are only implied.'
+  - No unresolved ambiguity leads to a materially different idea. The AI-direction
+    versus user-judgement tension (WI-004) is a solution-space dimension under a text-supported
+    working reading (A-001).
+  - Remaining material uncertainty is visible in WI-002 to WI-007 and A-001 to A-003
+    rather than assumed away.
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  human_judgement_required: null
+  human_decision_ids: []
+  rationale: The seed is explicit and internally coherent about what should exist,
+    why, for whom and within which boundaries (B1 to B6). GATES.md lets Gate 1 pass
+    without explicit confirmation when intent is already explicit and materially unambiguous.
+    The open items concern concrete goals, purpose, constraints, operating model and
+    a value risk. None changes the core problem, desired outcome, beneficiary or direction
+    of the next exploration. This sitting had no live clarification from the user,
+    so the outcome rests only on PROJECT.md. A correction to the intent model at the
+    next sitting is a material change and requires re-evaluation.
+  source_inputs:
+    seed: projects/permanent-learning-system/PROJECT.md
+    seed_sha256: eba1d67fa45f50f8318e649d248a983db7f5d1747f9dc512cb0a6af261d8b7fc
+    intent_model_sha256: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  dependencies:
+  - art-intent-model
+  - A-001
+  - A-002
+  - A-003
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+- id: G2-E1
+  gate_id: 2
+  gate_name: Ambition Explored
+  gate_class: advisory
+  evaluated_at: '2026-09-25T08:35:00Z'
+  state_revision: 13
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - The initial framing (one learner; capability as the end; projects as means and
+    evidence) was challenged across five dimensions rather than restated.
+  - 'Materially broader possibilities were surfaced: other learners or productisation
+    (AM-1), real-world results as a goal (AM-2), learning in public (AM-6) and a third-party
+    credential service (AM-7).'
+  - Exploration covered beneficiaries, outcomes, scope, durability and leverage, and
+    second-order effects, not feature expansion.
+  - 'Every ambition has a disposition: carried AM-3, AM-4, AM-5, AM-10 (A-004); deferred
+    AM-1 (WI-009) and AM-6 (WI-010); rejected AM-7; AM-2 rejected by the user in D-003.'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-009
+  - WI-010
+  - A-004
+  - WI-003
+  human_judgement_required: The only consequential expansion (AM-2, WI-008) was escalated
+    and decided.
+  human_decision_ids:
+  - D-003
+  rationale: 'The opportunity space is explored well enough for problem modelling.
+    The consequential expansion was put to the user, who kept capability as the goal
+    against the agent''s recommendation after hearing the trade-off; the scope stays
+    as confirmed at Gate 1. What remains is non-blocking uncertainty about eventual
+    scale and openness: whether the system ever serves others (deferred with a trigger),
+    how openly to learn (tied to WI-005 at Gate 3), the agent''s compatibility judgement
+    on carried ambitions (A-004, user may reclassify), and what the capability is
+    ultimately for (WI-003, Gate 3). None requires downstream work to invent consequential
+    intent. G1-E1 is unaffected: D-003 confirms the intent reading it relied on.'
+  source_inputs:
+    ambition_map: projects/permanent-learning-system/ideation/ambition-map.md
+    ambition_map_sha256: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+  dependencies:
+  - art-ambition-map
+  - art-intent-model
+  - G1-E1
+  - D-002
+  - D-003
+  - A-002
+  - A-004
+  - WI-008
+  - WI-009
+  - WI-010
+  - WI-003
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+  input_revalidations:
+  - input: art-ambition-map
+    previous_sha256: 98ccccfd5c6d8e09885e66814a0241351f12732c0933aa1c206bd06ebcc63b9d
+    current_sha256: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
+    assessed_at: '2026-09-25T08:55:00Z'
+    material: false
+    assessment: The only change records AM-2 as rejected by the user under D-003.
+      G2-E1 already lists D-003 as a dependency and classified AM-2 as rejected in
+      its rationale, so no pass criterion, uncertainty or outcome is affected. G2-E1
+      remains current. A-004 concerns other ambitions and is unaffected.
+  - input: art-ambition-map
+    previous_sha256: b8262d1f4d431386324b3889672a58767ea50650f22fcbf98690989c029ef013
+    current_sha256: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
+    assessed_at: '2026-09-25T23:05:00Z'
+    material: false
+    assessment: The only change records AM-6 as resolved by the user (private by default,
+      WI-010) after its reactivation trigger WI-005 was answered. G2-E1 listed WI-010
+      as a non-blocking uncertainty; resolving it within the confirmed scope does
+      not affect any pass criterion or the outcome. G2-E1 remains current.
+- id: G3-E1
+  gate_id: 3
+  gate_name: Problem Understood
+  gate_class: hard
+  evaluated_at: '2026-09-25T23:30:00Z'
+  state_revision: 20
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'The problem is explained independently of any solution: turning about seven fragmented
+    hours a week, over years, into demonstrable, current, integrated capability at
+    the intersection of economics, AI systems and policy advisory business, without
+    losing ownership of one''s own thinking (art-problem-model section 1). No section
+    assumes a system is the answer.'
+  - 'Affected people and impact are clear: the user as sole learner with a stated
+    starting point and targets (E-001); indirect effects on team, government clients
+    and future policy clients; people as private sources of challenge (AM-5, C4).'
+  - 'Causal mechanisms are understood well enough to guide alternatives: M1 to M10
+    cover practice and feedback, the missing learner model, stale material, unstructured
+    self-direction, separation from real use, fragmented time, decay, AI hollowing
+    out capability, sustaining effort and meta-work; plus the two-halves observation
+    (work supports economics and advice but not AI practice).'
+  - 'Current approaches are understood: courses, unstructured AI chat, formal study,
+    learning on the job, mentors, spaced-repetition and note tools, and commercial
+    AI tutors, each with its specific inadequacy.'
+  - Inadequacy of the current state is explicit (section 6), grounded in the user's
+    three stated failures (E-002).
+  - 'Important assumptions are visible and labelled: A-003 (with the reputation challenge),
+    A-005, validated A-006 and A-007; every proposition carries a stated, inference,
+    general-knowledge or assumption label.'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-006
+  - WI-013
+  - WI-014
+  - A-003
+  - A-004
+  - A-005
+  human_judgement_required: null
+  human_decision_ids: []
+  rationale: 'The diagnosis rests on the user''s own statements for its core (purpose,
+    starting point, targets, constraints, failures of current learning, work as a
+    venue, the business being policy advice) and on labelled inference and general
+    learning-science knowledge for mechanisms, none of it researched in this project.
+    Those hypotheses are explicit, and being wrong on any of them would change emphasis
+    among alternatives rather than make exploration unsafe or misleading, which GATES.md
+    permits under PASS_WITH_UNCERTAINTY. No material ambiguity about which problem
+    is worth solving or for whom remains: the user answered every question asked,
+    and the problem statement follows from their stated targets within D-001 to D-003.
+    The user raised no corrections to the model; that is not treated as approval,
+    and none is required at this gate. Carried non-blocking uncertainty: meta-work
+    and permanence (WI-006, for the Gate 4 comparison and pre-Gate-5 challenge); privacy
+    versus cost (WI-013, a trade-off for Gates 4 and 5); existing commercial tools
+    not researched (WI-014, may matter if adopting an existing tool is a credible
+    alternative); reputation versus capability-only success (A-003); the agent''s
+    compatibility judgement on carried ambitions (A-004); and use of commute time
+    (A-005). G1-E1 and G2-E1 are unaffected: this sitting''s answers resolved uncertainties
+    they listed without changing the intent or ambition dispositions they relied on.'
+  source_inputs:
+    problem_model: projects/permanent-learning-system/ideation/problem-model.md
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+    ambition_map_sha256: ad5770695a8aeae7a19c456df2917b9804d3502e056ee2749618c9c7657a33fe
+    intent_model_sha256: d417dfdfcf1612afc2f23fc7be623d2a0d47c3778a8ce263847a596be610fdd5
+  dependencies:
+  - art-problem-model
+  - art-intent-model
+  - art-ambition-map
+  - G1-E1
+  - G2-E1
+  - D-001
+  - D-002
+  - D-003
+  - A-003
+  - A-004
+  - A-005
+  - A-006
+  - A-007
+  - E-001
+  - E-002
+  - WI-002
+  - WI-003
+  - WI-005
+  - WI-006
+  - WI-010
+  - WI-011
+  - WI-012
+  - WI-013
+  - WI-014
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+- id: G4-E1
+  gate_id: 4
+  gate_name: Alternatives Explored
+  gate_class: advisory
+  evaluated_at: '2026-09-26T06:55:00Z'
+  state_revision: 26
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'The solution space contains materially different approaches, not variants: Directions
+    A to E differ in primary learning mechanism (designed tutoring, integrating projects,
+    assembled products, human judgement, split venues), in venue of consequential
+    practice and in source of capability evidence (art-alternatives sections 2 and
+    3).'
+  - 'Important plausible regions are explored without a fixed count: three further
+    dimensions (learner-model location, build extent, cadence) are set out as cross-cutting
+    axes rather than multiplied into cosmetic variants, and five further regions (formal
+    study, learning in public, productisation, results as goal, AI does the work)
+    are recorded with reasons for not developing them (art-alternatives sections 4
+    and 5).'
+  - 'Credible alternatives are compared on consequential trade-offs: 13 criteria drawn
+    from M1 to M10, C1 to C7, AM-3/4/5/10, A-003 and reversibility, with four dominant
+    trade-offs and disconfirming conditions made explicit, and evidence-backed versus
+    assumption-driven judgements separated (art-direction-comparison sections 1 to
+    3).'
+  - 'The basis for later convergence is visible: a recommendation with reasons why
+    each credible alternative is weaker as the main direction, its own honest cost,
+    and the smallest remaining human decisions (art-direction-comparison sections
+    4 and 5; WI-015).'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - WI-014
+  - A-008
+  - A-009
+  - A-005
+  - A-003
+  - WI-006
+  - WI-013
+  human_judgement_required: Not for this gate. Convergence (Gate 5) requires the user
+    to choose a direction and accept a privacy position; this is recorded as escalation
+    WI-015 and is not decided here.
+  human_decision_ids: []
+  rationale: 'Gate 4 is advisory and concerns breadth and comparison; both are met.
+    The directions are genuinely distinct in mechanism and evidence source, and every
+    plausible region is either developed, folded into a cross-cutting axis, or set
+    aside with a reason tied to a user decision or constraint. All ratings are agent
+    inference from the problem model and general knowledge; no research was done.
+    Non-blocking uncertainty affects relative strength, not the breadth of the set:
+    WI-014 (existing products untested, could strengthen Direction C; research becomes
+    blocking only if the user leans toward C), A-008 (record-plus-session tutoring
+    untested), A-009 (availability of credible people), A-005 (commute and weekend
+    fit), A-003 (reputation), WI-006 (meta-work, main risk of the recommended hybrid)
+    and WI-013 (privacy position, coupled to WI-015). The remaining choice between
+    viable directions is a Gate 5 matter reserved to the user, so it is escalated
+    as WI-015 rather than resolved or used to fail this gate. The user has not yet
+    reviewed the alternatives; that is not treated as approval, and none is required
+    at this gate. G1-E1 to G3-E1 are unaffected: no intent, ambition or problem conclusion
+    changed.'
+  source_inputs:
+    alternatives: projects/permanent-learning-system/ideation/alternatives.md
+    alternatives_sha256: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+    direction_comparison: projects/permanent-learning-system/ideation/direction-comparison.md
+    direction_comparison_sha256: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+  dependencies:
+  - art-alternatives
+  - art-direction-comparison
+  - art-problem-model
+  - art-ambition-map
+  - art-intent-model
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - D-001
+  - D-002
+  - D-003
+  - A-003
+  - A-004
+  - A-005
+  - A-006
+  - A-007
+  - A-008
+  - A-009
+  - WI-006
+  - WI-013
+  - WI-014
+  - WI-015
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+- id: G5-E1
+  gate_id: 5
+  gate_name: Ready for Synthesis
+  gate_class: hard
+  evaluated_at: '2026-09-27T09:10:00Z'
+  state_revision: 38
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'A coherent broad direction is explicit: D-005 (project-led learning on an AI-maintained,
+    user-owned capability graph with evidence; the AI chooses what to build, maintain
+    or test; evidence from AI and self-assessment) with D-004 (P2), within D-001 to
+    D-003.'
+  - 'Consequential trade-offs are resolved or consciously accepted: privacy versus
+    cost accepted as P2 (D-004); AI-only evidence and its weakness on credibility
+    with people accepted in D-005 after the agent put the trade-off; meta-work addressed
+    by the AI keeping the graph and by the learning-before-system principle (art-focused-challenge
+    F3).'
+  - 'No blocking uncertainty remains: the focused challenge found six findings, none
+    blocking, and no unresolved contradiction (art-focused-challenge sections 1 and
+    2).'
+  - 'Earlier required gates have no unresolved blocking deficiency: G1-E1 to G4-E1
+    are current; none depends on a changed conclusion (D-004 and D-005 resolve items
+    those gates listed as open).'
+  - 'There is enough material for every section of VISION_CONTRACT.md without inventing
+    consequential content: statement and desired change (intent model, problem model
+    sections 1 and 9); problem (problem model sections 1 to 6); people (problem model
+    section 2); direction and rationale (D-005, art-direction-comparison, art-focused-challenge
+    section 3); principles (B1 to B6, C1 to C7, focused-challenge responses); boundaries
+    (D-003, WI-009, AM-7, C4, F6); critical assumptions (A-003, A-005, A-008, A-010);
+    success (problem model section 9); non-blocking questions (WI-006, WI-014, WI-016,
+    WI-009).'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-016
+  - WI-009
+  human_judgement_required: null
+  human_decision_ids:
+  - D-004
+  - D-005
+  rationale: 'The direction was chosen by the user and challenged before this gate
+    as WORKFLOW.md requires. The strongest objection (the AI marking work it helped
+    create) has responses within D-005: a separate examiner (A-010), evidence of unaided
+    reasoning, and world-checkable evidence. The residual risk of blind spots shared
+    across models is explicit. The second-strongest (no human evidence of credibility)
+    is a trade-off the user accepted knowingly, so it is recorded as accepted, not
+    as a deficiency; the vision must state that the system evidences capability, not
+    reputation. Remaining uncertainty is non-blocking: untested record-based tutoring
+    (A-008) and examiner separation (A-010), fit with fragmented time (A-005), reputation
+    (A-003), meta-work in practice (WI-006), existing tools as components (WI-014),
+    agent-proposed evidence principles the user may reject (WI-016), and deferred
+    multi-learner scope (WI-009). None requires synthesis to invent consequential
+    intent. The evidence principles in WI-016 are the agent''s proposals; they will
+    be marked as such in the draft and the user can correct them before approval.'
+  source_inputs:
+    focused_challenge: projects/permanent-learning-system/ideation/focused-challenge.md
+    focused_challenge_sha256: 0801e8483761d31f8c31914a2ad622b8b96eae70c3cf023ce058118a73fbeeda
+    direction_comparison_sha256: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+    alternatives_sha256: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+  dependencies:
+  - art-focused-challenge
+  - art-direction-comparison
+  - art-alternatives
+  - art-problem-model
+  - art-intent-model
+  - art-ambition-map
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - G4-E1
+  - D-001
+  - D-002
+  - D-003
+  - D-004
+  - D-005
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-009
+  - WI-014
+  - WI-016
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
+- id: G6-E1
+  gate_id: 6
+  gate_name: Vision Approved
+  gate_class: hard
+  evaluated_at: '2026-09-27T10:00:00Z'
+  state_revision: 46
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - The candidate vision satisfies VISION_CONTRACT.md (validate-vision, tx-2026-09-27-45).
+  - No blocking unresolved question remains in the vision (section 10).
+  - G1-E1 to G5-E1 are current with no unresolved blocking deficiency.
+  - The user explicitly approved the candidate text by passkey signature (D-006),
+    bound to its vision_fingerprint.
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-009
+  human_judgement_required: Explicit approval of the candidate vision.
+  human_decision_ids:
+  - D-006
+  rationale: Artifact and process-assurance checks pass, and the user approved the
+    exact candidate text with its non-blocking uncertainties visible in sections 8
+    and 10, which the vision contract permits.
+  source_inputs:
+    vision: projects/permanent-learning-system/ideation/vision.md
+    vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+    candidate_commit: 72a551f239fe1174e29f06f614abd016b3bba360
+  dependencies:
+  - art-vision
+  - D-006
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - G4-E1
+  - G5-E1
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
-  outcome: null
-  checks: []
-  authorized_by_decision_id: null
-history: []
+  outcome: approved
+  checks:
+  - condition: 'vision.md exists with status: approved'
+    passed: true
+  - condition: vision satisfies VISION_CONTRACT.md (validated in tx-2026-09-27-45;
+      text unchanged since, fingerprint 343aa725...ef71e)
+    passed: true
+  - condition: all six gate evaluations G1-E1 to G6-E1 are current and passing
+    passed: true
+  - condition: Gate 6 records explicit human approval D-006 (passkey auth-D-006-vision-approval)
+      bound to the vision fingerprint
+    passed: true
+  - condition: no unresolved blocking work item, invalidated required gate or open
+      escalation (WI-008 and WI-015 resolved)
+    passed: true
+  - condition: remaining uncertainty is explicit and non-blocking (vision sections
+      8 and 10; WI-006, WI-014 open; WI-009 deferred)
+    passed: true
+  - condition: mandatory finalization recorded in project state (this transaction)
+    passed: true
+  - condition: approved vision declared the authoritative handoff to product design
+    passed: true
+  authorized_by_decision_id: D-006
+  authoritative_handoff: projects/permanent-learning-system/ideation/vision.md
+  vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+  finalized_at: '2026-09-27T10:30:00Z'
+  carried_forward:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-009
+history:
+- event_id: evt:tx-2026-09-23-01-route-intent
+  timestamp: '2026-09-23T22:14:07.157875Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-001
+  summary: Route new run to intent capture (focus WI-001)
+  resulting_revision: 2
+  transaction_id: tx-2026-09-23-01-route-intent
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-02-clarify-intent
+  timestamp: '2026-09-23T22:14:55.304655Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-002
+  - WI-003
+  - WI-004
+  - WI-005
+  - WI-006
+  - WI-007
+  - A-001
+  - A-002
+  - A-003
+  - WI-001
+  summary: Record intent model, three provisional assumptions and six non-blocking
+    open items
+  resulting_revision: 3
+  transaction_id: tx-2026-09-23-02-clarify-intent
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-03-gate1
+  timestamp: '2026-09-23T22:15:17.104863Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G1-E1
+  summary: 'Gate 1 Intent Captured: PASS_WITH_UNCERTAINTY (G1-E1)'
+  resulting_revision: 4
+  transaction_id: tx-2026-09-23-03-gate1
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-04-route-ambition
+  timestamp: '2026-09-23T22:15:35.094849Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to ambition expansion (Gate 2); not started this sitting
+  resulting_revision: 5
+  transaction_id: tx-2026-09-23-04-route-ambition
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-23-05-checkpoint
+  timestamp: '2026-09-23T22:15:35.500224Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 1 evaluation
+  resulting_revision: 6
+  transaction_id: tx-2026-09-23-05-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-24-06-decision-ai-direction
+  timestamp: '2026-09-24T07:23:35.612650Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-001
+  - A-001
+  - WI-004
+  summary: 'Record human decision D-001: AI decides what to work on next; A-001 validated;
+    WI-004 resolved. G1-E1 is unaffected because the decision confirms the reading
+    it relied on.'
+  resulting_revision: 7
+  transaction_id: tx-2026-09-24-06-decision-ai-direction
+  authorization_id: auth-D-001-ai-direction
+  authorization_ids:
+  - auth-D-001-ai-direction
+- event_id: evt:tx-2026-09-24-07-checkpoint
+  timestamp: '2026-09-24T07:23:45.748681Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-001
+  resulting_revision: 8
+  transaction_id: tx-2026-09-24-07-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-24-08-decision-build-as-learning
+  timestamp: '2026-09-24T07:54:29.018881Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-002
+  - WI-007
+  summary: 'Record human decision D-002: learn while building the system, but not
+    structured as one of its own learning projects; WI-007 resolved.'
+  resulting_revision: 9
+  transaction_id: tx-2026-09-24-08-decision-build-as-learning
+  authorization_id: auth-D-002-build-as-learning
+  authorization_ids:
+  - auth-D-002-build-as-learning
+- event_id: evt:tx-2026-09-24-09-checkpoint
+  timestamp: '2026-09-24T07:54:29.508054Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-002
+  resulting_revision: 10
+  transaction_id: tx-2026-09-24-09-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-10-resume-route-ambition
+  timestamp: '2026-09-25T07:52:56.220704Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session; revalidate routing focus to ambition expansion (Gate 2)
+  resulting_revision: 11
+  transaction_id: tx-2026-09-25-10-resume-route-ambition
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-11-expand-ambition
+  timestamp: '2026-09-25T07:56:07.425242Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-004
+  - WI-008
+  - WI-009
+  - WI-010
+  summary: 'Record ambition map: carry AM-3/4/5/10 (A-004), defer AM-1 (WI-009) and
+    AM-6 (WI-010), reject AM-7, escalate AM-2 (WI-008)'
+  resulting_revision: 12
+  transaction_id: tx-2026-09-25-11-expand-ambition
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-12-decision-capability-goal
+  timestamp: '2026-09-25T08:04:09.529508Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-003
+  - WI-008
+  summary: 'Record human decision D-003: capability remains the goal (AM-2 option
+    A); WI-008 resolved.'
+  resulting_revision: 13
+  transaction_id: tx-2026-09-25-12-decision-capability-goal
+  authorization_id: auth-D-003-capability-goal
+  authorization_ids:
+  - auth-D-003-capability-goal
+- event_id: evt:tx-2026-09-25-13-gate2
+  timestamp: '2026-09-25T08:04:38.181299Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G2-E1
+  summary: 'Gate 2 Ambition Explored: PASS_WITH_UNCERTAINTY (G2-E1)'
+  resulting_revision: 14
+  transaction_id: tx-2026-09-25-13-gate2
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-14-route-problem
+  timestamp: '2026-09-25T08:04:59.670756Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to problem modelling (Gate 3); not started this sitting
+  resulting_revision: 15
+  transaction_id: tx-2026-09-25-14-route-problem
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-15-checkpoint
+  timestamp: '2026-09-25T08:05:01.691203Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 2 evaluation
+  resulting_revision: 16
+  transaction_id: tx-2026-09-25-15-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-16-ambition-map-am2
+  timestamp: '2026-09-25T08:17:28.686424Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - G2-E1
+  summary: Update ambition map to show AM-2 rejected by the user (D-003); change assessed
+    as non-material to G2-E1
+  resulting_revision: 17
+  transaction_id: tx-2026-09-25-16-ambition-map-am2
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-17-resume-route-problem
+  timestamp: '2026-09-25T22:21:56.235427Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session; revalidate routing focus to problem modelling (Gate 3)
+  resulting_revision: 18
+  transaction_id: tx-2026-09-25-17-resume-route-problem
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-18-model-problem
+  timestamp: '2026-09-25T22:49:25.687801Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-003
+  - WI-005
+  - WI-010
+  - WI-002
+  - WI-006
+  - WI-011
+  - WI-012
+  - WI-013
+  - A-003
+  - A-005
+  - A-006
+  - A-007
+  - E-001
+  - E-002
+  - G2-E1
+  summary: Record problem model; resolve WI-002, WI-003, WI-005 and WI-010 from user
+    statements; add A-005 to A-007, WI-011 to WI-013, E-001 and E-002; update ambition
+    map for AM-6 (non-material to G2-E1)
+  resulting_revision: 19
+  transaction_id: tx-2026-09-25-18-model-problem
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-19-problem-model-review
+  timestamp: '2026-09-25T22:55:43.155896Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-011
+  - WI-012
+  - A-006
+  - A-007
+  summary: 'Update problem model with the user''s review: resolve WI-011 and WI-012;
+    validate A-006 and A-007 from user statements'
+  resulting_revision: 20
+  transaction_id: tx-2026-09-25-19-problem-model-review
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-20-gate3
+  timestamp: '2026-09-25T22:56:17.175508Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-014
+  - G3-E1
+  summary: 'Gate 3 Problem Understood: PASS_WITH_UNCERTAINTY (G3-E1)'
+  resulting_revision: 21
+  transaction_id: tx-2026-09-25-20-gate3
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-21-route-alternatives
+  timestamp: '2026-09-25T22:56:35.465324Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to alternatives (Gate 4); not started this sitting
+  resulting_revision: 22
+  transaction_id: tx-2026-09-25-21-route-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-25-22-checkpoint
+  timestamp: '2026-09-25T22:56:35.849564Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 3 evaluation
+  resulting_revision: 23
+  transaction_id: tx-2026-09-25-22-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-24-resume-route-alternatives
+  timestamp: '2026-09-26T12:36:18.251752Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session; revalidate routing focus to alternatives (Gate 4)
+  resulting_revision: 24
+  transaction_id: tx-2026-09-26-24-resume-route-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-25-generate-alternatives
+  timestamp: '2026-09-26T12:38:01.473222Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-008
+  - A-009
+  - WI-013
+  - WI-014
+  summary: Record alternative set (Directions A to E, three cross-cutting axes); add
+    A-008 and A-009; update WI-013 and WI-014
+  resulting_revision: 25
+  transaction_id: tx-2026-09-26-25-generate-alternatives
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-26-compare-directions
+  timestamp: '2026-09-26T12:39:09.679867Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - WI-015
+  - WI-013
+  - WI-006
+  summary: Record direction comparison and recommendation (hybrid B+A+D at P2, light
+    build); open escalation WI-015 for the direction and privacy choice at convergence
+  resulting_revision: 26
+  transaction_id: tx-2026-09-26-26-compare-directions
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-27-gate4
+  timestamp: '2026-09-26T12:39:33.194930Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G4-E1
+  summary: 'Gate 4 Alternatives Explored: PASS_WITH_UNCERTAINTY (G4-E1)'
+  resulting_revision: 27
+  transaction_id: tx-2026-09-26-27-gate4
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-28-route-convergence
+  timestamp: '2026-09-26T12:39:48.096198Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to convergence decision WI-015 (awaiting the user); Gate
+    5 work not started this sitting
+  resulting_revision: 28
+  transaction_id: tx-2026-09-26-28-route-convergence
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-26-29-checkpoint
+  timestamp: '2026-09-26T12:39:48.555093Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 4 evaluation
+  resulting_revision: 29
+  transaction_id: tx-2026-09-26-29-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-30-resume-wi015
+  timestamp: '2026-09-27T08:46:20.190995Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session on the user's reply to WI-015
+  resulting_revision: 30
+  transaction_id: tx-2026-09-27-30-resume-wi015
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-32-checkpoint-await-approval
+  timestamp: '2026-09-27T08:46:54.800307Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session awaiting passkey approval of D-004 and the rest of WI-015
+  resulting_revision: 31
+  transaction_id: tx-2026-09-27-32-checkpoint-await-approval
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-31-decision-privacy-p2
+  timestamp: '2026-09-27T08:50:56.421950Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-004
+  - WI-013
+  - WI-015
+  summary: 'Record human decision D-004: privacy position P2 (user-held record, cloud
+    AI per session); resolve WI-013; record the user''s capability-graph statement
+    on WI-015'
+  resulting_revision: 32
+  transaction_id: tx-2026-09-27-31-decision-privacy-p2
+  authorization_id: auth-D-004-privacy-p2
+  authorization_ids:
+  - auth-D-004-privacy-p2
+- event_id: evt:tx-2026-09-27-33-checkpoint-after-d004
+  timestamp: '2026-09-27T08:51:07.100520Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-004; direction part of WI-015 still
+    open
+  resulting_revision: 33
+  transaction_id: tx-2026-09-27-33-checkpoint-after-d004
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-34-decision-direction
+  timestamp: '2026-09-27T08:55:18.408528Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-005
+  - WI-015
+  - A-010
+  summary: 'Record human decision D-005: project-led direction on an AI-maintained
+    capability graph, with AI and self-assessment as evidence; resolve WI-015; add
+    A-010 (model separation as evidence guard)'
+  resulting_revision: 34
+  transaction_id: tx-2026-09-27-34-decision-direction
+  authorization_id: auth-D-005-direction
+  authorization_ids:
+  - auth-D-005-direction
+- event_id: evt:tx-2026-09-27-35-route-focused-challenge
+  timestamp: '2026-09-27T08:55:33.483396Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to the pre-Gate-5 focused challenge of D-005; not started
+    pending the user's go-ahead
+  resulting_revision: 35
+  transaction_id: tx-2026-09-27-35-route-focused-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-36-checkpoint
+  timestamp: '2026-09-27T08:55:33.989009Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-005
+  resulting_revision: 36
+  transaction_id: tx-2026-09-27-36-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-37-resume-challenge
+  timestamp: '2026-09-27T09:05:51.908540Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session on the user's go-ahead for the focused challenge
+  resulting_revision: 37
+  transaction_id: tx-2026-09-27-37-resume-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-38-focused-challenge
+  timestamp: '2026-09-27T09:06:39.615035Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-010
+  - A-003
+  - WI-006
+  - WI-016
+  summary: Record pre-Gate-5 focused challenge of D-005 (six findings, none blocking);
+    update A-003, A-010 and WI-006; add WI-016
+  resulting_revision: 38
+  transaction_id: tx-2026-09-27-38-focused-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-39-gate5
+  timestamp: '2026-09-27T09:07:09.119756Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G5-E1
+  summary: 'Gate 5 Ready for Synthesis: PASS_WITH_UNCERTAINTY (G5-E1)'
+  resulting_revision: 39
+  transaction_id: tx-2026-09-27-39-gate5
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-40-route-synthesis
+  timestamp: '2026-09-27T09:07:09.746433Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to vision synthesis; not started this sitting
+  resulting_revision: 40
+  transaction_id: tx-2026-09-27-40-route-synthesis
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-41-checkpoint
+  timestamp: '2026-09-27T09:07:10.283690Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after Gate 5 evaluation
+  resulting_revision: 41
+  transaction_id: tx-2026-09-27-41-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-42-resume-synthesis
+  timestamp: '2026-09-27T09:10:07.911166Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session on the user's go-ahead for vision synthesis
+  resulting_revision: 42
+  transaction_id: tx-2026-09-27-42-resume-synthesis
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-43-synthesize-vision
+  timestamp: '2026-09-27T09:10:57.305178Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Synthesize vision.md as draft 0.1 from D-001 to D-005 and art-* sources
+  resulting_revision: 43
+  transaction_id: tx-2026-09-27-43-synthesize-vision
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-44-vision-drafting-fix
+  timestamp: '2026-09-27T09:11:15.545166Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: 'Repair drafting defect found in validation: attribute all agent-proposed
+    principles and boundaries accurately'
+  resulting_revision: 44
+  transaction_id: tx-2026-09-27-44-vision-drafting-fix
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-45-validate-vision-candidate
+  timestamp: '2026-09-27T09:11:28.375686Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: 'Validate vision.md against VISION_CONTRACT.md: all sections and quality
+    conditions pass; status draft to candidate'
+  resulting_revision: 45
+  transaction_id: tx-2026-09-27-45-validate-vision-candidate
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-47-checkpoint-await-gate6
+  timestamp: '2026-09-27T09:12:01.091179Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session awaiting Gate 6 passkey approval of candidate vision
+    0.1
+  resulting_revision: 46
+  transaction_id: tx-2026-09-27-47-checkpoint-await-gate6
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-46-gate6-approval
+  timestamp: '2026-09-27T11:44:16.233333Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-006
+  - G6-E1
+  - WI-016
+  summary: 'Record human decision D-006 approving candidate vision 0.1; Gate 6 Vision
+    Approved: PASS_WITH_UNCERTAINTY (G6-E1); resolve WI-016'
+  resulting_revision: 47
+  transaction_id: tx-2026-09-27-46-gate6-approval
+  authorization_id: auth-D-006-vision-approval
+  authorization_ids:
+  - auth-D-006-vision-approval
+- event_id: evt:tx-2026-09-27-48-finalize-approved
+  timestamp: '2026-09-27T11:44:40.278948Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: 'Finalize approved handoff: vision.md status candidate to approved; workflow
+    approved'
+  resulting_revision: 48
+  transaction_id: tx-2026-09-27-48-finalize-approved
+  authorization_id: null
+  authorization_ids: []
