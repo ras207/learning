@@ -75,7 +75,7 @@ The agent had recommended adding periodic human judgement as evidence. The user 
 5. **The record is the user's and outlives every tool.** It is portable, private by default, and independent of any single AI provider or product. Sharing is chosen case by case.
 6. **Choose what to learn with the frontier in view.** What is worth a human learning is reassessed as AI capability and the user's fields move, without chasing trends.
 
-Principles 1 (the unaided-reasoning test) and 2 were proposed by the agent during the pre-synthesis challenge, within the user's decisions (WI-016). They are the user's to keep or reject when approving this vision.
+The unaided-reasoning test in principle 1, and principles 2, 3 and 4, were proposed by the agent during the pre-synthesis challenge, within the user's decisions (WI-016 and the focused challenge). So were the boundaries on work material and day-job notes in section 7. They are the user's to keep or reject when approving this vision.
 
 ## 7. Boundaries and non-goals
 
@@ -103,7 +103,7 @@ Principles 1 (the unaided-reasoning test) and 2 were proposed by the agent durin
 **Outcome success**
 
 - **Within about a year.** The user runs agentic workflows they built and can explain them, applies refreshed econometrics to real questions, and can reason about software quality. Each of these is evidenced in the graph by unaided demonstration.
-- **Within about three years.** The user builds and validates AI-assisted economic analysis and can defend its robustness under hostile questioning. The private body of work shows this.
+- **Within about three years.** The user builds and validates AI-assisted economic analysis and can defend its robustness under searching questioning. The private body of work shows this.
 - **Throughout.** The user's own reasoning improves, not just their output. Capabilities stay current and do not quietly decay. Effort is sustained on about seven hours a week without the system itself becoming the hobby.
 
 **Essential capability success**
