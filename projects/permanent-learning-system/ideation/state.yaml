@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 34
+  revision: 35
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:55:18.408528Z'
+  updated_at: '2026-09-27T08:55:33.483396Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -25,19 +25,21 @@ session:
     not approval.'
   pending_interaction_id: WI-015
 routing:
-  saved_focus_id: WI-015
-  selection_rationale: 'G1-E1 to G4-E1 are current and passing. The only blocking
-    item is escalation WI-015: the user must choose a broad direction and accept a
-    privacy position before convergence and the focused challenge can proceed.'
-  dependency_priority: WI-015 precedes the pre-Gate-5 focused challenge and Gate 5;
-    WI-013 is coupled to it. WI-014 becomes blocking only if the user leans toward
-    Direction C.
-  expected_decision_value: 'Highest: every later gate depends on the chosen direction.'
-  next_intervention: 'At the next sitting: re-orient; if the user has answered WI-015,
-    prepare the decision transaction and request passkey approval; then run the focused
-    challenge toward Gate 5. Not started this sitting by the sitting scope.'
-  action_owner: human
-  selected_at: '2026-09-26T07:00:00Z'
+  saved_focus_id: gate:5
+  selection_rationale: G1-E1 to G4-E1 are current; WI-015 is resolved by D-004 and
+    D-005; no blocking item or open escalation remains. The next planned step is the
+    focused challenge of the chosen direction before Gate 5.
+  dependency_priority: 'The focused challenge precedes Gate 5. Items to test: A-010
+    (model separation), A-003 (reputation without human evidence), A-008, A-005, WI-006
+    (meta-work), WI-014 (non-blocking now that C was not chosen), day-job self-reports
+    as evidence.'
+  expected_decision_value: 'High: tests whether the chosen direction holds before
+    synthesis.'
+  next_intervention: 'Invoke focused-challenge on D-005 and D-004, then evaluate Gate
+    5. Not started: the scheduled sitting was scoped to one gate; awaiting the user''s
+    go-ahead or the next sitting.'
+  action_owner: agent
+  selected_at: '2026-09-27T08:20:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -1654,3 +1656,14 @@ history:
   authorization_id: auth-D-005-direction
   authorization_ids:
   - auth-D-005-direction
+- event_id: evt:tx-2026-09-27-35-route-focused-challenge
+  timestamp: '2026-09-27T08:55:33.483396Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Route next focus to the pre-Gate-5 focused challenge of D-005; not started
+    pending the user's go-ahead
+  resulting_revision: 35
+  transaction_id: tx-2026-09-27-35-route-focused-challenge
+  authorization_id: null
+  authorization_ids: []
