@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 32
+  revision: 33
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:50:56.421950Z'
+  updated_at: '2026-09-27T08:51:07.100520Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -14,17 +14,15 @@ workflow:
   spine_context: converge_and_challenge
 session:
   status: paused
-  checkpointed_at: '2026-09-27T07:10:00Z'
-  resume_summary: 'The user replied to WI-015 on 2026-09-27: accepted privacy position
-    P2, and said they had envisaged the AI maintaining a graph of their capabilities
-    with a record of evidence, choosing which part of the graph to build on, maintain
-    or test each session. Not yet recorded: D-004 (P2) awaits passkey approval of
-    transaction tx-2026-09-27-31-decision-privacy-p2 (authorization auth-D-004-privacy-p2,
-    action hash 2af078a800e2a66a1acaf9d7912f13fb83120581ef629e3f10bdd0431312a655).
-    If that transaction file is lost with the container, rebuild the change and request
-    a fresh approval rather than guessing. Still open on WI-015: whether build steps
-    are mainly real projects (B) and whether people''s judgement counts as evidence
-    (D). G1-E1 to G4-E1 current. Gate 5 work not started. Silence is not approval.'
+  checkpointed_at: '2026-09-27T07:30:00Z'
+  resume_summary: 'D-004 (privacy position P2) recorded with passkey approval auth-D-004-privacy-p2;
+    WI-013 resolved. G1-E1 to G4-E1 current. Still open on WI-015: the user described
+    an AI-maintained capability graph with evidence, choosing per session what to
+    build, maintain or test; the agent asked whether build steps are mainly real projects
+    (B) and whether people''s judgement counts as evidence (D), recommending yes to
+    both. On the user''s answer: record the direction decision through request-approval
+    and attach-approval, then start the focused challenge toward Gate 5. Silence is
+    not approval.'
   pending_interaction_id: WI-015
 routing:
   saved_focus_id: WI-015
@@ -1574,3 +1572,14 @@ history:
   authorization_id: auth-D-004-privacy-p2
   authorization_ids:
   - auth-D-004-privacy-p2
+- event_id: evt:tx-2026-09-27-33-checkpoint-after-d004
+  timestamp: '2026-09-27T08:51:07.100520Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Checkpoint session after recording D-004; direction part of WI-015 still
+    open
+  resulting_revision: 33
+  transaction_id: tx-2026-09-27-33-checkpoint-after-d004
+  authorization_id: null
+  authorization_ids: []
