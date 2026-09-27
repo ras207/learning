@@ -1,4 +1,4 @@
-status: candidate
+status: approved
 version: 0.1
 
 # Vision: Permanent Learning System

@@ -3,37 +3,32 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 47
+  revision: 48
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T11:44:16.233333Z'
+  updated_at: '2026-09-27T11:44:40.278948Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
-  status: active
-  vision_status: candidate
+  status: approved
+  vision_status: approved
   spine_context: synthesize_and_validate
 session:
   status: paused
-  checkpointed_at: '2026-09-27T10:05:00Z'
-  resume_summary: Candidate vision 0.1 committed at 72a551f (vision_fingerprint 343aa725…ef71e).
-    Gate 6 approval requested for transaction tx-2026-09-27-46-gate6-approval (D-006,
-    G6-E1, resolve WI-016); if that transaction file is lost with the container, rebuild
-    it and request a fresh approval. G1-E1 to G5-E1 current. Silence is not approval.
-  pending_interaction_id: gate:6
+  checkpointed_at: '2026-09-27T10:30:00Z'
+  resume_summary: 'Ideation complete: vision approved (D-006) and finalized on 2026-09-27.
+    The approved vision.md is the authoritative handoff to product design. Non-blocking
+    uncertainties carried forward: A-003, A-005, A-008, A-010, WI-006, WI-014; WI-009
+    deferred.'
+  pending_interaction_id: null
 routing:
-  saved_focus_id: gate:6
-  selection_rationale: Candidate vision 0.1 is committed at 72a551f and validated;
-    G1-E1 to G5-E1 current. Gate 6 needs the user's passkey approval.
+  saved_focus_id: null
+  selection_rationale: Workflow finalized as approved; no further ideation action.
   dependency_priority: Synthesis precedes Gate 6. WI-016 (agent-proposed evidence
     principles) must be visible in the draft for the user to correct.
   expected_decision_value: 'High: produces the candidate the user approves.'
-  next_intervention: 'On the approval code: attach-approval and apply tx-2026-09-27-46-gate6-approval
-    (auth-D-006-vision-approval, action hash fc8f71f75a427864fb2e853f1ba4faec8c517ce17f1dcc78f1aef1bd4e5e4c29,
-    vision_fingerprint 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e),
-    then finalize the approved handoff. If the user requests changes, revise the vision
-    and request a new approval.'
+  next_intervention: None. The approved vision is the handoff to product design.
   action_owner: human
-  selected_at: '2026-09-27T10:05:00Z'
+  selected_at: '2026-09-27T10:30:00Z'
 artifacts:
 - artifact_id: art-intent-model
   role: intent_model
@@ -92,12 +87,12 @@ artifacts:
 - artifact_id: art-vision
   role: vision
   path: projects/permanent-learning-system/ideation/vision.md
-  status: candidate
+  status: approved
   fingerprint:
     algorithm: sha256
-    value: 9ce6247654e0bdd22f22fdf2726b2c5a20f618b733ede98fd6bf921c2f97ba4d
+    value: 2f9fe5c3425de480bb00097299846812dd70b0d70dbe51833ff5ff41e40857b0
   repository_commit: null
-  last_verified_at: '2026-09-27T09:11:28.375686Z'
+  last_verified_at: '2026-09-27T11:44:40.278948Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -1444,9 +1439,40 @@ gate_evaluations:
   invalidated_by_event: null
   superseded_by: null
 finalization:
-  outcome: null
-  checks: []
-  authorized_by_decision_id: null
+  outcome: approved
+  checks:
+  - condition: 'vision.md exists with status: approved'
+    passed: true
+  - condition: vision satisfies VISION_CONTRACT.md (validated in tx-2026-09-27-45;
+      text unchanged since, fingerprint 343aa725...ef71e)
+    passed: true
+  - condition: all six gate evaluations G1-E1 to G6-E1 are current and passing
+    passed: true
+  - condition: Gate 6 records explicit human approval D-006 (passkey auth-D-006-vision-approval)
+      bound to the vision fingerprint
+    passed: true
+  - condition: no unresolved blocking work item, invalidated required gate or open
+      escalation (WI-008 and WI-015 resolved)
+    passed: true
+  - condition: remaining uncertainty is explicit and non-blocking (vision sections
+      8 and 10; WI-006, WI-014 open; WI-009 deferred)
+    passed: true
+  - condition: mandatory finalization recorded in project state (this transaction)
+    passed: true
+  - condition: approved vision declared the authoritative handoff to product design
+    passed: true
+  authorized_by_decision_id: D-006
+  authoritative_handoff: projects/permanent-learning-system/ideation/vision.md
+  vision_fingerprint: 343aa725dd564545c68dec1e29ebe7d094127a4aa589cb63338cf24c980ef71e
+  finalized_at: '2026-09-27T10:30:00Z'
+  carried_forward:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-009
 history:
 - event_id: evt:tx-2026-09-23-01-route-intent
   timestamp: '2026-09-23T22:14:07.157875Z'
@@ -2006,3 +2032,14 @@ history:
   authorization_id: auth-D-006-vision-approval
   authorization_ids:
   - auth-D-006-vision-approval
+- event_id: evt:tx-2026-09-27-48-finalize-approved
+  timestamp: '2026-09-27T11:44:40.278948Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: 'Finalize approved handoff: vision.md status candidate to approved; workflow
+    approved'
+  resulting_revision: 48
+  transaction_id: tx-2026-09-27-48-finalize-approved
+  authorization_id: null
+  authorization_ids: []
