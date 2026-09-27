@@ -119,10 +119,11 @@ The gate may pass when:
 - the core intent is understandable;
 - the desired outcome is sufficiently clear to guide exploration;
 - relevant people or beneficiaries are clear enough for the current stage;
-- no unresolved ambiguity would cause the agent to pursue a materially different interpretation of the idea; and
+- no unresolved ambiguity would cause the agent to pursue a materially different interpretation of the idea;
+- the user has been asked directly what the idea is ultimately for and why now, and has answered or explicitly declined to answer; and
 - material remaining uncertainty is visible rather than silently assumed away.
 
-The agent MAY pass this gate without asking for explicit confirmation when the user's intent is already explicit and materially unambiguous.
+The gate MUST NOT pass on the user's initial statement alone, however clear it appears. A well-written seed is not a substitute for asking about purpose and motivation. Other details MAY be inferred without confirmation when the seed makes them explicit and unambiguous.
 
 ### `PASS_WITH_UNCERTAINTY`
 
@@ -138,7 +139,7 @@ Use when the agent would otherwise need to infer, reinterpret, or choose between
 
 ### Human authority
 
-The user owns consequential intent. Explicit confirmation is required only when the agent would otherwise substitute its judgement for the user's.
+The user owns consequential intent. Purpose and motivation are always asked about, never inferred. For other details, explicit confirmation is required only when the agent would otherwise substitute its judgement for the user's.
 
 ## Gate 2 — Ambition Explored
 
@@ -164,6 +165,7 @@ The evaluator should inspect whether the exploration has systematically consider
 The gate may pass when:
 
 - the initial framing has been challenged rather than merely restated;
+- the user's own ambition has been asked about and pushed on in conversation, not only the agent's exploration presented for reaction;
 - materially broader possibilities have been surfaced where plausible;
 - the exploration has considered multiple dimensions of ambition rather than only feature expansion; and
 - the ambitions worth carrying forward are distinguishable from those that should be rejected or deferred.

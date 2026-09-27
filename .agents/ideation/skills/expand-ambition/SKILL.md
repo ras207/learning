@@ -37,7 +37,9 @@ The current intent must be clear enough that expansion will not silently change 
 
 ## Method
 
-Explore distinct dimensions where plausible: other users or beneficiaries, more valuable outcomes, different scope, leverage or generality, second-order effects, and more ambitious future states. Separate compatible extensions from material reframings. Recommend which ambitions to carry forward, reject, or defer and explain why.
+Start with the user, not the map. Before drafting, ask open questions that draw out the user's own ambition: the biggest version of the idea they have imagined, what they would attempt if a key constraint were removed, and what they have ruled out and why. Push back once on any answer that stays close to the first framing or rules something out without a reason. Build the map from these answers as well as your own exploration, and mark which possibilities came from the user.
+
+Then explore distinct dimensions where plausible: other users or beneficiaries, more valuable outcomes, different scope, leverage or generality, second-order effects, and more ambitious future states. Separate compatible extensions from material reframings. Recommend which ambitions to carry forward, reject, or defer and explain why.
 
 ## Output payload
 
@@ -53,4 +55,4 @@ Escalate when carrying an ambition forward would materially change scope, benefi
 
 ## Completion criteria
 
-The initial framing has been challenged across relevant dimensions, plausible high-value expansions are visible, and each material ambition is clearly carried forward, rejected, deferred, or awaiting a specific human decision.
+The user's own ambition has been drawn out and challenged in conversation, the initial framing has been challenged across relevant dimensions, plausible high-value expansions are visible, and each material ambition is clearly carried forward, rejected, deferred, or awaiting a specific human decision.

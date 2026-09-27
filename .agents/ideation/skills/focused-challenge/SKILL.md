@@ -29,7 +29,7 @@ Perform a deliberate, bounded stress test of a problem model, assumption, compar
 
 ## Do not invoke when
 
-Do not manufacture objections after the material design space is sufficiently understood, repeat a resolved challenge without new basis, or use challenge to override an informed human decision.
+Do not manufacture objections after the material design space is sufficiently understood, repeat a resolved challenge without new basis, or use challenge to override an informed human decision. Challenging a human decision is not overriding it: the user decides, but a serious finding against their decision goes back to them as a question.
 
 ## Preconditions and inputs
 
@@ -37,7 +37,9 @@ Identify the proposition under test, its dependencies, supporting evidence and a
 
 ## Method
 
-Test causal logic, critical assumptions, contradictions, failure modes, disconfirming evidence, boundary conflicts, and whether a credible alternative is materially stronger. Rank findings by consequence rather than volume. For the pre-synthesis invocation, cover every challenge dimension required by `WORKFLOW.md`.
+Test causal logic, critical assumptions, contradictions, failure modes, disconfirming evidence, boundary conflicts, and whether a credible alternative is materially stronger. Test the user's settled decisions as well as the agent's proposals. Rank findings by consequence rather than volume.
+
+A high-severity finding that bears on a human decision MUST be put to the user as a reconfirmation question, with the finding and its consequence, rather than recorded as an accepted trade-off. Apply the tension check in `AGENT.md`. For the pre-synthesis invocation, cover every challenge dimension required by `WORKFLOW.md`.
 
 ## Output payload
 

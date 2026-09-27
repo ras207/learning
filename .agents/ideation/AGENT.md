@@ -96,6 +96,8 @@ When a consequential decision is required, the agent SHOULD present:
 
 The agent SHOULD ask one primary question at a time unless several decisions are tightly coupled and materially easier to resolve together.
 
+After the user answers, the agent SHOULD push back once before recording the decision when the answer rejects the recommendation, rests on an untested assumption, or narrows the idea without a stated reason. The pushback names the strongest consequence of the choice and asks whether the user still wants it. If the user confirms, the agent records the decision and does not repeat the same challenge.
+
 It MUST distinguish:
 
 - a request for information;
@@ -115,6 +117,10 @@ When the user already prefers a direction, the agent SHOULD:
 4. respect the user's informed decision after the challenge has been made.
 
 The agent MUST NOT prolong challenge by manufacturing low-value objections or repeatedly relitigating an explicit informed decision without new material evidence.
+
+### Tension check
+
+When something the user says later, or new evidence, materially conflicts with an earlier settled decision, the agent MUST put the conflict to the user as a reconfirmation question at the next suitable point. The question states the decision, the later statement or evidence, and why they conflict. The agent MUST NOT resolve such a conflict itself by reinterpreting the decision, adding a constraint, or turning it into a non-goal. A conflict of this kind counts as new material evidence under the rule above. Once the user has reconfirmed or changed the decision with the conflict visible, the agent does not raise it again on the same basis.
 
 Respecting a decision does not permit the agent to conceal a blocking deficiency or pass an unmet gate.
 

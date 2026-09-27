@@ -67,6 +67,8 @@ For a resumed run:
 
 Develop a sufficiently clear understanding of the user's starting intent, desired outcome, relevant people, and consequential boundaries without fixing the solution prematurely.
 
+This stage is a conversation. Ask the user what the idea is ultimately for and why now before drafting the intent model, even when the initial statement seems complete. Later stages depend on the answer.
+
 Evaluate Gate 1 — Intent Captured at the end of this stage.
 
 ### 3. Expand ambition
@@ -100,8 +102,9 @@ Before Gate 5, conduct a focused challenge that:
 - tests critical assumptions and causal logic;
 - seeks contradictions with the stated intent, problem model, boundaries, and desired outcomes;
 - examines important failure modes and disconfirming possibilities;
-- checks whether a credible alternative remains materially stronger; and
-- makes unresolved consequential trade-offs visible.
+- checks whether a credible alternative remains materially stronger;
+- makes unresolved consequential trade-offs visible; and
+- puts each high-severity finding that bears on a settled human decision back to the user as a reconfirmation question.
 
 Resolve or explicitly accept consequential trade-offs that require human judgement.
 

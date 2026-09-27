@@ -38,11 +38,12 @@ Read the user's available statements, current valid decisions and assumptions, r
 ## Method
 
 1. Extract the trigger or motivation, desired change, relevant people, expressed boundaries, and proposed solution language.
-2. Reframe solution language as intent only where the meaning remains supported.
-3. Identify ambiguities that could lead to materially different exploration.
-4. Resolve supported, reversible details autonomously.
-5. Ask the smallest focused question when a consequential interpretation cannot be inferred safely.
-6. Preserve rejected, deferred, or superseded intent explicitly rather than blending it into the current model.
+2. Ask the user directly what the idea is ultimately for and why now. Do this before drafting, even when the seed appears to answer it. If the answer is vague or conventional, follow up once to reach the concrete outcome the user cares about.
+3. Reframe solution language as intent only where the meaning remains supported.
+4. Identify ambiguities that could lead to materially different exploration.
+5. Resolve supported, reversible details autonomously.
+6. Ask a focused question when a consequential interpretation cannot be inferred safely.
+7. Preserve rejected, deferred, or superseded intent explicitly rather than blending it into the current model.
 
 ## Output payload
 
@@ -58,4 +59,4 @@ Return `escalation_required` when materially different interpretations remain, s
 
 ## Completion criteria
 
-The invocation is complete when the core intent and desired change are understandable, relevant people are clear enough for exploration, consequential boundaries already expressed are visible, and no unresolved ambiguity would cause pursuit of a materially different idea.
+The invocation is complete when the user has been asked about purpose and why now, the core intent and desired change are understandable, relevant people are clear enough for exploration, consequential boundaries already expressed are visible, and no unresolved ambiguity would cause pursuit of a materially different idea.
