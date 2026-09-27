@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 37
+  revision: 38
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:05:51.908540Z'
+  updated_at: '2026-09-27T09:06:39.615035Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -86,6 +86,15 @@ artifacts:
     value: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
   repository_commit: null
   last_verified_at: '2026-09-26T12:39:09.679867Z'
+- artifact_id: art-focused-challenge
+  role: challenge_assessment
+  path: projects/permanent-learning-system/ideation/focused-challenge.md
+  status: current
+  fingerprint:
+    algorithm: sha256
+    value: 0801e8483761d31f8c31914a2ad622b8b96eae70c3cf023ce058118a73fbeeda
+  repository_commit: null
+  last_verified_at: '2026-09-27T09:06:39.615035Z'
 decisions:
 - id: D-001
   question: 'Who decides what the user works on next: the AI, or the user with the
@@ -266,15 +275,15 @@ assumptions:
   materiality: medium
   risk: low
   confidence: high
-  validation_method: 'Challenge recorded in art-problem-model section 8: the 10-year
-    aim (''respected'', ''influential'') also depends on reputation, which may partly
-    require recognised signals. Confirm or revise at Gate 4 when success conditions
-    shape alternatives.'
+  validation_method: 'Tested in art-focused-challenge F2: the system evidences capability,
+    not reputation. Reputation stays outside the system, as the user accepted in D-005;
+    day-job self-reports can serve as partial evidence.'
   dependencies:
   - art-intent-model
   affected_records:
   - gate:3
   - gate:4
+  - gate:5
   blocking: false
   blocking_reason: Explicit and reversible; being wrong would not invalidate Gate
     1 or change the direction of Gate 2 exploration.
@@ -415,13 +424,16 @@ assumptions:
   materiality: high
   risk: moderate
   confidence: medium
-  validation_method: Test in the pre-Gate-5 focused challenge; later check examiner
-    judgements against real-world outcomes such as work performance.
+  validation_method: 'Early use: compare examiner judgements with world-checkable
+    outcomes (running code, reproduced results, scored forecasts) and with day-job
+    self-reports. Residual risk: models from different providers can share blind spots
+    (art-focused-challenge F1).'
   dependencies:
   - D-005
   affected_records:
   - gate:5
   - A-003
+  - art-focused-challenge
   blocking: false
   blocking_reason: A mitigation to be tested in the focused challenge; does not block
     recording the direction.
@@ -594,13 +606,13 @@ work_items:
   - gate:3
   - gate:5
   owner: agent
-  next_action: Used as comparison criterion 9 in art-direction-comparison; the hybrid
-    recommendation's main risk is combined meta-work. Test in the pre-Gate-5 focused
-    challenge.
-  review_point: Gate 4 comparison and pre-Gate-5 focused challenge
+  next_action: Tested in art-focused-challenge F3; carried into the vision as the
+    principle that learning time comes before system time, and into downstream design
+    and early use.
+  review_point: Downstream design and early use
   priority_rationale: Non-blocking now; must not be routed ahead of blocking work.
   created_at: '2026-09-23T22:40:00Z'
-  updated_at: '2026-09-26T06:40:00Z'
+  updated_at: '2026-09-27T09:00:00Z'
   resolved_at: null
 - id: WI-007
   type: question
@@ -889,6 +901,33 @@ work_items:
   resolved_at: '2026-09-27T08:00:00Z'
   resolution: Resolved by D-004 (privacy position P2) and D-005 (project-led direction
     on an AI-maintained capability graph, AI and self-assessment as evidence).
+- id: WI-016
+  type: uncertainty
+  title: Agent-proposed evidence principles within D-005
+  description: 'The focused challenge proposes principles compatible with D-005 that
+    the user has not stated: capability counts as evidenced only when the user shows
+    unaided reasoning; prefer evidence the world can check (running code, reproduced
+    results, scored forecasts); the user''s own notes on day-job performance count
+    as self-reported evidence; projects use public material only.'
+  status: open
+  materiality: medium
+  blocking: false
+  blocking_reason: Each is compatible with D-005 and B1 and reversible; the user may
+    reject any of them, which would be a material change to be re-assessed.
+  origin: focused-challenge
+  affected:
+  - gate:5
+  prerequisites: []
+  downstream:
+  - gate:6
+  owner: human
+  next_action: Show the user; carry into the draft vision unless the user objects.
+    Review at Gate 6 approval at the latest.
+  review_point: Gate 6 approval
+  priority_rationale: Non-blocking; visible for correction.
+  created_at: '2026-09-27T09:00:00Z'
+  updated_at: '2026-09-27T09:00:00Z'
+  resolved_at: null
 evidence:
 - id: E-001
   claim: 'The user''s starting point: economist leading a small team giving independent
@@ -1685,5 +1724,20 @@ history:
   summary: Resume session on the user's go-ahead for the focused challenge
   resulting_revision: 37
   transaction_id: tx-2026-09-27-37-resume-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-38-focused-challenge
+  timestamp: '2026-09-27T09:06:39.615035Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - A-010
+  - A-003
+  - WI-006
+  - WI-016
+  summary: Record pre-Gate-5 focused challenge of D-005 (six findings, none blocking);
+    update A-003, A-010 and WI-006; add WI-016
+  resulting_revision: 38
+  transaction_id: tx-2026-09-27-38-focused-challenge
   authorization_id: null
   authorization_ids: []
