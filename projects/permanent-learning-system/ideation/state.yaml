@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 38
+  revision: 39
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T09:06:39.615035Z'
+  updated_at: '2026-09-27T09:07:09.119756Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -1277,6 +1277,100 @@ gate_evaluations:
   invalidation_reason: null
   invalidated_by_event: null
   superseded_by: null
+- id: G5-E1
+  gate_id: 5
+  gate_name: Ready for Synthesis
+  gate_class: hard
+  evaluated_at: '2026-09-27T09:10:00Z'
+  state_revision: 38
+  outcome: PASS_WITH_UNCERTAINTY
+  criteria_satisfied:
+  - 'A coherent broad direction is explicit: D-005 (project-led learning on an AI-maintained,
+    user-owned capability graph with evidence; the AI chooses what to build, maintain
+    or test; evidence from AI and self-assessment) with D-004 (P2), within D-001 to
+    D-003.'
+  - 'Consequential trade-offs are resolved or consciously accepted: privacy versus
+    cost accepted as P2 (D-004); AI-only evidence and its weakness on credibility
+    with people accepted in D-005 after the agent put the trade-off; meta-work addressed
+    by the AI keeping the graph and by the learning-before-system principle (art-focused-challenge
+    F3).'
+  - 'No blocking uncertainty remains: the focused challenge found six findings, none
+    blocking, and no unresolved contradiction (art-focused-challenge sections 1 and
+    2).'
+  - 'Earlier required gates have no unresolved blocking deficiency: G1-E1 to G4-E1
+    are current; none depends on a changed conclusion (D-004 and D-005 resolve items
+    those gates listed as open).'
+  - 'There is enough material for every section of VISION_CONTRACT.md without inventing
+    consequential content: statement and desired change (intent model, problem model
+    sections 1 and 9); problem (problem model sections 1 to 6); people (problem model
+    section 2); direction and rationale (D-005, art-direction-comparison, art-focused-challenge
+    section 3); principles (B1 to B6, C1 to C7, focused-challenge responses); boundaries
+    (D-003, WI-009, AM-7, C4, F6); critical assumptions (A-003, A-005, A-008, A-010);
+    success (problem model section 9); non-blocking questions (WI-006, WI-014, WI-016,
+    WI-009).'
+  criteria_unmet: []
+  deficiency_ids: []
+  uncertainty_ids:
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-014
+  - WI-016
+  - WI-009
+  human_judgement_required: null
+  human_decision_ids:
+  - D-004
+  - D-005
+  rationale: 'The direction was chosen by the user and challenged before this gate
+    as WORKFLOW.md requires. The strongest objection (the AI marking work it helped
+    create) has responses within D-005: a separate examiner (A-010), evidence of unaided
+    reasoning, and world-checkable evidence. The residual risk of blind spots shared
+    across models is explicit. The second-strongest (no human evidence of credibility)
+    is a trade-off the user accepted knowingly, so it is recorded as accepted, not
+    as a deficiency; the vision must state that the system evidences capability, not
+    reputation. Remaining uncertainty is non-blocking: untested record-based tutoring
+    (A-008) and examiner separation (A-010), fit with fragmented time (A-005), reputation
+    (A-003), meta-work in practice (WI-006), existing tools as components (WI-014),
+    agent-proposed evidence principles the user may reject (WI-016), and deferred
+    multi-learner scope (WI-009). None requires synthesis to invent consequential
+    intent. The evidence principles in WI-016 are the agent''s proposals; they will
+    be marked as such in the draft and the user can correct them before approval.'
+  source_inputs:
+    focused_challenge: projects/permanent-learning-system/ideation/focused-challenge.md
+    focused_challenge_sha256: 0801e8483761d31f8c31914a2ad622b8b96eae70c3cf023ce058118a73fbeeda
+    direction_comparison_sha256: 6ce625cc8f8a119bdcf6ea85ea0e1471d625dededcccb0798f21147418a3f8d4
+    alternatives_sha256: 20924fab5408a6e85f25dc2a893f1aa701f6827a98531483e1570f17a8d8f6ca
+    problem_model_sha256: 811f0c93db903faeaca7acba01745bf00a8deb76ee7edef52d63ed832a279f08
+  dependencies:
+  - art-focused-challenge
+  - art-direction-comparison
+  - art-alternatives
+  - art-problem-model
+  - art-intent-model
+  - art-ambition-map
+  - G1-E1
+  - G2-E1
+  - G3-E1
+  - G4-E1
+  - D-001
+  - D-002
+  - D-003
+  - D-004
+  - D-005
+  - A-003
+  - A-005
+  - A-008
+  - A-010
+  - WI-006
+  - WI-009
+  - WI-014
+  - WI-016
+  validity: current
+  invalidation_reason: null
+  invalidated_by_event: null
+  superseded_by: null
 finalization:
   outcome: null
   checks: []
@@ -1739,5 +1833,16 @@ history:
     update A-003, A-010 and WI-006; add WI-016
   resulting_revision: 38
   transaction_id: tx-2026-09-27-38-focused-challenge
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-39-gate5
+  timestamp: '2026-09-27T09:07:09.119756Z'
+  event_type: skill_result
+  actor: ideation-agent
+  affected_record_ids:
+  - G5-E1
+  summary: 'Gate 5 Ready for Synthesis: PASS_WITH_UNCERTAINTY (G5-E1)'
+  resulting_revision: 39
+  transaction_id: tx-2026-09-27-39-gate5
   authorization_id: null
   authorization_ids: []
