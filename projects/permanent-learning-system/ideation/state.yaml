@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 31
+  revision: 32
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-27T08:46:54.800307Z'
+  updated_at: '2026-09-27T08:50:56.421950Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -164,6 +164,30 @@ decisions:
   decided_at: '2026-09-25'
   supersedes: null
   authorization_id: auth-D-003-capability-goal
+- id: D-004
+  question: Where should the detailed learner model live (WI-013)?
+  decision: 'P2: the durable record of capabilities and evidence is held in files
+    the user controls; the parts needed for a session are shown to a cloud AI, accepting
+    that session content passes through the provider.'
+  authority: human
+  status: settled
+  alternatives_considered:
+  - 'P1: provider-held learner model (cheapest; loses ownership, conflicts with C3
+    and AM-3).'
+  - 'P3: record and AI fully local (meets C3 fully; likely needs hardware beyond C2
+    and weakens tutoring).'
+  dependencies:
+  - WI-013
+  - art-alternatives
+  - art-direction-comparison
+  affected:
+  - WI-013
+  - WI-015
+  - gate:5
+  decided_by: project owner
+  decided_at: '2026-09-27'
+  supersedes: null
+  authorization_id: auth-D-004-privacy-p2
 assumptions:
 - id: A-001
   proposition: '''Retain reasoning, understanding and judgement'' concerns the user''s
@@ -712,7 +736,7 @@ work_items:
     hardware spend (C2). art-alternatives section 4 sets out three positions: P1 provider-held,
     P2 user-held record with cloud AI per session, P3 fully local. Only P2 fits both
     C2 and the core of C3, but session content still passes through a cloud provider.'
-  status: open
+  status: resolved
   materiality: high
   blocking: false
   blocking_reason: A trade-off between solution directions, not an ambiguity in the
@@ -731,8 +755,9 @@ work_items:
   review_point: Gate 4 boundary
   priority_rationale: Non-blocking at Gate 3.
   created_at: '2026-09-25T23:05:00Z'
-  updated_at: '2026-09-26T06:40:00Z'
-  resolved_at: null
+  updated_at: '2026-09-27T07:00:00Z'
+  resolved_at: '2026-09-27T07:00:00Z'
+  resolution: 'Resolved by D-004: position P2.'
 - id: WI-014
   type: uncertainty
   title: Existing tools and services not researched
@@ -763,13 +788,14 @@ work_items:
 - id: WI-015
   type: escalation
   title: Converge on a broad direction and accept a privacy position
-  description: 'Materially different viable directions remain (art-alternatives A
-    to E). Choosing among them, and accepting where the learner model lives (WI-013),
-    are consequential preferences reserved to the user (GATES.md Gate 4 and Gate 5
-    human authority). The agent recommends a hybrid: a project spine (B) run on a
-    user-owned record with AI-designed practice and maintenance (A), with periodic
-    human calibration (D), at position P2 (user-held record, cloud AI per session)
-    and a light build.'
+  description: 'Privacy part resolved by D-004 (P2). Direction part partly answered
+    by the user''s statement (2026-09-27): "I had envisaged the AI maintaining a graph
+    of my capabilities with a record of evidence that demonstrates the capability,
+    deciding on which portion of the graph to build on, maintain or test in each session."
+    Agent reading: this confirms the owned, evidence-backed capability record and
+    AI-chosen build/maintain/test steps (the core of Direction A, shared by the recommended
+    hybrid), but does not yet say whether building happens mainly through real projects
+    (B) or whether people''s judgement counts as evidence (D).'
   status: open
   materiality: high
   blocking: true
@@ -787,8 +813,9 @@ work_items:
   - gate:5
   - gate:6
   owner: human
-  next_action: Put the decision to the user with recommendation, alternatives and
-    trade-offs; record the answer through the approval protocol.
+  next_action: Ask the user whether "build" steps are mainly real projects and whether
+    judgement from people counts as evidence; then record the direction decision through
+    the approval protocol.
   options:
   - 'Recommended: B project spine on A owned record, D as periodic calibration, P2,
     light build.'
@@ -805,7 +832,7 @@ work_items:
   priority_rationale: 'Highest decision value: every later gate depends on the chosen
     direction.'
   created_at: '2026-09-26T06:40:00Z'
-  updated_at: '2026-09-26T06:40:00Z'
+  updated_at: '2026-09-27T07:00:00Z'
   resolved_at: null
 evidence:
 - id: E-001
@@ -1531,3 +1558,19 @@ history:
   transaction_id: tx-2026-09-27-32-checkpoint-await-approval
   authorization_id: null
   authorization_ids: []
+- event_id: evt:tx-2026-09-27-31-decision-privacy-p2
+  timestamp: '2026-09-27T08:50:56.421950Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids:
+  - D-004
+  - WI-013
+  - WI-015
+  summary: 'Record human decision D-004: privacy position P2 (user-held record, cloud
+    AI per session); resolve WI-013; record the user''s capability-graph statement
+    on WI-015'
+  resulting_revision: 32
+  transaction_id: tx-2026-09-27-31-decision-privacy-p2
+  authorization_id: auth-D-004-privacy-p2
+  authorization_ids:
+  - auth-D-004-privacy-p2
