@@ -3,9 +3,9 @@ project:
   project_id: permanent-learning-system
   project_slug: permanent-learning-system
   iteration: 1
-  revision: 29
+  revision: 30
   created_at: '2026-09-22T22:45:00Z'
-  updated_at: '2026-09-26T12:39:48.555093Z'
+  updated_at: '2026-09-27T08:46:20.190995Z'
 agent_provenance:
   repository_commit: 07b6fa4af7e5d5747d53658d090a1b60ef512301
 workflow:
@@ -13,7 +13,7 @@ workflow:
   vision_status: not_started
   spine_context: converge_and_challenge
 session:
-  status: paused
+  status: active
   checkpointed_at: '2026-09-26T07:05:00Z'
   resume_summary: 'G1-E1, G2-E1, G3-E1 and G4-E1 (all PASS_WITH_UNCERTAINTY) are current.
     This sitting (2026-09-26, scheduled, no live user input): generate-alternatives
@@ -1510,5 +1510,15 @@ history:
   summary: Checkpoint session after Gate 4 evaluation
   resulting_revision: 29
   transaction_id: tx-2026-09-26-29-checkpoint
+  authorization_id: null
+  authorization_ids: []
+- event_id: evt:tx-2026-09-27-30-resume-wi015
+  timestamp: '2026-09-27T08:46:20.190995Z'
+  event_type: workflow_operation
+  actor: ideation-agent
+  affected_record_ids: []
+  summary: Resume session on the user's reply to WI-015
+  resulting_revision: 30
+  transaction_id: tx-2026-09-27-30-resume-wi015
   authorization_id: null
   authorization_ids: []
